@@ -33,7 +33,7 @@ namespace Fredi
         {
 
         }
-
+        
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 

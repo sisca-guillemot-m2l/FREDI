@@ -10,19 +10,11 @@ using System.Windows.Forms;
 
 namespace Fredi
 {
-    public partial class UCUser : UserControl
+    public partial class UCbor : UserControl
     {
-        public UCUser()
+        public UCbor()
         {
             InitializeComponent();
         }
-
-        private void UCUser_Load(object sender, EventArgs e)
-        {
-            
-        }
-    
-    
-
     }
 }

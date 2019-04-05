@@ -32,9 +32,9 @@ namespace Fredi
                 {
                     connection.Open();
                 }
-                catch (MySqlException noco)
+                catch 
                 {
-                    MessageBox.Show(noco.ToString());
+                    MessageBox.Show("Vous n'avez pas accès à internet, veuillez relancer l'application une fois connecté");
                 }
             
         }
@@ -76,7 +76,8 @@ namespace Fredi
             
                 panel1.Height = button3.Height;
                 panel1.Top = button3.Top;
-            
+                
+                
         }
 
         private void button4_Click(object sender, EventArgs e)

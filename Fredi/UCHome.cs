@@ -47,7 +47,7 @@ namespace Fredi
 
         }
 
-        public void btnco_Click(object sender, EventArgs e)
+        public  void btnco_Click(object sender, EventArgs e)
         {
             MySqlConnection connection = new MySqlConnection("database=M2L_DB; server=localhost; user id=root; pwd=");
             connection.Open();
@@ -94,8 +94,8 @@ namespace Fredi
             {
                 MessageBox.Show("Mauvais mot de passe ou adresse mail");
             }
-           
-        
+
+            
         }
         
         public int returnToken()
