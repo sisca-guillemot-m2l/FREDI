@@ -19,10 +19,21 @@ namespace Fredi
 
         private void UCUser_Load(object sender, EventArgs e)
         {
-            
+            slipBindingSource1.Add(new Slip { SlipDate = new DateTime(2019, 04, 08), SlipPattern = "Compétition", SlipPath = "tokyo-Paris", SlipKilometers = 500, PathCost = 260, TollCost = 75, MealCost = 53, AccommodationCost = 168, TotalCost = 500 });
         }
-    
-    
 
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Ajouter")
+            {
+                slipBindingSource1.Add(new Slip {});
+            }
+
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Supprimer")
+            {
+                slipBindingSource1.RemoveCurrent();
+            }
+        }
     }
 }

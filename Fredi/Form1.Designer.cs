@@ -90,7 +90,7 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(12, 34);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(172, 60);
+            this.label2.Size = new System.Drawing.Size(135, 47);
             this.label2.TabIndex = 4;
             this.label2.Text = "M 2 L";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -247,7 +247,7 @@
             this.ucAccount1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ucAccount1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ucAccount1.Location = new System.Drawing.Point(154, 60);
-            this.ucAccount1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ucAccount1.Margin = new System.Windows.Forms.Padding(4);
             this.ucAccount1.Name = "ucAccount1";
             this.ucAccount1.Size = new System.Drawing.Size(1030, 701);
             this.ucAccount1.TabIndex = 5;
@@ -258,7 +258,7 @@
             this.ucInscription1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ucInscription1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ucInscription1.Location = new System.Drawing.Point(154, 60);
-            this.ucInscription1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ucInscription1.Margin = new System.Windows.Forms.Padding(4);
             this.ucInscription1.Name = "ucInscription1";
             this.ucInscription1.Size = new System.Drawing.Size(1030, 698);
             this.ucInscription1.TabIndex = 3;
@@ -269,13 +269,14 @@
             this.ucHome1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ucHome1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ucHome1.Location = new System.Drawing.Point(154, 60);
-            this.ucHome1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ucHome1.Margin = new System.Windows.Forms.Padding(4);
             this.ucHome1.Name = "ucHome1";
             this.ucHome1.Size = new System.Drawing.Size(1030, 701);
             this.ucHome1.TabIndex = 2;
             // 
             // ucUser1
             // 
+            this.ucUser1.AutoScroll = true;
             this.ucUser1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ucUser1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.ucUser1.Location = new System.Drawing.Point(154, 60);
@@ -289,7 +290,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1182, 753);
+            this.ClientSize = new System.Drawing.Size(1184, 761);
             this.Controls.Add(this.ucUser1);
             this.Controls.Add(this.ucAccount1);
             this.Controls.Add(this.ucInscription1);
