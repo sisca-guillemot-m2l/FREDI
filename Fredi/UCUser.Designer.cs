@@ -31,9 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.Ajouter = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Modifier = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Supprimer = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.slipBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.slipBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.slipDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.slipPatternDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.slipPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,8 +42,9 @@
             this.mealCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accommodationCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.slipBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.slipBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Ajouter = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Modifier = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Supprimer = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource)).BeginInit();
@@ -68,11 +68,11 @@
             this.Modifier,
             this.Supprimer});
             this.dataGridView1.DataSource = this.slipBindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(90, 67);
+            this.dataGridView1.Location = new System.Drawing.Point(2, 84);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(871, 217);
+            this.dataGridView1.Size = new System.Drawing.Size(1284, 271);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -80,41 +80,28 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(912, 666);
+            this.label1.Location = new System.Drawing.Point(1140, 832);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 13);
+            this.label1.Size = new System.Drawing.Size(133, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "CECI EST UN TEST";
             // 
-            // Ajouter
+            // slipBindingSource1
             // 
-            this.Ajouter.HeaderText = "Ajouter";
-            this.Ajouter.Name = "Ajouter";
-            this.Ajouter.Text = "Ajouter";
-            this.Ajouter.UseColumnTextForButtonValue = true;
-            this.Ajouter.Width = 75;
+            this.slipBindingSource1.DataSource = typeof(Fredi.Slip);
             // 
-            // Modifier
+            // slipBindingSource
             // 
-            this.Modifier.HeaderText = "Modifier";
-            this.Modifier.Name = "Modifier";
-            this.Modifier.Text = "Modifier";
-            this.Modifier.UseColumnTextForButtonValue = true;
-            this.Modifier.Width = 75;
-            // 
-            // Supprimer
-            // 
-            this.Supprimer.HeaderText = "Supprimer";
-            this.Supprimer.Name = "Supprimer";
-            this.Supprimer.Text = "Supprimer";
-            this.Supprimer.UseColumnTextForButtonValue = true;
-            this.Supprimer.Width = 75;
+            this.slipBindingSource.DataSource = typeof(Fredi.Slip);
             // 
             // slipDateDataGridViewTextBoxColumn
             // 
+            this.slipDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.slipDateDataGridViewTextBoxColumn.DataPropertyName = "SlipDate";
             this.slipDateDataGridViewTextBoxColumn.HeaderText = "Date";
             this.slipDateDataGridViewTextBoxColumn.Name = "slipDateDataGridViewTextBoxColumn";
+            this.slipDateDataGridViewTextBoxColumn.Width = 24;
             // 
             // slipPatternDataGridViewTextBoxColumn
             // 
@@ -127,68 +114,86 @@
             this.slipPathDataGridViewTextBoxColumn.DataPropertyName = "SlipPath";
             this.slipPathDataGridViewTextBoxColumn.HeaderText = "Trajet";
             this.slipPathDataGridViewTextBoxColumn.Name = "slipPathDataGridViewTextBoxColumn";
+            this.slipPathDataGridViewTextBoxColumn.Width = 150;
             // 
             // slipKilometersDataGridViewTextBoxColumn
             // 
             this.slipKilometersDataGridViewTextBoxColumn.DataPropertyName = "SlipKilometers";
             this.slipKilometersDataGridViewTextBoxColumn.HeaderText = "Kms parcourus";
             this.slipKilometersDataGridViewTextBoxColumn.Name = "slipKilometersDataGridViewTextBoxColumn";
-            this.slipKilometersDataGridViewTextBoxColumn.Width = 50;
+            this.slipKilometersDataGridViewTextBoxColumn.Width = 75;
             // 
             // pathCostDataGridViewTextBoxColumn
             // 
             this.pathCostDataGridViewTextBoxColumn.DataPropertyName = "PathCost";
             this.pathCostDataGridViewTextBoxColumn.HeaderText = "Cout trajet";
             this.pathCostDataGridViewTextBoxColumn.Name = "pathCostDataGridViewTextBoxColumn";
-            this.pathCostDataGridViewTextBoxColumn.Width = 50;
+            this.pathCostDataGridViewTextBoxColumn.Width = 70;
             // 
             // tollCostDataGridViewTextBoxColumn
             // 
             this.tollCostDataGridViewTextBoxColumn.DataPropertyName = "TollCost";
             this.tollCostDataGridViewTextBoxColumn.HeaderText = "Cout péage";
             this.tollCostDataGridViewTextBoxColumn.Name = "tollCostDataGridViewTextBoxColumn";
-            this.tollCostDataGridViewTextBoxColumn.Width = 50;
+            this.tollCostDataGridViewTextBoxColumn.Width = 70;
             // 
             // mealCostDataGridViewTextBoxColumn
             // 
             this.mealCostDataGridViewTextBoxColumn.DataPropertyName = "MealCost";
             this.mealCostDataGridViewTextBoxColumn.HeaderText = "Cout repas";
             this.mealCostDataGridViewTextBoxColumn.Name = "mealCostDataGridViewTextBoxColumn";
-            this.mealCostDataGridViewTextBoxColumn.Width = 50;
+            this.mealCostDataGridViewTextBoxColumn.Width = 70;
             // 
             // accommodationCostDataGridViewTextBoxColumn
             // 
             this.accommodationCostDataGridViewTextBoxColumn.DataPropertyName = "AccommodationCost";
             this.accommodationCostDataGridViewTextBoxColumn.HeaderText = "Cout hebergement";
             this.accommodationCostDataGridViewTextBoxColumn.Name = "accommodationCostDataGridViewTextBoxColumn";
-            this.accommodationCostDataGridViewTextBoxColumn.Width = 50;
             // 
             // totalCostDataGridViewTextBoxColumn
             // 
             this.totalCostDataGridViewTextBoxColumn.DataPropertyName = "TotalCost";
             this.totalCostDataGridViewTextBoxColumn.HeaderText = "Total";
             this.totalCostDataGridViewTextBoxColumn.Name = "totalCostDataGridViewTextBoxColumn";
-            this.totalCostDataGridViewTextBoxColumn.Width = 50;
+            this.totalCostDataGridViewTextBoxColumn.Width = 70;
             // 
-            // slipBindingSource1
+            // Ajouter
             // 
-            this.slipBindingSource1.DataSource = typeof(Fredi.Slip);
+            this.Ajouter.HeaderText = "Ajouter";
+            this.Ajouter.Name = "Ajouter";
+            this.Ajouter.Text = "Ajouter";
+            this.Ajouter.UseColumnTextForButtonValue = true;
+            this.Ajouter.Width = 60;
             // 
-            // slipBindingSource
+            // Modifier
             // 
-            this.slipBindingSource.DataSource = typeof(Fredi.Slip);
+            this.Modifier.HeaderText = "Modifier";
+            this.Modifier.Name = "Modifier";
+            this.Modifier.Text = "Modifier";
+            this.Modifier.UseColumnTextForButtonValue = true;
+            this.Modifier.Width = 63;
+            // 
+            // Supprimer
+            // 
+            this.Supprimer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Supprimer.HeaderText = "Supprimer";
+            this.Supprimer.Name = "Supprimer";
+            this.Supprimer.Text = "Supprimer";
+            this.Supprimer.UseColumnTextForButtonValue = true;
+            this.Supprimer.Width = 79;
             // 
             // UCUser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UCUser";
-            this.Size = new System.Drawing.Size(1030, 689);
+            this.Size = new System.Drawing.Size(1288, 861);
             this.Load += new System.EventHandler(this.UCUser_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource1)).EndInit();

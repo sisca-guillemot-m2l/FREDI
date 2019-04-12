@@ -19,7 +19,11 @@ namespace Fredi
 
         private void UCUser_Load(object sender, EventArgs e)
         {
-            slipBindingSource1.Add(new Slip { SlipDate = new DateTime(2019, 04, 08), SlipPattern = "Compétition", SlipPath = "tokyo-Paris", SlipKilometers = 500, PathCost = 260, TollCost = 75, MealCost = 53, AccommodationCost = 168, TotalCost = 500 });
+            int sum = 0;
+
+            sum = Convert.ToInt32(dataGridView1.Rows[0].Cells[5].Value);
+
+            slipBindingSource1.Add(new Slip { SlipDate = new DateTime(2019, 04, 08), SlipPattern = "Compétition", SlipPath = "tokyo-Paris", SlipKilometers = 500, PathCost = 260, TollCost = 75, MealCost = 53, AccommodationCost = 168, TotalCost = sum  });
         }
 
 
@@ -27,7 +31,7 @@ namespace Fredi
         {
             if (dataGridView1.Columns[e.ColumnIndex].Name == "Ajouter")
             {
-                slipBindingSource1.Add(new Slip {});
+                slipBindingSource1.Add(new Slip { });
             }
 
             if (dataGridView1.Columns[e.ColumnIndex].Name == "Supprimer")
