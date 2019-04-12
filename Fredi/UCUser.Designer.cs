@@ -31,8 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.slipBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.slipBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Ajouter = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Modifier = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Supprimer = new System.Windows.Forms.DataGridViewButtonColumn();
             this.slipDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.slipPatternDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.slipPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,9 +43,8 @@
             this.mealCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accommodationCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ajouter = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Modifier = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Supprimer = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.slipBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.slipBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource)).BeginInit();
@@ -87,13 +87,30 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "CECI EST UN TEST";
             // 
-            // slipBindingSource1
+            // Ajouter
             // 
-            this.slipBindingSource1.DataSource = typeof(Fredi.Slip);
+            this.Ajouter.HeaderText = "Ajouter";
+            this.Ajouter.Name = "Ajouter";
+            this.Ajouter.Text = "Ajouter";
+            this.Ajouter.UseColumnTextForButtonValue = true;
+            this.Ajouter.Width = 60;
             // 
-            // slipBindingSource
+            // Modifier
             // 
-            this.slipBindingSource.DataSource = typeof(Fredi.Slip);
+            this.Modifier.HeaderText = "Modifier";
+            this.Modifier.Name = "Modifier";
+            this.Modifier.Text = "Modifier";
+            this.Modifier.UseColumnTextForButtonValue = true;
+            this.Modifier.Width = 63;
+            // 
+            // Supprimer
+            // 
+            this.Supprimer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Supprimer.HeaderText = "Supprimer";
+            this.Supprimer.Name = "Supprimer";
+            this.Supprimer.Text = "Supprimer";
+            this.Supprimer.UseColumnTextForButtonValue = true;
+            this.Supprimer.Width = 79;
             // 
             // slipDateDataGridViewTextBoxColumn
             // 
@@ -157,30 +174,13 @@
             this.totalCostDataGridViewTextBoxColumn.Name = "totalCostDataGridViewTextBoxColumn";
             this.totalCostDataGridViewTextBoxColumn.Width = 70;
             // 
-            // Ajouter
+            // slipBindingSource1
             // 
-            this.Ajouter.HeaderText = "Ajouter";
-            this.Ajouter.Name = "Ajouter";
-            this.Ajouter.Text = "Ajouter";
-            this.Ajouter.UseColumnTextForButtonValue = true;
-            this.Ajouter.Width = 60;
+            this.slipBindingSource1.DataSource = typeof(Fredi.Slip);
             // 
-            // Modifier
+            // slipBindingSource
             // 
-            this.Modifier.HeaderText = "Modifier";
-            this.Modifier.Name = "Modifier";
-            this.Modifier.Text = "Modifier";
-            this.Modifier.UseColumnTextForButtonValue = true;
-            this.Modifier.Width = 63;
-            // 
-            // Supprimer
-            // 
-            this.Supprimer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Supprimer.HeaderText = "Supprimer";
-            this.Supprimer.Name = "Supprimer";
-            this.Supprimer.Text = "Supprimer";
-            this.Supprimer.UseColumnTextForButtonValue = true;
-            this.Supprimer.Width = 79;
+            this.slipBindingSource.DataSource = typeof(Fredi.Slip);
             // 
             // UCUser
             // 

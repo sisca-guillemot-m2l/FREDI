@@ -41,7 +41,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.MenuTop = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.AccountName = new System.Windows.Forms.Label();
             this.ucAccount1 = new Fredi.UCAccount();
             this.ucInscription1 = new Fredi.UCInscription();
             this.ucHome1 = new Fredi.UCHome();
@@ -177,7 +177,6 @@
             this.button3.TabIndex = 4;
             this.button3.Text = "•";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -220,7 +219,7 @@
             // MenuTop
             // 
             this.MenuTop.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.MenuTop.Controls.Add(this.label1);
+            this.MenuTop.Controls.Add(this.AccountName);
             this.MenuTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.MenuTop.Location = new System.Drawing.Point(154, 0);
             this.MenuTop.Name = "MenuTop";
@@ -228,19 +227,19 @@
             this.MenuTop.TabIndex = 1;
             this.MenuTop.Paint += new System.Windows.Forms.PaintEventHandler(this.MenuTop_Paint);
             // 
-            // label1
+            // AccountName
             // 
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(910, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 27);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "LastNameTest";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.AccountName.BackColor = System.Drawing.Color.Transparent;
+            this.AccountName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AccountName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AccountName.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccountName.Location = new System.Drawing.Point(910, 9);
+            this.AccountName.Name = "AccountName";
+            this.AccountName.Size = new System.Drawing.Size(116, 27);
+            this.AccountName.TabIndex = 0;
+            this.AccountName.Text = "LastNameTest";
+            this.AccountName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.AccountName.Click += new System.EventHandler(this.label1_Click);
             // 
             // ucAccount1
             // 
@@ -330,7 +329,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private UCHome ucHome1;
         private UCInscription ucInscription1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label AccountName;
         private UCAccount ucAccount1;
         private UCUser ucUser1;
     }

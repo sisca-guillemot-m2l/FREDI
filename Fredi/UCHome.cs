@@ -87,8 +87,9 @@ namespace Fredi
                 tokeen = Int32.Parse(tokenNb);
                 MessageBox.Show("Vous etes maintenant connecté");
 
-                Form1 toto = new Form1();
-                toto.changeaccount();
+                Form1 Testes = new Form1();
+                Testes.changeaccount();
+                Testes.label1_TextChanged("test");
             }
             else
             {

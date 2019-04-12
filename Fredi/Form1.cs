@@ -16,8 +16,9 @@ namespace Fredi
 {
     public partial class Form1 : Form
     {
+        public string toto;
 
-        
+
 
         public Form1()
         {
@@ -71,14 +72,7 @@ namespace Fredi
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            
-                panel1.Height = button3.Height;
-                panel1.Top = button3.Top;
-                
-                
-        }
+
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -146,12 +140,26 @@ namespace Fredi
 
         private void label1_Click(object sender, EventArgs e)
         {
-            
+            UCHome tok = new UCHome();
+            MySqlConnection search = new MySqlConnection("database=M2L_DB; server=localhost; user id=root; pwd=");
+            search.Open();
+            MessageBox.Show(tok.returnToken().ToString());
+            MySqlDataAdapter searchToken = new MySqlDataAdapter("select email from login where id = '" + tok.returnToken() + "'", search);
+            DataTable geToken = new DataTable();
+            searchToken.Fill(geToken);
+            try
+            {
+                AccountName.Text = geToken.Rows[0][0].ToString();
+                MessageBox.Show(AccountName.Text);
+                
+            }
+            catch
+            {
+                MessageBox.Show("toto");
+            }
+
         }
-        public void label1_TextChanged()
-        {
-            
-        }
+
         public void changeaccount()
         {
             UCHome tok = new UCHome();
@@ -163,13 +171,26 @@ namespace Fredi
             searchToken.Fill(geToken);
             try
             {
-                label1.Text = geToken.Rows[0][0].ToString();
-                MessageBox.Show(label1.Text);
+                toto = geToken.Rows[0][0].ToString();
+                AccountName.Text = tok.returnToken().ToString();
+                
             }
             catch
             {
-                MessageBox.Show("toto");
+                MessageBox.Show("Fail");
             }
         }
+
+        public void label1_TextChanged( string test12)
+        {
+            
+            Form1 fc = (Form1)Application.OpenForms["form1"];
+            MessageBox.Show("fab" + fc.AccountName.Text);
+            if (fc != null)
+            {
+                fc.AccountName.Text = test12;
+            }
+        }
+        
     }
 }
