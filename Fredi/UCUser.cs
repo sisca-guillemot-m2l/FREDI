@@ -21,17 +21,24 @@ namespace Fredi
         private void UCUser_Load(object sender, EventArgs e)
         {
             int sum = 0;
-            MySqlConnection allo = new MySqlConnection("database=M2L_DB; server=localhost; user id=root; pwd=");
-            allo.Open();
+            getContent returnInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = returnInfo.getServer();
+            conn.UserID = returnInfo.getId();
+            conn.Password = returnInfo.getPassword();
+            conn.Database = returnInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection getSlip = new MySqlConnection(connString);
+            getSlip.Open();
             string getInfo = "SELECT * FROM slips WHERE idMember = '1'" ;
-            MySqlDataAdapter coInfo = new MySqlDataAdapter(getInfo, allo);
+            MySqlDataAdapter coInfo = new MySqlDataAdapter(getInfo, getSlip);
             DataTable getDt = new DataTable();
             coInfo.Fill(getDt);
             string ouech = getDt.Rows[0][0].ToString();
 
             sum = Convert.ToInt32(dataGridView1.Rows[0].Cells[5].Value);
 
-            //slipBindingSource1.Add(new Slip { SlipDate = new DateTime(2019, 04, 08), SlipPattern = "Compétition", SlipPath = "tokyo-Paris", SlipKilometers = 500, PathCost = 260, TollCost = 75, MealCost = 53, AccommodationCost = 168, TotalCost = sum  });
+            
 
 
             foreach( DataRow dt in getDt.Rows)
@@ -46,9 +53,9 @@ namespace Fredi
                     AccommodationCost = Convert.ToInt32(dt["accomodationCost"]),
                     TotalCost = Convert.ToInt32(dt["totalCost"]), });
             }
-            
 
 
+            getSlip.Close();
         }
 
 

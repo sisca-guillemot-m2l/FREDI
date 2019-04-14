@@ -259,3 +259,11 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+#ignore following files
+db.txt
+id.txt
+idM.txt
+password.txt
+pwdM.txt
+server.txt

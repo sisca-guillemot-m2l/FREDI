@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Net;
 using System.Net.Mail;
+using System.IO;
 
 namespace Fredi
 {
@@ -49,7 +50,14 @@ namespace Fredi
 
         public  void btnco_Click(object sender, EventArgs e)
         {
-            MySqlConnection connection = new MySqlConnection("database=M2L_DB; server=localhost; user id=root; pwd=");
+            getContent returnInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = returnInfo.getServer();
+            conn.UserID = returnInfo.getId();
+            conn.Password = returnInfo.getPassword();
+            conn.Database = returnInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection connection = new MySqlConnection(connString);
             connection.Open();
             MySqlDataAdapter logon = new MySqlDataAdapter("select count(*) from login where email ='"+textmail.Text+"' and password = MD5('"+textpwd.Text+"')" , connection);
             DataTable dt = new DataTable();
@@ -61,20 +69,24 @@ namespace Fredi
                 verif.Fill(search1st);
                 if (search1st.Rows[0][0].ToString() == "never")
                 {
-                    string firstCo = "update login set 1stConnexion = 'already' where email ='" + textmail.Text + "' and password = MD5('" + textpwd.Text + "')";
-                    MySqlCommand Change1stCo = new MySqlCommand(firstCo, connection);
-                    Change1stCo.ExecuteNonQuery();
 
                     //Envoie de mon mail en cas de premiere connexion --> A améliorer pour transmettre les infos obtenues avec le token
+                    getContent getIDS = new getContent();
+                    string pwdMail = getIDS.getpwdM();
+                    getContent getMail = new getContent();
+                    string idMail = getMail.getIdM();
                     MailMessage Msg = new MailMessage();
-                    Msg.From = new MailAddress("projetgizmofrazou@gmail.com");
+                    Msg.From = new MailAddress(idMail);
                     Msg.To.Add(new MailAddress("fabien.6k@gmail.com"));
                     Msg.Body = "Bienvenue sur l'application de la maison des ligues. Nous allons vous transmettre vos coordonnées !";
                     SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
                     client.EnableSsl = true;
-                    client.Credentials = new NetworkCredential("projetgizmofrazou@gmail.com", "FrazouGizmo");
+                    client.Credentials = new NetworkCredential("projetgizmofrazou@gmail.com", pwdMail);
                     client.Send(Msg);
-                    MessageBox.Show("Test");
+                    MessageBox.Show("Mail envoyé !");
+                    string firstCo = "update login set 1stConnexion = 'already' where email ='" + textmail.Text + "' and password = MD5('" + textpwd.Text + "')";
+                    MySqlCommand Change1stCo = new MySqlCommand(firstCo, connection);
+                    Change1stCo.ExecuteNonQuery();
                 }
                 //Recuperation du token pour créer ma session
                 
@@ -96,7 +108,7 @@ namespace Fredi
                 MessageBox.Show("Mauvais mot de passe ou adresse mail");
             }
 
-            
+            connection.Close();
         }
         
         public int returnToken()
