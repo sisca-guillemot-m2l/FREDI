@@ -40,8 +40,8 @@ namespace Fredi
                     {
 
                         string inscription = "insert into login (email, password) values ('" + Itextmail.Text + "', MD5('" + Itextpwd.Text + "'))";
-                        MySqlCommand test = new MySqlCommand(inscription, creation);
-                        test.ExecuteNonQuery();
+                        MySqlCommand crea = new MySqlCommand(inscription, creation);
+                        crea.ExecuteNonQuery();
                     
                         string ids = "select id from login where email = '"+Itextmail.Text+"'";
                         MessageBox.Show(ids);

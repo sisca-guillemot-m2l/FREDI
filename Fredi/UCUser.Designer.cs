@@ -29,22 +29,24 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.slipBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.slipBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pattern = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.path = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kmsTraveled = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PathCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tollCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mealCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccommodationCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ajouter = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Modifier = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Supprimer = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.slipDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.slipPatternDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.slipPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.slipKilometersDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pathCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tollCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mealCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accommodationCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.slipBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.slipBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource)).BeginInit();
@@ -52,27 +54,37 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.slipDateDataGridViewTextBoxColumn,
-            this.slipPatternDataGridViewTextBoxColumn,
-            this.slipPathDataGridViewTextBoxColumn,
-            this.slipKilometersDataGridViewTextBoxColumn,
-            this.pathCostDataGridViewTextBoxColumn,
-            this.tollCostDataGridViewTextBoxColumn,
-            this.mealCostDataGridViewTextBoxColumn,
-            this.accommodationCostDataGridViewTextBoxColumn,
-            this.totalCostDataGridViewTextBoxColumn,
+            this.date,
+            this.pattern,
+            this.path,
+            this.kmsTraveled,
+            this.PathCost,
+            this.tollCost,
+            this.mealCost,
+            this.AccommodationCost,
+            this.totalCost,
             this.Ajouter,
             this.Modifier,
             this.Supprimer});
             this.dataGridView1.DataSource = this.slipBindingSource1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(2, 84);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1284, 271);
+            this.dataGridView1.Size = new System.Drawing.Size(1284, 245);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -86,6 +98,78 @@
             this.label1.Size = new System.Drawing.Size(133, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "CECI EST UN TEST";
+            // 
+            // slipBindingSource1
+            // 
+            this.slipBindingSource1.DataSource = typeof(Fredi.Slip);
+            // 
+            // slipBindingSource
+            // 
+            this.slipBindingSource.DataSource = typeof(Fredi.Slip);
+            // 
+            // date
+            // 
+            this.date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.date.DataPropertyName = "SlipDate";
+            dataGridViewCellStyle1.Format = "yyyy-MM-dd";
+            dataGridViewCellStyle1.NullValue = null;
+            this.date.DefaultCellStyle = dataGridViewCellStyle1;
+            this.date.HeaderText = "Date";
+            this.date.Name = "date";
+            this.date.Width = 5;
+            // 
+            // pattern
+            // 
+            this.pattern.DataPropertyName = "SlipPattern";
+            this.pattern.HeaderText = "Motif";
+            this.pattern.Name = "pattern";
+            // 
+            // path
+            // 
+            this.path.DataPropertyName = "SlipPath";
+            this.path.HeaderText = "Trajet";
+            this.path.Name = "path";
+            this.path.Width = 150;
+            // 
+            // kmsTraveled
+            // 
+            this.kmsTraveled.DataPropertyName = "SlipKilometers";
+            this.kmsTraveled.HeaderText = "Kms parcourus";
+            this.kmsTraveled.Name = "kmsTraveled";
+            this.kmsTraveled.Width = 75;
+            // 
+            // PathCost
+            // 
+            this.PathCost.DataPropertyName = "PathCost";
+            this.PathCost.HeaderText = "Cout trajet";
+            this.PathCost.Name = "PathCost";
+            // 
+            // tollCost
+            // 
+            this.tollCost.DataPropertyName = "TollCost";
+            this.tollCost.HeaderText = "Cout péage";
+            this.tollCost.Name = "tollCost";
+            this.tollCost.Width = 70;
+            // 
+            // mealCost
+            // 
+            this.mealCost.DataPropertyName = "MealCost";
+            this.mealCost.HeaderText = "Cout repas";
+            this.mealCost.Name = "mealCost";
+            this.mealCost.Width = 70;
+            // 
+            // AccommodationCost
+            // 
+            this.AccommodationCost.DataPropertyName = "AccommodationCost";
+            this.AccommodationCost.HeaderText = "Cout hébergement";
+            this.AccommodationCost.Name = "AccommodationCost";
+            // 
+            // totalCost
+            // 
+            this.totalCost.DataPropertyName = "TotalCost";
+            this.totalCost.HeaderText = "Total";
+            this.totalCost.Name = "totalCost";
+            this.totalCost.Width = 70;
             // 
             // Ajouter
             // 
@@ -111,76 +195,6 @@
             this.Supprimer.Text = "Supprimer";
             this.Supprimer.UseColumnTextForButtonValue = true;
             this.Supprimer.Width = 79;
-            // 
-            // slipDateDataGridViewTextBoxColumn
-            // 
-            this.slipDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.slipDateDataGridViewTextBoxColumn.DataPropertyName = "SlipDate";
-            this.slipDateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.slipDateDataGridViewTextBoxColumn.Name = "slipDateDataGridViewTextBoxColumn";
-            this.slipDateDataGridViewTextBoxColumn.Width = 24;
-            // 
-            // slipPatternDataGridViewTextBoxColumn
-            // 
-            this.slipPatternDataGridViewTextBoxColumn.DataPropertyName = "SlipPattern";
-            this.slipPatternDataGridViewTextBoxColumn.HeaderText = "Motif";
-            this.slipPatternDataGridViewTextBoxColumn.Name = "slipPatternDataGridViewTextBoxColumn";
-            // 
-            // slipPathDataGridViewTextBoxColumn
-            // 
-            this.slipPathDataGridViewTextBoxColumn.DataPropertyName = "SlipPath";
-            this.slipPathDataGridViewTextBoxColumn.HeaderText = "Trajet";
-            this.slipPathDataGridViewTextBoxColumn.Name = "slipPathDataGridViewTextBoxColumn";
-            this.slipPathDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // slipKilometersDataGridViewTextBoxColumn
-            // 
-            this.slipKilometersDataGridViewTextBoxColumn.DataPropertyName = "SlipKilometers";
-            this.slipKilometersDataGridViewTextBoxColumn.HeaderText = "Kms parcourus";
-            this.slipKilometersDataGridViewTextBoxColumn.Name = "slipKilometersDataGridViewTextBoxColumn";
-            this.slipKilometersDataGridViewTextBoxColumn.Width = 75;
-            // 
-            // pathCostDataGridViewTextBoxColumn
-            // 
-            this.pathCostDataGridViewTextBoxColumn.DataPropertyName = "PathCost";
-            this.pathCostDataGridViewTextBoxColumn.HeaderText = "Cout trajet";
-            this.pathCostDataGridViewTextBoxColumn.Name = "pathCostDataGridViewTextBoxColumn";
-            this.pathCostDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // tollCostDataGridViewTextBoxColumn
-            // 
-            this.tollCostDataGridViewTextBoxColumn.DataPropertyName = "TollCost";
-            this.tollCostDataGridViewTextBoxColumn.HeaderText = "Cout péage";
-            this.tollCostDataGridViewTextBoxColumn.Name = "tollCostDataGridViewTextBoxColumn";
-            this.tollCostDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // mealCostDataGridViewTextBoxColumn
-            // 
-            this.mealCostDataGridViewTextBoxColumn.DataPropertyName = "MealCost";
-            this.mealCostDataGridViewTextBoxColumn.HeaderText = "Cout repas";
-            this.mealCostDataGridViewTextBoxColumn.Name = "mealCostDataGridViewTextBoxColumn";
-            this.mealCostDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // accommodationCostDataGridViewTextBoxColumn
-            // 
-            this.accommodationCostDataGridViewTextBoxColumn.DataPropertyName = "AccommodationCost";
-            this.accommodationCostDataGridViewTextBoxColumn.HeaderText = "Cout hebergement";
-            this.accommodationCostDataGridViewTextBoxColumn.Name = "accommodationCostDataGridViewTextBoxColumn";
-            // 
-            // totalCostDataGridViewTextBoxColumn
-            // 
-            this.totalCostDataGridViewTextBoxColumn.DataPropertyName = "TotalCost";
-            this.totalCostDataGridViewTextBoxColumn.HeaderText = "Total";
-            this.totalCostDataGridViewTextBoxColumn.Name = "totalCostDataGridViewTextBoxColumn";
-            this.totalCostDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // slipBindingSource1
-            // 
-            this.slipBindingSource1.DataSource = typeof(Fredi.Slip);
-            // 
-            // slipBindingSource
-            // 
-            this.slipBindingSource.DataSource = typeof(Fredi.Slip);
             // 
             // UCUser
             // 
@@ -208,15 +222,15 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource slipBindingSource1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn slipDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn slipPatternDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn slipPathDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn slipKilometersDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pathCostDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tollCostDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mealCostDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn accommodationCostDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalCostDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pattern;
+        private System.Windows.Forms.DataGridViewTextBoxColumn path;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kmsTraveled;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PathCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tollCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mealCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AccommodationCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalCost;
         private System.Windows.Forms.DataGridViewButtonColumn Ajouter;
         private System.Windows.Forms.DataGridViewButtonColumn Modifier;
         private System.Windows.Forms.DataGridViewButtonColumn Supprimer;

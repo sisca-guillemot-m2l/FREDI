@@ -77,7 +77,7 @@ namespace Fredi
                     string idMail = getMail.getIdM();
                     MailMessage Msg = new MailMessage();
                     Msg.From = new MailAddress(idMail);
-                    Msg.To.Add(new MailAddress("fabien.6k@gmail.com"));
+                    Msg.To.Add(new MailAddress("fabien.sisca@epsi.fr"));
                     Msg.Body = "Bienvenue sur l'application de la maison des ligues. Nous allons vous transmettre vos coordonnées !";
                     SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
                     client.EnableSsl = true;

@@ -161,7 +161,7 @@ namespace Fredi
             var connString = conn.ToString();
             MySqlConnection search = new MySqlConnection(connString);
             search.Open();
-            MessageBox.Show(tok.returnToken().ToString());
+            //MessageBox.Show(tok.returnToken().ToString());
             MySqlDataAdapter searchToken = new MySqlDataAdapter("select email from login where id = '" + tok.returnToken() + "'", search);
             DataTable geToken = new DataTable();
             searchToken.Fill(geToken);
