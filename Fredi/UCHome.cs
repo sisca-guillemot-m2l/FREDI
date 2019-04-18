@@ -100,8 +100,9 @@ namespace Fredi
                 MessageBox.Show("Vous etes maintenant connecté");
 
                 Form1 Testes = new Form1();
-                Testes.changeaccount();
+                //Testes.changeaccount();
                 Testes.label1_TextChanged("test");
+                
             }
             else
             {

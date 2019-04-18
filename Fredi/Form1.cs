@@ -149,7 +149,7 @@ namespace Fredi
         {
         }
 
-        public void changeaccount()
+        /**public void changeaccount()
         {
             UCHome tok = new UCHome();
             getContent returnInfo = new getContent();
@@ -176,13 +176,12 @@ namespace Fredi
                 MessageBox.Show("Fail");
             }
             search.Close();
-        }
+        }*/
 
         public void label1_TextChanged(string test12)
         {
 
             Form1 fc = (Form1)Application.OpenForms["form1"];
-            MessageBox.Show("fab" + fc.AccountName.Text);
             if (fc != null)
             {
                 fc.AccountName.Text = test12;
