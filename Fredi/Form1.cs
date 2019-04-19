@@ -65,7 +65,11 @@ namespace Fredi
         {
             panel1.Height = button1.Height;
             panel1.Top = button1.Top;
+            UCHome getToken = new UCHome();
+            
+            ucAccount1.getData(getToken.returnToken());
             ucAccount1.BringToFront();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

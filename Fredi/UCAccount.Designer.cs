@@ -51,7 +51,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.NumLigue = new System.Windows.Forms.TextBox();
             this.listBoxAccount = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -63,9 +63,8 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1288, 152);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Mon Compte\r\n(Cliquer pour mettre à jour)\r\n";
+            this.label1.Text = "Mon Compte";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBoxName
             // 
@@ -305,24 +304,24 @@
             this.listBoxAccount.TabIndex = 25;
             this.listBoxAccount.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // button1
+            // SaveButton
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button1.Location = new System.Drawing.Point(0, 821);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(1288, 40);
-            this.button1.TabIndex = 26;
-            this.button1.Text = "Sauvegarder les changements";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.SaveButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SaveButton.Location = new System.Drawing.Point(0, 821);
+            this.SaveButton.Margin = new System.Windows.Forms.Padding(4);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(1288, 40);
+            this.SaveButton.TabIndex = 26;
+            this.SaveButton.Text = "Sauvegarder les changements";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // UCAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.listBoxAccount);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.label7);
@@ -381,6 +380,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox NumLigue;
         private System.Windows.Forms.ListBox listBoxAccount;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SaveButton;
     }
 }

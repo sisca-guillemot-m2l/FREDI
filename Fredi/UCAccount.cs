@@ -38,29 +38,7 @@ namespace Fredi
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-        }
-
-        public void getInfoAccount()
-        {
-            /**Getting informations
-            UCHome getToken = new UCHome();
-            getContent coGetInfo = new getContent();
-            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
-            conn.Server = coGetInfo.getServer();
-            conn.UserID = coGetInfo.getId();
-            conn.Password = coGetInfo.getPassword();
-            conn.Database = coGetInfo.getDb();
-            var connString = conn.ToString();
-            MySqlConnection connection = new MySqlConnection(connString);
-            connection.Open();
-
-            string getName = "select name from adherents where idLogin = ('" + getToken.returnToken() + "')";
-            MySqlDataAdapter putName = new MySqlDataAdapter(getName, connection);
-            DataTable dtName = new DataTable();
-            putName.Fill(dtName);
-            textBoxName.Text = dtName.Rows[0][0].ToString();
-            */
+            
         }
 
         public void getNameUser(string nameUser)
@@ -71,74 +49,55 @@ namespace Fredi
 
         }
 
-        public void textBox1_TextChanged(string nameUser)
+        public void getData(int idToken)
         {
-            UCAccount ac = new UCAccount();
-            ac.textBoxName.Text = nameUser;
-            MessageBox.Show(ac.textBoxName.Text);
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            UCHome getToken = new UCHome();
-            getContent coGetInfo = new getContent();
-            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
-            conn.Server = coGetInfo.getServer();
-            conn.UserID = coGetInfo.getId();
-            conn.Password = coGetInfo.getPassword();
-            conn.Database = coGetInfo.getDb();
-            var connString = conn.ToString();
-            MySqlConnection connection = new MySqlConnection(connString);
-            connection.Open();
-
-            string getName = "select name from adherents where idLogin = ('" + getToken.returnToken() + "')";
-            MySqlDataAdapter putName = new MySqlDataAdapter(getName, connection);
-            DataTable dtName = new DataTable();
-            putName.Fill(dtName);
-            textBoxName.Text = dtName.Rows[0][0].ToString();
-
-            string getFName = "select firstName from adherents where idLogin = ('" + getToken.returnToken() + "')";
-            MySqlDataAdapter putFName = new MySqlDataAdapter(getFName, connection);
-            DataTable dtFName = new DataTable();
-            putFName.Fill(dtFName);
-            textBoxFName.Text = dtFName.Rows[0][0].ToString();
-
-            string getMail = "select email from login where id = ('" + getToken.returnToken() + "')";
-            MySqlDataAdapter putMail = new MySqlDataAdapter(getMail, connection);
-            DataTable dtMail = new DataTable();
-            putMail.Fill(dtMail);
-            textBoxMail.Text = dtMail.Rows[0][0].ToString();
-
-            string getNligue = "select numLigue from adherents where idLogin = ('" + getToken.returnToken() + "')";
-            MySqlDataAdapter putNligue = new MySqlDataAdapter(getNligue, connection);
-            DataTable dtNligue = new DataTable();
-            putNligue.Fill(dtNligue);
-            NumLigue.Text = dtNligue.Rows[0][0].ToString();
-
-            string getNlic = "select numLicence from adherents where idLogin = ('" + getToken.returnToken() + "')";
-            MySqlDataAdapter putNlic = new MySqlDataAdapter(getNlic, connection);
-            DataTable dtNlic = new DataTable();
-            putNlic.Fill(dtNlic);
-            NumLicence.Text = dtNlic.Rows[0][0].ToString();
-
-            string getType = "select statut from login where id = ('" + getToken.returnToken() + "')";
-            MySqlDataAdapter putType = new MySqlDataAdapter(getType, connection);
-            DataTable dtType = new DataTable();
-            putType.Fill(dtType);
-
-            if (dtType.Rows[0][0].ToString() == "user")
+            try
             {
-                listBoxAccount.SelectedItem = "Utilisateur";
+                getContent coGetInfo = new getContent();
+                MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+                conn.Server = coGetInfo.getServer();
+                conn.UserID = coGetInfo.getId();
+                conn.Password = coGetInfo.getPassword();
+                conn.Database = coGetInfo.getDb();
+                var connString = conn.ToString();
+                MySqlConnection connection = new MySqlConnection(connString);
+                connection.Open();
+
+                string getUser = "select * from adherents where idLogin = '" + idToken + "'";
+                MySqlDataAdapter UserArray = new MySqlDataAdapter(getUser, connection);
+                DataTable dtUser = new DataTable();
+                UserArray.Fill(dtUser);
+                textBoxName.Text = dtUser.Rows[0]["name"].ToString();
+                textBoxFName.Text = dtUser.Rows[0]["firstName"].ToString();
+                
+                string getLogin = "select * from login where id = '" + idToken + "'";
+                MySqlDataAdapter loginArray = new MySqlDataAdapter(getLogin, connection);
+                DataTable dtLogin = new DataTable();
+                loginArray.Fill(dtLogin);
+                textBoxMail.Text = dtLogin.Rows[0]["email"].ToString();
+
+                NumLigue.Text = dtUser.Rows[0]["numLigue"].ToString();
+
+                NumLicence.Text = dtUser.Rows[0]["numLicence"].ToString();
+
+                switch (dtLogin.Rows[0]["statut"].ToString())
+                {
+                    case "user":
+                        listBoxAccount.SelectedItem = "Utilisateur";
+                        break;
+                    case "treasure":
+                        listBoxAccount.SelectedItem = "Trésorier";
+                        break;
+                       
+                    default:
+                        listBoxAccount.SelectedItem = "Administrateur";
+                        break;
+                }
             }
-            else if (dtType.Rows[0][0].ToString() == "treasure")
+            catch
             {
-                listBoxAccount.SelectedItem = "Trésorier";
+
             }
-            else
-            {
-                listBoxAccount.SelectedItem = "Administrateur";
-            }
-            
         }
     }
 }

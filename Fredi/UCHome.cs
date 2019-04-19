@@ -101,7 +101,12 @@ namespace Fredi
 
                 Form1 Testes = new Form1();
                 //Testes.changeaccount();
-                Testes.label1_TextChanged("test");
+                string getNameForm = "select name from adherents where idLogin = '"+tokeen+"'";
+                MySqlDataAdapter putNameForm = new MySqlDataAdapter(getNameForm, connection);
+                DataTable NameTok = new DataTable();
+                putNameForm.Fill(NameTok);
+                string nameFromTok = NameTok.Rows[0][0].ToString();
+                Testes.label1_TextChanged("Bonjour "+nameFromTok);
                 
             }
             else
