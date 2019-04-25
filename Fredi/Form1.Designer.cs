@@ -42,10 +42,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.MenuTop = new System.Windows.Forms.Panel();
             this.AccountName = new System.Windows.Forms.Label();
+            this.ucUser1 = new Fredi.UCUser();
             this.ucAccount1 = new Fredi.UCAccount();
             this.ucInscription1 = new Fredi.UCInscription();
             this.ucHome1 = new Fredi.UCHome();
-            this.ucUser1 = new Fredi.UCUser();
             this.MenuSidel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.MenuTop.SuspendLayout();
@@ -199,7 +199,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(10, 46);
             this.panel1.TabIndex = 2;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button1
             // 
@@ -225,28 +224,35 @@
             this.MenuTop.Name = "MenuTop";
             this.MenuTop.Size = new System.Drawing.Size(1028, 63);
             this.MenuTop.TabIndex = 1;
-            this.MenuTop.Paint += new System.Windows.Forms.PaintEventHandler(this.MenuTop_Paint);
             // 
             // AccountName
             // 
             this.AccountName.BackColor = System.Drawing.Color.Transparent;
-            this.AccountName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AccountName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AccountName.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AccountName.Location = new System.Drawing.Point(910, 9);
+            this.AccountName.Location = new System.Drawing.Point(911, 9);
             this.AccountName.Name = "AccountName";
             this.AccountName.Size = new System.Drawing.Size(116, 27);
             this.AccountName.TabIndex = 0;
-            this.AccountName.Text = "LastNameTest";
             this.AccountName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.AccountName.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // ucUser1
+            // 
+            this.ucUser1.AutoScroll = true;
+            this.ucUser1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ucUser1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ucUser1.Location = new System.Drawing.Point(154, 60);
+            this.ucUser1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucUser1.Name = "ucUser1";
+            this.ucUser1.Size = new System.Drawing.Size(1030, 697);
+            this.ucUser1.TabIndex = 1;
             // 
             // ucAccount1
             // 
             this.ucAccount1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ucAccount1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ucAccount1.Location = new System.Drawing.Point(154, 60);
-            this.ucAccount1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ucAccount1.Margin = new System.Windows.Forms.Padding(4);
             this.ucAccount1.Name = "ucAccount1";
             this.ucAccount1.Size = new System.Drawing.Size(1030, 701);
             this.ucAccount1.TabIndex = 5;
@@ -273,17 +279,6 @@
             this.ucHome1.Size = new System.Drawing.Size(1030, 701);
             this.ucHome1.TabIndex = 2;
             // 
-            // ucUser1
-            // 
-            this.ucUser1.AutoScroll = true;
-            this.ucUser1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ucUser1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ucUser1.Location = new System.Drawing.Point(154, 60);
-            this.ucUser1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucUser1.Name = "ucUser1";
-            this.ucUser1.Size = new System.Drawing.Size(1030, 697);
-            this.ucUser1.TabIndex = 1;
-            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -303,7 +298,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "M2L - Application";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.MenuSidel.ResumeLayout(false);
             this.MenuSidel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

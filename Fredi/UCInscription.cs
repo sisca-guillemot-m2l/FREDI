@@ -28,7 +28,14 @@ namespace Fredi
             }
             else
             {
-                MySqlConnection creation = new MySqlConnection("database=M2L_DB; server=localhost; user id=root; pwd=");
+                getContent returnInfo = new getContent();
+                MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+                conn.Server = returnInfo.getServer();
+                conn.UserID = returnInfo.getId();
+                conn.Password = returnInfo.getPassword();
+                conn.Database = returnInfo.getDb();
+                var connString = conn.ToString();
+                MySqlConnection creation = new MySqlConnection(connString);
                 creation.Open();
                 MySqlDataAdapter creationtest = new MySqlDataAdapter("select count(*) from adherents where numLicence ='" + Itextlicence.Text + "' and numLigue = '" + Itextligue.Text + "'", creation);
                 
@@ -36,8 +43,8 @@ namespace Fredi
                 creationtest.Fill(dt);
                 if (dt.Rows[0][0].ToString() == "1")
                 {
-                    //try
-                    //{
+                    try
+                    {
 
                         string inscription = "insert into login (email, password) values ('" + Itextmail.Text + "', MD5('" + Itextpwd.Text + "'))";
                         MySqlCommand crea = new MySqlCommand(inscription, creation);
@@ -62,23 +69,20 @@ namespace Fredi
                         putLogin.ExecuteNonQuery();
                                             
                         MessageBox.Show("Working");
-                    /**}
+                    }
                     catch
                     {
                          MessageBox.Show("Un compte existe déjà avec cet email.");
-                    }*/
+                    }
                 }
                 
                 else
                 {
                     MessageBox.Show("rip");
                 }
+                creation.Close();
             }
         }
-
-        private void UCInscription_Load(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

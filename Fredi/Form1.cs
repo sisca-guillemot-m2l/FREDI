@@ -27,18 +27,18 @@ namespace Fredi
             panel1.Height = label2.Height;
             panel1.Top = label2.Top;
 
-            getContent returnInfo = new getContent();
-
-            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
-            conn.Server = returnInfo.getServer();
-            conn.UserID = returnInfo.getId();
-            conn.Password = returnInfo.getPassword();
-            conn.Database = returnInfo.getDb();
-            var connString = conn.ToString();
-            MySqlConnection connection = new MySqlConnection(connString);
+            
 
             try
             {
+                getContent returnInfo = new getContent();
+                MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+                conn.Server = returnInfo.getServer();
+                conn.UserID = returnInfo.getId();
+                conn.Password = returnInfo.getPassword();
+                conn.Database = returnInfo.getDb();
+                var connString = conn.ToString();
+                MySqlConnection connection = new MySqlConnection(connString);
                 connection.Open();
                 connection.Close();
             }
@@ -50,17 +50,7 @@ namespace Fredi
             }
 
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PanelContainer_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             panel1.Height = button1.Height;
@@ -74,21 +64,12 @@ namespace Fredi
 
         private void button2_Click(object sender, EventArgs e)
         {
-
             panel1.Height = button2.Height;
             panel1.Top = button2.Top;
             ucUser1.BringToFront();
 
         }
-
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
-
+        
         private void button4_Click(object sender, EventArgs e)
         {
             panel1.Height = button4.Height;
@@ -131,64 +112,13 @@ namespace Fredi
             ucHome1.BringToFront();
         }
 
-        private void MenuTop_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void ucUser1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ucHome1_Load(object sender, EventArgs e)
-        {
-
-
-
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
-        /**public void changeaccount()
-        {
-            UCHome tok = new UCHome();
-            getContent returnInfo = new getContent();
-            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
-            conn.Server = returnInfo.getServer();
-            conn.UserID = returnInfo.getId();
-            conn.Password = returnInfo.getPassword();
-            conn.Database = returnInfo.getDb();
-            var connString = conn.ToString();
-            MySqlConnection search = new MySqlConnection(connString);
-            search.Open();
-            //MessageBox.Show(tok.returnToken().ToString());
-            MySqlDataAdapter searchToken = new MySqlDataAdapter("select email from login where id = '" + tok.returnToken() + "'", search);
-            DataTable geToken = new DataTable();
-            searchToken.Fill(geToken);
-            try
-            {
-                toto = geToken.Rows[0][0].ToString();
-                AccountName.Text = tok.returnToken().ToString();
-
-            }
-            catch
-            {
-                MessageBox.Show("Fail");
-            }
-            search.Close();
-        }*/
-
-        public void label1_TextChanged(string test12)
+        public void label1_TextChanged(string nameLabel)
         {
 
             Form1 fc = (Form1)Application.OpenForms["form1"];
             if (fc != null)
             {
-                fc.AccountName.Text = test12;
+                fc.AccountName.Text = nameLabel;
             }
         }
 

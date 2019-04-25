@@ -54,7 +54,6 @@
             this.label2.Size = new System.Drawing.Size(759, 36);
             this.label2.TabIndex = 1;
             this.label2.Text = "Bienvenue sur l\'application de La Maison Des Ligues !";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Loginpanel
             // 
@@ -114,7 +113,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
             // textpwd
             // 
@@ -124,7 +122,6 @@
             this.textpwd.PasswordChar = '•';
             this.textpwd.Size = new System.Drawing.Size(230, 27);
             this.textpwd.TabIndex = 5;
-            this.textpwd.TextChanged += new System.EventHandler(this.textpwd_TextChanged);
             // 
             // label3
             // 
@@ -142,7 +139,6 @@
             this.textmail.Name = "textmail";
             this.textmail.Size = new System.Drawing.Size(230, 27);
             this.textmail.TabIndex = 3;
-            this.textmail.TextChanged += new System.EventHandler(this.textmail_TextChanged);
             // 
             // label1
             // 
@@ -152,7 +148,6 @@
             this.label1.Size = new System.Drawing.Size(118, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Adresse Email";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // panel2
             // 
@@ -174,7 +169,6 @@
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "UCHome";
             this.Size = new System.Drawing.Size(1030, 689);
-            this.Load += new System.EventHandler(this.UCHome_Load);
             this.Loginpanel.ResumeLayout(false);
             this.Loginpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

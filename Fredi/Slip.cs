@@ -8,7 +8,7 @@ namespace Fredi
 {
     public class Slip
     {
-        public DateTime SlipDate { get; set; }
+        public string SlipDate { get; set; }
         public string SlipPattern { get; set; }
         public string SlipPath { get; set; }
         public int SlipKilometers { get; set; }

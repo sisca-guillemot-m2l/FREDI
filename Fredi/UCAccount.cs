@@ -38,7 +38,48 @@ namespace Fredi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            UCHome getTokenId = new UCHome();
+            getContent coGetInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = coGetInfo.getServer();
+            conn.UserID = coGetInfo.getId();
+            conn.Password = coGetInfo.getPassword();
+            conn.Database = coGetInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection connection = new MySqlConnection(connString);
+            connection.Open();
+            string updatePwd = "update login set confirmPassword = MD5('"+ textBoxMdpC.Text+"')";
+            MySqlCommand pwdConfirm = new MySqlCommand(updatePwd, connection);
+            pwdConfirm.ExecuteNonQuery();
+            string selectPwdConfirm = "select confirmPassword from login where id = '" + getTokenId.returnToken() + "' ";
+            MySqlDataAdapter verifConfirm = new MySqlDataAdapter(selectPwdConfirm, connection);
+            DataTable dtConfirm = new DataTable();
+            verifConfirm.Fill(dtConfirm);
+            string selectPwd = "select password from login where id = '"+ getTokenId.returnToken() +"' ";
+            MySqlDataAdapter verifPwd = new MySqlDataAdapter(selectPwd, connection);
+            DataTable dtVerif = new DataTable();
+            verifPwd.Fill(dtVerif); 
+            MessageBox.Show(dtVerif.Rows[0][0].ToString());
+            if (dtConfirm.Rows[0][0].ToString() == dtVerif.Rows[0][0].ToString())
+            {
+                string updateName = "update adherents set name = '" + textBoxName.Text + "' where idLogin = '" + getTokenId.returnToken() + "' ";
+                MySqlCommand updateNameCo = new MySqlCommand(updateName, connection);
+                updateNameCo.ExecuteNonQuery();
+
+                string updateFName = "update adherents set firstName = '" + textBoxFName.Text + "' where idLogin = '" + getTokenId.returnToken() + "' ";
+                MySqlCommand updateFNameCo = new MySqlCommand(updateFName, connection);
+                updateFNameCo.ExecuteNonQuery();
+
+                string updateMail = "update login set email = '" + textBoxMail.Text + "' where id = '" + getTokenId.returnToken() + "' ";
+                MySqlCommand updateMailCo = new MySqlCommand(updateMail, connection);
+                updateMailCo.ExecuteNonQuery();
+                MessageBox.Show("Les modifications ont été apportées à votre compte.");
+            }
+            else
+            {
+                MessageBox.Show("SALUT");
+            }
+            connection.Close();
         }
 
         public void getNameUser(string nameUser)
@@ -93,6 +134,7 @@ namespace Fredi
                         listBoxAccount.SelectedItem = "Administrateur";
                         break;
                 }
+                connection.Close();
             }
             catch
             {

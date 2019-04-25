@@ -274,7 +274,6 @@
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "UCInscription";
             this.Size = new System.Drawing.Size(1030, 689);
-            this.Load += new System.EventHandler(this.UCInscription_Load);
             this.Loginpanel.ResumeLayout(false);
             this.Loginpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();

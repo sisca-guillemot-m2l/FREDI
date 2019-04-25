@@ -38,42 +38,9 @@ namespace Fredi
                 MySqlConnection coInsert = new MySqlConnection(connString);
                 coInsert.Open();
                 int insertRow = Convert.ToInt32(dataGridView1.CurrentRow.Index);
-                /**
-                string inserDate = "insert into slips (date) values ('" +DateTime.Parse(dataGridView1.Rows[insertRow].Cells["date"].Value.ToString()).ToShortDateString() + "')";
-                string inserPattern = "insert into slips (pattern) values ('"+dataGridView1.Rows[insertRow].Cells[1].Value.ToString()+"')";
-                string inserPath = "insert into slips (path) values ('" + dataGridView1.Rows[insertRow].Cells[2].Value.ToString() + "')";
-                string inserKmsTraveled = "insert into slips (kmsTraveled) values ('" + dataGridView1.Rows[insertRow].Cells[3].Value.ToString() + "')";
-                string inserPathCost = "insert into slips (pathCost) values ('" + dataGridView1.Rows[insertRow].Cells[4].Value.ToString() + "')";
-                string inserTollCost = "insert into slips (tollCost) values ('" + dataGridView1.Rows[insertRow].Cells[5].Value.ToString() + "')";
-                string inserMealCost = "insert into slips (mealCost) values ('" + dataGridView1.Rows[insertRow].Cells[6].Value.ToString() + "')";
-                string inserAccomodationCost = "insert into slips (accomodationCost) values ('" + dataGridView1.Rows[insertRow].Cells[7].Value.ToString() + "')";
-                string inserTotalCost = "insert into slips (totalCost) values ('" + dataGridView1.Rows[insertRow].Cells[8].Value.ToString() + "')";
-                */
                 
                 try
                 {
-                    /*MySqlCommand exeDate = new MySqlCommand( inserDate, coInsert);
-                    exeDate.ExecuteNonQuery();
-                    MySqlCommand exePattern = new MySqlCommand(inserPattern, coInsert);
-                    exePattern.ExecuteNonQuery();
-                    MySqlCommand exePath = new MySqlCommand(inserPath, coInsert);
-                    MySqlCommand exePathCost = new MySqlCommand(inserPathCost, coInsert);
-                    MySqlCommand exeTollCost = new MySqlCommand(inserTollCost, coInsert);
-                    MySqlCommand exeKmsTraveled = new MySqlCommand(inserKmsTraveled, coInsert);
-                    MySqlCommand exeMealCost = new MySqlCommand(inserMealCost, coInsert);
-                    MySqlCommand exeAccomodationCost = new MySqlCommand(inserAccomodationCost, coInsert);
-                    MySqlCommand exeTotalCost = new MySqlCommand(inserTollCost, coInsert);
-
-
-
-                    exePath.ExecuteNonQuery();
-                    exePathCost.ExecuteNonQuery();
-                    exeTollCost.ExecuteNonQuery();
-                    exeKmsTraveled.ExecuteNonQuery();
-                    exeMealCost.ExecuteNonQuery();
-                    exeAccomodationCost.ExecuteNonQuery();
-                    exeTotalCost.ExecuteNonQuery();
-    */
                     UCHome insertId = new UCHome();
                     int insertIdSlip = insertId.returnToken();
                     string insertAll = "insert into slips (date, pattern, path, kmsTraveled, pathCost, tollCost, mealCost, accomodationCost, totalCost, idMember) values ('" + DateTime.Parse(dataGridView1.Rows[insertRow].Cells[0].Value.ToString()).ToShortDateString() + "', '" + dataGridView1.Rows[insertRow].Cells[1].Value.ToString() + "', '" + dataGridView1.Rows[insertRow].Cells[2].Value.ToString() + "', '" + dataGridView1.Rows[insertRow].Cells[3].Value.ToString() + "', '" + dataGridView1.Rows[insertRow].Cells[4].Value.ToString() + "', '" + dataGridView1.Rows[insertRow].Cells[5].Value.ToString() + "', '" + dataGridView1.Rows[insertRow].Cells[6].Value.ToString() + "', '" + dataGridView1.Rows[insertRow].Cells[7].Value.ToString() + "', '" + dataGridView1.Rows[insertRow].Cells[8].Value.ToString() + "', '"+insertIdSlip+"')";
@@ -96,7 +63,58 @@ namespace Fredi
                 slipBindingSource1.RemoveCurrent();
             }
         }
+        /** void getDataSlip(int tokenALO)
+        {
+            getContent returnInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = returnInfo.getServer();
+            conn.UserID = returnInfo.getId();
+            conn.Password = returnInfo.getPassword();
+            conn.Database = returnInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection getSlip = new MySqlConnection(connString);
+            getSlip.Open();
 
+            try
+            {
+                //UCHome getTokenId = new UCHome();
+                //int putTokenId = getTokenId.returnToken();
+                string getInfo = "SELECT * FROM slips WHERE idMember = '" + tokenALO + "'";
+                MessageBox.Show(getInfo);
+                MySqlDataAdapter coInfo = new MySqlDataAdapter(getInfo, getSlip);
+                DataTable getDt = new DataTable();
+                coInfo.Fill(getDt);
+                string ouech = getDt.Rows[0][0].ToString();
+
+
+                foreach (DataRow dt in getDt.Rows)
+                {
+                    slipBindingSource1.Add(new Slip
+                    {
+                        SlipDate = dt[0].ToString(),
+                        SlipPattern = dt["pattern"].ToString(),
+                        SlipPath = dt["path"].ToString(),
+                        SlipKilometers = Convert.ToInt32(dt["kmsTraveled"]),
+                        PathCost = Convert.ToInt32(dt["pathCost"]),
+                        TollCost = Convert.ToInt32(dt["tollCost"]),
+                        MealCost = Convert.ToInt32(dt["mealCost"]),
+                        AccommodationCost = Convert.ToInt32(dt["accomodationCost"]),
+                        TotalCost = Convert.ToInt32(dt["totalCost"]),
+                    });
+                }
+
+                slipBindingSource1.Add(new Slip { });
+                MessageBox.Show("Fdp");
+                GetSlips.Hide();
+            }
+            catch
+            {
+                MessageBox.Show("Aucun bordereau n'a encore été completé :/");
+            }
+
+            getSlip.Close();
+        }*/
+    
         private void GetSlips_Click(object sender, EventArgs e)
         {
             getContent returnInfo = new getContent();
@@ -119,14 +137,13 @@ namespace Fredi
             DataTable getDt = new DataTable();
             coInfo.Fill(getDt);
             string ouech = getDt.Rows[0][0].ToString();
-
-            //sum = Convert.ToInt32(dataGridView1.Rows[0].Cells[5].Value);
+                
             
             foreach (DataRow dt in getDt.Rows)
             {
                 slipBindingSource1.Add(new Slip
                 {
-                    SlipDate = DateTime.Parse(dt["date"].ToString()),
+                    SlipDate = dt["date"].ToString(),
                     SlipPattern = dt["pattern"].ToString(),
                     SlipPath = dt["path"].ToString(),
                     SlipKilometers = Convert.ToInt32(dt["kmsTraveled"]),

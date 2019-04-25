@@ -22,31 +22,7 @@ namespace Fredi
         {
             InitializeComponent();
         }
-        
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
-
-        }
 
         public  void btnco_Click(object sender, EventArgs e)
         {
@@ -100,14 +76,15 @@ namespace Fredi
                 MessageBox.Show("Vous etes maintenant connecté");
 
                 Form1 Testes = new Form1();
-                //Testes.changeaccount();
                 string getNameForm = "select name from adherents where idLogin = '"+tokeen+"'";
                 MySqlDataAdapter putNameForm = new MySqlDataAdapter(getNameForm, connection);
                 DataTable NameTok = new DataTable();
                 putNameForm.Fill(NameTok);
                 string nameFromTok = NameTok.Rows[0][0].ToString();
                 Testes.label1_TextChanged("Bonjour "+nameFromTok);
-                
+
+                //UCUser tst = new UCUser();
+                //tst.getDataSlip(1);
             }
             else
             {
@@ -125,28 +102,6 @@ namespace Fredi
         public string returnTokenNb()
         {
             return tokenNb;
-        }
-
-        private void textmail_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        public void textpwd_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void UCHome_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
 
