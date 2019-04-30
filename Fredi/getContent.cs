@@ -13,7 +13,7 @@ namespace Fredi
     {
         public string getPassword()
         {
-            using (StreamReader srPassword = new StreamReader(@"c:\Users\Fabien\Source\Repos\Fredi\password.txt"))
+            using (StreamReader srPassword = new StreamReader(@"password.txt"))
             {
                 String Password = srPassword.ReadToEnd();
                 return Password;
@@ -22,7 +22,7 @@ namespace Fredi
 
         public string getId()
         {
-            using (StreamReader srId = new StreamReader(@"c:\Users\Fabien\Source\Repos\Fredi\id.txt"))
+            using (StreamReader srId = new StreamReader(@"id.txt"))
             {
                 String Id = srId.ReadToEnd();
                 return Id;
@@ -31,7 +31,7 @@ namespace Fredi
 
         public string getServer()
         {
-            using (StreamReader srServer = new StreamReader(@"c:\Users\Fabien\Source\Repos\Fredi\server.txt"))
+            using (StreamReader srServer = new StreamReader(@"server.txt"))
             {
                 String Server = srServer.ReadToEnd();
                 return Server;
@@ -40,7 +40,7 @@ namespace Fredi
 
         public string getDb()
         {
-            using (StreamReader srDb = new StreamReader(@"c:\Users\Fabien\Source\Repos\Fredi\db.txt"))
+            using (StreamReader srDb = new StreamReader(@"db.txt"))
             {
                 String Db = srDb.ReadToEnd();
                 return Db;

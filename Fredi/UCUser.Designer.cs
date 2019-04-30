@@ -32,10 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.slipBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.GetSlips = new System.Windows.Forms.Button();
-            this.slipBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pattern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.path = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +44,9 @@
             this.Ajouter = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Modifier = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Supprimer = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.slipBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.slipBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource)).BeginInit();
@@ -85,49 +84,20 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1284, 245);
+            this.dataGridView1.Size = new System.Drawing.Size(1284, 336);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // slipBindingSource1
-            // 
-            this.slipBindingSource1.DataSource = typeof(Fredi.Slip);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(1140, 832);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "CECI EST UN TEST";
-            // 
-            // GetSlips
-            // 
-            this.GetSlips.Location = new System.Drawing.Point(474, 44);
-            this.GetSlips.Name = "GetSlips";
-            this.GetSlips.Size = new System.Drawing.Size(320, 35);
-            this.GetSlips.TabIndex = 2;
-            this.GetSlips.Text = "Charger vos bordereaux existants";
-            this.GetSlips.UseVisualStyleBackColor = true;
-            this.GetSlips.Click += new System.EventHandler(this.GetSlips_Click);
-            // 
-            // slipBindingSource
-            // 
-            this.slipBindingSource.DataSource = typeof(Fredi.Slip);
-            // 
             // date
             // 
-            this.date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.date.DataPropertyName = "SlipDate";
-            dataGridViewCellStyle1.Format = "yyyy-MM-dd";
+            dataGridViewCellStyle1.Format = "d";
             dataGridViewCellStyle1.NullValue = null;
             this.date.DefaultCellStyle = dataGridViewCellStyle1;
             this.date.HeaderText = "Date";
             this.date.Name = "date";
-            this.date.Width = 5;
+            this.date.Width = 67;
             // 
             // pattern
             // 
@@ -207,13 +177,31 @@
             this.Supprimer.UseColumnTextForButtonValue = true;
             this.Supprimer.Width = 79;
             // 
+            // slipBindingSource1
+            // 
+            this.slipBindingSource1.DataSource = typeof(Fredi.Slip);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Location = new System.Drawing.Point(1140, 832);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "CECI EST UN TEST";
+            // 
+            // slipBindingSource
+            // 
+            this.slipBindingSource.DataSource = typeof(Fredi.Slip);
+            // 
             // UCUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.Controls.Add(this.GetSlips);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaption;
@@ -234,7 +222,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource slipBindingSource1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button GetSlips;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.DataGridViewTextBoxColumn pattern;
         private System.Windows.Forms.DataGridViewTextBoxColumn path;

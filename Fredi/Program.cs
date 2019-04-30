@@ -16,12 +16,12 @@ namespace Fredi
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //try
-            //{
+            try
+            {
                 Application.Run(new Form1());
-            //}
-            //catch
-            //{}
+            }
+            catch
+            {}
         }
     }
 }

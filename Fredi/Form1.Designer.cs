@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.MenuSidel = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -42,19 +41,20 @@
             this.button1 = new System.Windows.Forms.Button();
             this.MenuTop = new System.Windows.Forms.Panel();
             this.AccountName = new System.Windows.Forms.Label();
+            this.ucTreasure1 = new Fredi.UCTreasure();
+            this.ucHome2 = new Fredi.UCHome();
             this.ucUser1 = new Fredi.UCUser();
             this.ucAccount1 = new Fredi.UCAccount();
             this.ucInscription1 = new Fredi.UCInscription();
             this.ucHome1 = new Fredi.UCHome();
+            this.ucTreasure2 = new Fredi.UCTreasure();
             this.MenuSidel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.MenuTop.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuSidel
             // 
             this.MenuSidel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
-            this.MenuSidel.Controls.Add(this.pictureBox1);
             this.MenuSidel.Controls.Add(this.label2);
             this.MenuSidel.Controls.Add(this.button8);
             this.MenuSidel.Controls.Add(this.button7);
@@ -71,16 +71,6 @@
             this.MenuSidel.Name = "MenuSidel";
             this.MenuSidel.Size = new System.Drawing.Size(154, 753);
             this.MenuSidel.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Fredi.Properties.Resources.param;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 134);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(29, 27);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
             // 
             // label2
             // 
@@ -135,6 +125,7 @@
             this.button6.TabIndex = 7;
             this.button6.Text = "•";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
@@ -149,6 +140,7 @@
             this.button5.TabIndex = 6;
             this.button5.Text = "•";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
@@ -163,6 +155,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "•";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
@@ -177,6 +170,8 @@
             this.button3.TabIndex = 4;
             this.button3.Text = "•";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -190,6 +185,7 @@
             this.button2.TabIndex = 3;
             this.button2.Text = "Gestion des frais";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel1
@@ -213,6 +209,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Mon compte";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MenuTop
@@ -229,12 +226,31 @@
             // 
             this.AccountName.BackColor = System.Drawing.Color.Transparent;
             this.AccountName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AccountName.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccountName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AccountName.Location = new System.Drawing.Point(911, 9);
             this.AccountName.Name = "AccountName";
             this.AccountName.Size = new System.Drawing.Size(116, 27);
             this.AccountName.TabIndex = 0;
             this.AccountName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ucTreasure1
+            // 
+            this.ucTreasure1.Location = new System.Drawing.Point(5456, 4575);
+            this.ucTreasure1.Margin = new System.Windows.Forms.Padding(148, 326, 148, 326);
+            this.ucTreasure1.Name = "ucTreasure1";
+            this.ucTreasure1.Size = new System.Drawing.Size(36925, 54436);
+            this.ucTreasure1.TabIndex = 7;
+            // 
+            // ucHome2
+            // 
+            this.ucHome2.AutoScroll = true;
+            this.ucHome2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ucHome2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucHome2.Location = new System.Drawing.Point(154, 59);
+            this.ucHome2.Margin = new System.Windows.Forms.Padding(4);
+            this.ucHome2.Name = "ucHome2";
+            this.ucHome2.Size = new System.Drawing.Size(1039, 698);
+            this.ucHome2.TabIndex = 6;
             // 
             // ucUser1
             // 
@@ -263,7 +279,7 @@
             this.ucInscription1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ucInscription1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ucInscription1.Location = new System.Drawing.Point(154, 60);
-            this.ucInscription1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ucInscription1.Margin = new System.Windows.Forms.Padding(4);
             this.ucInscription1.Name = "ucInscription1";
             this.ucInscription1.Size = new System.Drawing.Size(1030, 698);
             this.ucInscription1.TabIndex = 3;
@@ -274,16 +290,27 @@
             this.ucHome1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ucHome1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ucHome1.Location = new System.Drawing.Point(154, 60);
-            this.ucHome1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ucHome1.Margin = new System.Windows.Forms.Padding(4);
             this.ucHome1.Name = "ucHome1";
             this.ucHome1.Size = new System.Drawing.Size(1030, 701);
             this.ucHome1.TabIndex = 2;
+            // 
+            // ucTreasure2
+            // 
+            this.ucTreasure2.Location = new System.Drawing.Point(154, 59);
+            this.ucTreasure2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ucTreasure2.Name = "ucTreasure2";
+            this.ucTreasure2.Size = new System.Drawing.Size(1039, 702);
+            this.ucTreasure2.TabIndex = 8;
             // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1182, 753);
+            this.Controls.Add(this.ucTreasure2);
+            this.Controls.Add(this.ucTreasure1);
+            this.Controls.Add(this.ucHome2);
             this.Controls.Add(this.ucUser1);
             this.Controls.Add(this.ucAccount1);
             this.Controls.Add(this.ucInscription1);
@@ -300,7 +327,6 @@
             this.Text = "M2L - Application";
             this.MenuSidel.ResumeLayout(false);
             this.MenuSidel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.MenuTop.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -320,12 +346,14 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel MenuTop;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private UCHome ucHome1;
         private UCInscription ucInscription1;
         private System.Windows.Forms.Label AccountName;
         private UCAccount ucAccount1;
         private UCUser ucUser1;
+        private UCHome ucHome2;
+        private UCTreasure ucTreasure1;
+        private UCTreasure ucTreasure2;
     }
 }
 

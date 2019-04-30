@@ -83,14 +83,26 @@ namespace Fredi
                 string nameFromTok = NameTok.Rows[0][0].ToString();
                 Testes.label1_TextChanged("Bonjour "+nameFromTok);
 
+                string getStatutForm = "select statut from login where id = '"+tokeen+"'";
+                MySqlDataAdapter putStatut = new MySqlDataAdapter(getStatutForm, connection);
+                DataTable Statut = new DataTable();
+                putStatut.Fill(Statut);
+                string statutFromTok = Statut.Rows[0][0].ToString();
+    
+                UCUser alp = new UCUser();
+
                 //UCUser tst = new UCUser();
                 //tst.getDataSlip(1);
+                Form1 aal = new Form1();
+                aal.showbutton(nameFromTok, statutFromTok);
             }
             else
             {
                 MessageBox.Show("Mauvais mot de passe ou adresse mail");
             }
 
+            
+            
             connection.Close();
         }
         

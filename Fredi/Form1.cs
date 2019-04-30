@@ -46,7 +46,7 @@ namespace Fredi
             catch
             {
                 MessageBox.Show("Vous n'avez pas accès à internet, veuillez relancer l'application une fois connecté");
-                Close();
+                this.Close();
             }
 
         }
@@ -66,10 +66,24 @@ namespace Fredi
         {
             panel1.Height = button2.Height;
             panel1.Top = button2.Top;
-            ucUser1.BringToFront();
-
+            UCHome getToken = new UCHome();
+            ucUser1.getDataSlip(getToken.returnToken());
+            if(button2.Text == "Gestion des bordereaux")
+            {
+                ucUser1.BringToFront();
+            }
+            else if(button2.Text == "Adhérents")
+            {
+                ucTreasure2.BringToFront();
+            }
         }
-        
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            panel1.Height = button3.Height;
+            panel1.Top = button3.Top;
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
             panel1.Height = button4.Height;
@@ -98,10 +112,16 @@ namespace Fredi
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            panel1.Height = button8.Height;
-            panel1.Top = button8.Top;
-            ucInscription1.BringToFront();
-
+            if (button8.Text == "Se déconnecter et quitter")
+            {
+                this.Close();
+            }
+            else
+            {
+                panel1.Height = button8.Height;
+                panel1.Top = button8.Top;
+                ucInscription1.BringToFront();
+            }
 
         }
 
@@ -122,5 +142,36 @@ namespace Fredi
             }
         }
 
+        public void showbutton(string tok, string statut)
+        {
+            Form1 fc = (Form1)Application.OpenForms["form1"];
+            if (fc != null)
+            {
+                if (tok != "0")
+                {
+
+                    fc.button1.Visible = true;
+                    fc.button2.Visible = true;
+                    fc.button3.Visible = true;
+                    fc.button4.Visible = true;
+                    fc.button5.Visible = true;
+                    fc.button6.Visible = true;
+                    fc.button7.Visible = false;
+                    fc.button8.Text = "Se déconnecter et quitter";
+                    if (statut == "user")
+                    {
+                        fc.button1.Text = "Mon compte";
+                        fc.button2.Text = "Gestion des bordereaux";
+                    }
+                    else if (statut == "treasure")
+                    {
+                        fc.button1.Text = "Compte trésorier";
+                        fc.button2.Text = "Adhérents";
+                    }
+                }
+            }
+
+            
+        }
     }
 }

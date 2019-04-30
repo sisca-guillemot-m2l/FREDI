@@ -96,6 +96,12 @@
     <Compile Include="UCInscription.Designer.cs">
       <DependentUpon>UCInscription.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCTreasure.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCTreasure.Designer.cs">
+      <DependentUpon>UCTreasure.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCInscription.resx">
       <DependentUpon>UCInscription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCTreasure.resx">
+      <DependentUpon>UCTreasure.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCUser.resx">
       <DependentUpon>UCUser.cs</DependentUpon>
