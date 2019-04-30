@@ -74,6 +74,7 @@ namespace Fredi
             }
             else if(button2.Text == "Adhérents")
             {
+                ucTreasure2.allTreasurePart();
                 ucTreasure2.BringToFront();
             }
         }
