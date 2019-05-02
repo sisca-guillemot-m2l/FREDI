@@ -58,7 +58,7 @@
             // 
             // Loginpanel
             // 
-            this.Loginpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.Loginpanel.BackColor = System.Drawing.Color.Firebrick;
             this.Loginpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Loginpanel.Controls.Add(this.btnco);
             this.Loginpanel.Controls.Add(this.label4);
@@ -81,7 +81,7 @@
             this.btnco.Margin = new System.Windows.Forms.Padding(4);
             this.btnco.Name = "btnco";
             this.btnco.Size = new System.Drawing.Size(140, 64);
-            this.btnco.TabIndex = 9;
+            this.btnco.TabIndex = 3;
             this.btnco.Text = "Se connecter";
             this.btnco.UseVisualStyleBackColor = true;
             this.btnco.Click += new System.EventHandler(this.btnco_Click);
@@ -128,7 +128,7 @@
             this.textpwd.Name = "textpwd";
             this.textpwd.PasswordChar = '•';
             this.textpwd.Size = new System.Drawing.Size(286, 32);
-            this.textpwd.TabIndex = 5;
+            this.textpwd.TabIndex = 2;
             // 
             // label3
             // 
@@ -146,7 +146,7 @@
             this.textmail.Margin = new System.Windows.Forms.Padding(4);
             this.textmail.Name = "textmail";
             this.textmail.Size = new System.Drawing.Size(286, 32);
-            this.textmail.TabIndex = 3;
+            this.textmail.TabIndex = 1;
             // 
             // label1
             // 
@@ -159,7 +159,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.panel2.BackColor = System.Drawing.Color.Firebrick;
             this.panel2.Location = new System.Drawing.Point(355, 99);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
@@ -178,7 +178,7 @@
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UCHome";
-            this.Size = new System.Drawing.Size(1288, 777);
+            this.Size = new System.Drawing.Size(1267, 756);
             this.Loginpanel.ResumeLayout(false);
             this.Loginpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

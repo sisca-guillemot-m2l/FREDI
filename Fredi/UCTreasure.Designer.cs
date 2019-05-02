@@ -67,7 +67,8 @@
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(1288, 177);
             this.listView1.Sorting = System.Windows.Forms.SortOrder.Descending;
-            this.listView1.TabIndex = 2;
+            this.listView1.TabIndex = 5;
+            this.listView1.TabStop = false;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
@@ -109,7 +110,7 @@
             this.textBox2.Location = new System.Drawing.Point(374, 266);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(235, 22);
-            this.textBox2.TabIndex = 4;
+            this.textBox2.TabIndex = 1;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label3
@@ -126,7 +127,7 @@
             this.textBox3.Location = new System.Drawing.Point(693, 266);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(235, 22);
-            this.textBox3.TabIndex = 6;
+            this.textBox3.TabIndex = 2;
             // 
             // slipBindingSource
             // 
