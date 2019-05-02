@@ -19,6 +19,7 @@ namespace Fredi
     {
         public static int comptSlip = 0;
         public static string totalCostVar;
+        public string pathFile;
         public UCUser()
         {
             InitializeComponent();
@@ -53,6 +54,7 @@ namespace Fredi
                     exeAll.ExecuteNonQuery();
                     coInsert.Close();
                     slipBindingSource1.Add(new Slip { });
+                    comptSlip++;
                 }
                 catch
                 {
@@ -204,7 +206,6 @@ namespace Fredi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
             getContent returnInfo = new getContent();
             MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
             conn.Server = returnInfo.getServer();
@@ -264,7 +265,56 @@ namespace Fredi
             document.Close();
             wordApp.Quit();
             CreateWordDocument(@"c:\users\Fabien\Desktop\test.docx", @"c:\users\Fabien\Desktop\test2.docx");
+            FormPDFUser Fc = new FormPDFUser();
+            Fc.ShowDialog();
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using(OpenFileDialog ofd = new OpenFileDialog() { ValidateNames = true, Multiselect = false, Filter = "PDF|*.pdf"})
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                pathFile = ofd.FileName;
+                string file = ofd.SafeFileName;
+                textBox1.Visible = true;
+                button3.Visible = true;
+                textBox1.Text = file;
+            }
+        }
+        public static void databaseFilePut(string varFilePath)
+        {
+            getContent returnInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = returnInfo.getServer();
+            conn.UserID = returnInfo.getId();
+            conn.Password = returnInfo.getPassword();
+            conn.Database = returnInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection connec = new MySqlConnection(connString);
+            connec.Open();
+            UCHome getTokTri = new UCHome();
+
+            byte[] file;
+            using (var stream = new FileStream(varFilePath, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = new BinaryReader(stream))
+                {
+                    file = reader.ReadBytes((int)stream.Length);
+                }
+            }
+            using (var varConnection = connec)
+            using (var sqlWrite = new MySqlCommand(@"update login set pdfSigned = @File where id = '" + getTokTri.returnToken() + "'", varConnection))
+            {
+                sqlWrite.Parameters.Add("@File", MySqlDbType.VarBinary, file.Length).Value = file;
+                sqlWrite.ExecuteNonQuery();
+            }
+            connec.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            databaseFilePut(pathFile);
+            MessageBox.Show("Bordereau bien déposé, vous pouvez modifier celui ci en déposant un nouveau fichier jusqu'au 24 décembre inclu.");
         }
     }
 }

@@ -41,13 +41,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.MenuTop = new System.Windows.Forms.Panel();
             this.AccountName = new System.Windows.Forms.Label();
+            this.ucTreasure2 = new Fredi.UCTreasure();
             this.ucTreasure1 = new Fredi.UCTreasure();
             this.ucHome2 = new Fredi.UCHome();
             this.ucUser1 = new Fredi.UCUser();
             this.ucAccount1 = new Fredi.UCAccount();
             this.ucInscription1 = new Fredi.UCInscription();
             this.ucHome1 = new Fredi.UCHome();
-            this.ucTreasure2 = new Fredi.UCTreasure();
             this.MenuSidel.SuspendLayout();
             this.MenuTop.SuspendLayout();
             this.SuspendLayout();
@@ -216,7 +216,6 @@
             // 
             this.MenuTop.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.MenuTop.Controls.Add(this.AccountName);
-            this.MenuTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.MenuTop.Location = new System.Drawing.Point(154, 0);
             this.MenuTop.Name = "MenuTop";
             this.MenuTop.Size = new System.Drawing.Size(1028, 63);
@@ -233,8 +232,18 @@
             this.AccountName.TabIndex = 0;
             this.AccountName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // ucTreasure2
+            // 
+            this.ucTreasure2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ucTreasure2.Location = new System.Drawing.Point(154, 59);
+            this.ucTreasure2.Margin = new System.Windows.Forms.Padding(4);
+            this.ucTreasure2.Name = "ucTreasure2";
+            this.ucTreasure2.Size = new System.Drawing.Size(1039, 702);
+            this.ucTreasure2.TabIndex = 8;
+            // 
             // ucTreasure1
             // 
+            this.ucTreasure1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ucTreasure1.Location = new System.Drawing.Point(5456, 4575);
             this.ucTreasure1.Margin = new System.Windows.Forms.Padding(148, 326, 148, 326);
             this.ucTreasure1.Name = "ucTreasure1";
@@ -295,14 +304,6 @@
             this.ucHome1.Size = new System.Drawing.Size(1030, 701);
             this.ucHome1.TabIndex = 2;
             // 
-            // ucTreasure2
-            // 
-            this.ucTreasure2.Location = new System.Drawing.Point(154, 59);
-            this.ucTreasure2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ucTreasure2.Name = "ucTreasure2";
-            this.ucTreasure2.Size = new System.Drawing.Size(1039, 702);
-            this.ucTreasure2.TabIndex = 8;
-            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -346,13 +347,13 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel MenuTop;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label AccountName;
+        private UCTreasure ucTreasure1;
         private UCHome ucHome1;
         private UCInscription ucInscription1;
-        private System.Windows.Forms.Label AccountName;
         private UCAccount ucAccount1;
         private UCUser ucUser1;
         private UCHome ucHome2;
-        private UCTreasure ucTreasure1;
         private UCTreasure ucTreasure2;
     }
 }
