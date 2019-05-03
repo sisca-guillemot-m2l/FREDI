@@ -74,27 +74,33 @@ namespace Fredi
                 tokenNb = tokendt.Rows[0][0].ToString();
                 tokeen = Int32.Parse(tokenNb);
                 MessageBox.Show("Vous etes maintenant connecté");
+                try
+                    {
+                    Form1 Testes = new Form1();
+                    string getNameForm = "select name from adherents where idLogin = '" + tokeen + "'";
+                    MySqlDataAdapter putNameForm = new MySqlDataAdapter(getNameForm, connection);
+                    DataTable NameTok = new DataTable();
+                    putNameForm.Fill(NameTok);
+                    string nameFromTok = NameTok.Rows[0][0].ToString();
+                    Testes.label1_TextChanged("Bonjour " + nameFromTok);
 
-                Form1 Testes = new Form1();
-                string getNameForm = "select name from adherents where idLogin = '"+tokeen+"'";
-                MySqlDataAdapter putNameForm = new MySqlDataAdapter(getNameForm, connection);
-                DataTable NameTok = new DataTable();
-                putNameForm.Fill(NameTok);
-                string nameFromTok = NameTok.Rows[0][0].ToString();
-                Testes.label1_TextChanged("Bonjour "+nameFromTok);
+                    string getStatutForm = "select statut from login where id = '" + tokeen + "'";
+                    MySqlDataAdapter putStatut = new MySqlDataAdapter(getStatutForm, connection);
+                    DataTable Statut = new DataTable();
+                    putStatut.Fill(Statut);
+                    string statutFromTok = Statut.Rows[0][0].ToString();
 
-                string getStatutForm = "select statut from login where id = '"+tokeen+"'";
-                MySqlDataAdapter putStatut = new MySqlDataAdapter(getStatutForm, connection);
-                DataTable Statut = new DataTable();
-                putStatut.Fill(Statut);
-                string statutFromTok = Statut.Rows[0][0].ToString();
-    
-                UCUser alp = new UCUser();
+                    UCUser alp = new UCUser();
 
-                //UCUser tst = new UCUser();
-                //tst.getDataSlip(1);
-                Form1 aal = new Form1();
-                aal.showbutton(nameFromTok, statutFromTok);
+                    //UCUser tst = new UCUser();
+                    //tst.getDataSlip(1);
+                    Form1 aal = new Form1();
+                    aal.showbutton(nameFromTok, statutFromTok);
+                }
+                catch
+                {
+
+                }
             }
             else
             {

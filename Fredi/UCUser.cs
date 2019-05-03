@@ -255,7 +255,6 @@ namespace Fredi
             DataTable sumDt = new DataTable();
             sumTotal.Fill(sumDt);
             totalCostVar = sumDt.Rows[0][0].ToString();
-            //table.Cell( comptSlip + 2, 2).Range.Text = totalCostVar;
             document.SaveAs2(ref save13, ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing,

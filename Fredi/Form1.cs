@@ -67,9 +67,9 @@ namespace Fredi
             panel1.Height = button2.Height;
             panel1.Top = button2.Top;
             UCHome getToken = new UCHome();
-            ucUser1.getDataSlip(getToken.returnToken());
             if(button2.Text == "Gestion des bordereaux")
             {
+                ucUser1.getDataSlip(getToken.returnToken());
                 ucUser1.BringToFront();
             }
             else if(button2.Text == "Adhérents")

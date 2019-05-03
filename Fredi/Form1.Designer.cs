@@ -41,13 +41,13 @@
             this.button1 = new System.Windows.Forms.Button();
             this.MenuTop = new System.Windows.Forms.Panel();
             this.AccountName = new System.Windows.Forms.Label();
-            this.ucTreasure2 = new Fredi.UCTreasure();
             this.ucTreasure1 = new Fredi.UCTreasure();
-            this.ucHome2 = new Fredi.UCHome();
-            this.ucUser1 = new Fredi.UCUser();
             this.ucAccount1 = new Fredi.UCAccount();
             this.ucInscription1 = new Fredi.UCInscription();
             this.ucHome1 = new Fredi.UCHome();
+            this.ucHome2 = new Fredi.UCHome();
+            this.ucTreasure2 = new Fredi.UCTreasure();
+            this.ucUser1 = new Fredi.UCUser();
             this.MenuSidel.SuspendLayout();
             this.MenuTop.SuspendLayout();
             this.SuspendLayout();
@@ -232,45 +232,15 @@
             this.AccountName.TabIndex = 0;
             this.AccountName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ucTreasure2
-            // 
-            this.ucTreasure2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ucTreasure2.Location = new System.Drawing.Point(154, 59);
-            this.ucTreasure2.Margin = new System.Windows.Forms.Padding(4);
-            this.ucTreasure2.Name = "ucTreasure2";
-            this.ucTreasure2.Size = new System.Drawing.Size(1039, 702);
-            this.ucTreasure2.TabIndex = 8;
-            // 
             // ucTreasure1
             // 
+            this.ucTreasure1.AutoScroll = true;
             this.ucTreasure1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ucTreasure1.Location = new System.Drawing.Point(5456, 4575);
             this.ucTreasure1.Margin = new System.Windows.Forms.Padding(148, 326, 148, 326);
             this.ucTreasure1.Name = "ucTreasure1";
             this.ucTreasure1.Size = new System.Drawing.Size(36925, 54436);
             this.ucTreasure1.TabIndex = 7;
-            // 
-            // ucHome2
-            // 
-            this.ucHome2.AutoScroll = true;
-            this.ucHome2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ucHome2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucHome2.Location = new System.Drawing.Point(154, 59);
-            this.ucHome2.Margin = new System.Windows.Forms.Padding(4);
-            this.ucHome2.Name = "ucHome2";
-            this.ucHome2.Size = new System.Drawing.Size(1039, 698);
-            this.ucHome2.TabIndex = 6;
-            // 
-            // ucUser1
-            // 
-            this.ucUser1.AutoScroll = true;
-            this.ucUser1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ucUser1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ucUser1.Location = new System.Drawing.Point(154, 60);
-            this.ucUser1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucUser1.Name = "ucUser1";
-            this.ucUser1.Size = new System.Drawing.Size(1030, 697);
-            this.ucUser1.TabIndex = 1;
             // 
             // ucAccount1
             // 
@@ -304,15 +274,46 @@
             this.ucHome1.Size = new System.Drawing.Size(1030, 701);
             this.ucHome1.TabIndex = 2;
             // 
+            // ucHome2
+            // 
+            this.ucHome2.AutoScroll = true;
+            this.ucHome2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ucHome2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucHome2.Location = new System.Drawing.Point(154, 60);
+            this.ucHome2.Margin = new System.Windows.Forms.Padding(4);
+            this.ucHome2.Name = "ucHome2";
+            this.ucHome2.Size = new System.Drawing.Size(1030, 701);
+            this.ucHome2.TabIndex = 8;
+            // 
+            // ucTreasure2
+            // 
+            this.ucTreasure2.AutoScroll = true;
+            this.ucTreasure2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ucTreasure2.Location = new System.Drawing.Point(154, 60);
+            this.ucTreasure2.Name = "ucTreasure2";
+            this.ucTreasure2.Size = new System.Drawing.Size(1030, 701);
+            this.ucTreasure2.TabIndex = 9;
+            // 
+            // ucUser1
+            // 
+            this.ucUser1.AutoScroll = true;
+            this.ucUser1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ucUser1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ucUser1.Location = new System.Drawing.Point(154, 60);
+            this.ucUser1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucUser1.Name = "ucUser1";
+            this.ucUser1.Size = new System.Drawing.Size(1030, 701);
+            this.ucUser1.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1182, 753);
-            this.Controls.Add(this.ucTreasure2);
-            this.Controls.Add(this.ucTreasure1);
-            this.Controls.Add(this.ucHome2);
             this.Controls.Add(this.ucUser1);
+            this.Controls.Add(this.ucTreasure2);
+            this.Controls.Add(this.ucHome2);
+            this.Controls.Add(this.ucTreasure1);
             this.Controls.Add(this.ucAccount1);
             this.Controls.Add(this.ucInscription1);
             this.Controls.Add(this.ucHome1);
@@ -352,9 +353,9 @@
         private UCHome ucHome1;
         private UCInscription ucInscription1;
         private UCAccount ucAccount1;
-        private UCUser ucUser1;
         private UCHome ucHome2;
         private UCTreasure ucTreasure2;
+        private UCUser ucUser1;
     }
 }
 

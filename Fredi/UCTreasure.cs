@@ -20,7 +20,7 @@ namespace Fredi
 
         private void UCTreasure_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         public void allTreasurePart()
@@ -42,7 +42,7 @@ namespace Fredi
             DataTable stocknum = new DataTable();
             alop.Fill(stocknum);
             string numGot = stocknum.Rows[0][0].ToString();
-            string sqlQuery = "select firstName from adherents where numLigue = '"+numGot+"' ";
+            string sqlQuery = "select firstName from adherents where numLigue = '" + numGot + "' ";
             MySqlCommand sqlcom = new MySqlCommand(sqlQuery, connection);
             MySqlDataReader sdr = sqlcom.ExecuteReader();
             AutoCompleteStringCollection autotext = new AutoCompleteStringCollection();
@@ -87,7 +87,7 @@ namespace Fredi
             connection.Close();
             connection.Open();
 
-            string pelo = "SELECT * FROM login JOIN adherents ON  login.statut = 'user' WHERE  adherents.numLigue = '"+numGot+"' AND login.id = adherents.idLogin";
+            string pelo = "SELECT * FROM login JOIN adherents ON  login.statut = 'user' WHERE  adherents.numLigue = '" + numGot + "' AND login.id = adherents.idLogin";
 
             MySqlCommand sqlCommand = new MySqlCommand(pelo, connection);
             MySqlDataReader dr = sqlCommand.ExecuteReader();
@@ -101,7 +101,7 @@ namespace Fredi
                 listView1.Items.Add(item);
 
             }
-
+            connection.Close();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -112,6 +112,123 @@ namespace Fredi
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            getContent returnInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = returnInfo.getServer();
+            conn.UserID = returnInfo.getId();
+            conn.Password = returnInfo.getPassword();
+            conn.Database = returnInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection connection = new MySqlConnection(connString);
+            connection.Open();
+            try
+            {
+
+
+                string select = "select idLogin from adherents where firstName = '" + textBox1.Text + "' and name = '" + textBox2.Text + "' and numLicence = '" + textBox3.Text + "'";
+                MySqlDataAdapter getID = new MySqlDataAdapter(select, connection);
+                DataTable idDt = new DataTable();
+                getID.Fill(idDt);
+
+                if (idDt.Rows[0][0].ToString() != null)
+                {
+                    MessageBox.Show(idDt.Rows[0][0].ToString());
+
+                    try
+                    {
+                        string getInfo = "SELECT * FROM slips WHERE idMember = '" + idDt.Rows[0][0] + "'";
+                        MySqlDataAdapter coInfo = new MySqlDataAdapter(getInfo, connection);
+                        DataTable getDt = new DataTable();
+                        coInfo.Fill(getDt);
+                        string ouech = getDt.Rows[0][0].ToString();
+                      
+                        foreach (DataRow dt in getDt.Rows)
+                        {
+                            
+                                slipBindingSource1.Add(new Slip
+                                {
+                                        SlipDate = dt["date"].ToString(),
+                                        SlipPattern = dt["pattern"].ToString(),
+                                        SlipPath = dt["path"].ToString(),
+                                        SlipKilometers = Convert.ToInt32(dt["kmsTraveled"]),
+                                        PathCost = Convert.ToInt32(dt["pathCost"]),
+                                        TollCost = Convert.ToInt32(dt["tollCost"]),
+                                        MealCost = Convert.ToInt32(dt["mealCost"]),
+                                        AccommodationCost = Convert.ToInt32(dt["accomodationCost"]),
+                                        TotalCost = Convert.ToInt32(dt["totalCost"]),
+                                });
+                        
+                        }
+
+                            
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Aucun bordereau n'a encore été completé par l'utilisateur");
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez renseigner un utilisateur valide.");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Veuillez renseigner un utilisateur valide.");
+            }
+          
+            connection.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            getContent returnInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = returnInfo.getServer();
+            conn.UserID = returnInfo.getId();
+            conn.Password = returnInfo.getPassword();
+            conn.Database = returnInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection connection = new MySqlConnection(connString);
+            connection.Open();
+
+            int insertRow = Convert.ToInt32(dataGridView1.CurrentRow.Index);
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Valider")
+            {
+                try
+                {
+                    string getIdMember = "select idLogin from adherents where numLicence = '" + textBox3.Text + "'";
+                    MySqlDataAdapter selectidMember = new MySqlDataAdapter(getIdMember, connection);
+                    DataTable dtGetIdMember = new DataTable();
+                    selectidMember.Fill(dtGetIdMember);
+                    string idMember = dtGetIdMember.Rows[0][0].ToString();
+                    string selectId = "select id from slips where idMember = '"+idMember+"' and date = '"+dataGridView1.Rows[insertRow].Cells[1].Value.ToString()+"' and totalCost = '"+dataGridView1.Rows[insertRow].Cells[9].Value.ToString()+"'";
+                    MySqlDataAdapter getId = new MySqlDataAdapter(selectId, connection);
+                    DataTable dtgetId = new DataTable();
+                    getId.Fill(dtgetId);
+                    string test = dtgetId.Rows[0][0].ToString();
+                    string checkValidity = "select Validated from slips where id = '" + test + "' ";
+                    MySqlDataAdapter checkValide = new MySqlDataAdapter(checkValidity, connection);
+                    DataTable resultCheck = new DataTable();
+                    checkValide.Fill(resultCheck);
+                    dataGridView1.Rows[insertRow].Cells[0].Value = "0";
+                    string updateValidated = "update slips set Validated = 'True' where id = '"+test+"'";
+                    MySqlCommand putUpdateValid = new MySqlCommand(updateValidated, connection);
+                    putUpdateValid.ExecuteNonQuery();
+                    
+                }
+                catch
+                {
+                    MessageBox.Show("Un soucis est survenu");
+                }
+                
+            }
+            connection.Close();
         }
     }
 }
