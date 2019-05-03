@@ -8,6 +8,7 @@ namespace Fredi
 {
     public class Slip
     {
+        public int Id { get; set; }
         public string SlipDate { get; set; }
         public string SlipPattern { get; set; }
         public string SlipPath { get; set; }

@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,20 +42,21 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.Supprimer = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Modifier = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Ajouter = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.AccommodationCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PathCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.slipBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.slipBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pattern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.path = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kmsTraveled = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PathCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tollCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mealCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AccommodationCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.slipBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.slipBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Ajouter = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Modifier = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Supprimer = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource)).BeginInit();
@@ -67,6 +68,7 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
             this.date,
             this.pattern,
             this.path,
@@ -142,48 +144,24 @@
             this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // Supprimer
+            // slipBindingSource1
             // 
-            this.Supprimer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Supprimer.HeaderText = "Supprimer";
-            this.Supprimer.Name = "Supprimer";
-            this.Supprimer.Text = "Supprimer";
-            this.Supprimer.UseColumnTextForButtonValue = true;
-            this.Supprimer.Width = 79;
+            this.slipBindingSource1.DataSource = typeof(Fredi.Slip);
             // 
-            // Modifier
+            // slipBindingSource
             // 
-            this.Modifier.HeaderText = "Modifier";
-            this.Modifier.Name = "Modifier";
-            this.Modifier.Text = "Modifier";
-            this.Modifier.UseColumnTextForButtonValue = true;
-            this.Modifier.Width = 63;
+            this.slipBindingSource.DataSource = typeof(Fredi.Slip);
             // 
-            // Ajouter
+            // Id
             // 
-            this.Ajouter.HeaderText = "Ajouter";
-            this.Ajouter.Name = "Ajouter";
-            this.Ajouter.Text = "Ajouter";
-            this.Ajouter.UseColumnTextForButtonValue = true;
-            this.Ajouter.Width = 60;
-            // 
-            // AccommodationCost
-            // 
-            this.AccommodationCost.DataPropertyName = "AccommodationCost";
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.AccommodationCost.DefaultCellStyle = dataGridViewCellStyle5;
-            this.AccommodationCost.HeaderText = "Cout hébergement";
-            this.AccommodationCost.Name = "AccommodationCost";
-            // 
-            // PathCost
-            // 
-            this.PathCost.DataPropertyName = "PathCost";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.PathCost.DefaultCellStyle = dataGridViewCellStyle2;
-            this.PathCost.HeaderText = "Cout trajet";
-            this.PathCost.Name = "PathCost";
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.MinimumWidth = 2;
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Id.Visible = false;
+            this.Id.Width = 2;
             // 
             // date
             // 
@@ -216,6 +194,15 @@
             this.kmsTraveled.Name = "kmsTraveled";
             this.kmsTraveled.Width = 75;
             // 
+            // PathCost
+            // 
+            this.PathCost.DataPropertyName = "PathCost";
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.PathCost.DefaultCellStyle = dataGridViewCellStyle2;
+            this.PathCost.HeaderText = "Cout trajet";
+            this.PathCost.Name = "PathCost";
+            // 
             // tollCost
             // 
             this.tollCost.DataPropertyName = "TollCost";
@@ -236,6 +223,15 @@
             this.mealCost.Name = "mealCost";
             this.mealCost.Width = 70;
             // 
+            // AccommodationCost
+            // 
+            this.AccommodationCost.DataPropertyName = "AccommodationCost";
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.AccommodationCost.DefaultCellStyle = dataGridViewCellStyle5;
+            this.AccommodationCost.HeaderText = "Cout hébergement";
+            this.AccommodationCost.Name = "AccommodationCost";
+            // 
             // totalCost
             // 
             this.totalCost.DataPropertyName = "TotalCost";
@@ -246,13 +242,30 @@
             this.totalCost.Name = "totalCost";
             this.totalCost.Width = 70;
             // 
-            // slipBindingSource1
+            // Ajouter
             // 
-            this.slipBindingSource1.DataSource = typeof(Fredi.Slip);
+            this.Ajouter.HeaderText = "Ajouter";
+            this.Ajouter.Name = "Ajouter";
+            this.Ajouter.Text = "Ajouter";
+            this.Ajouter.UseColumnTextForButtonValue = true;
+            this.Ajouter.Width = 60;
             // 
-            // slipBindingSource
+            // Modifier
             // 
-            this.slipBindingSource.DataSource = typeof(Fredi.Slip);
+            this.Modifier.HeaderText = "Modifier";
+            this.Modifier.Name = "Modifier";
+            this.Modifier.Text = "Modifier";
+            this.Modifier.UseColumnTextForButtonValue = true;
+            this.Modifier.Width = 63;
+            // 
+            // Supprimer
+            // 
+            this.Supprimer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Supprimer.HeaderText = "Supprimer";
+            this.Supprimer.Name = "Supprimer";
+            this.Supprimer.Text = "Supprimer";
+            this.Supprimer.UseColumnTextForButtonValue = true;
+            this.Supprimer.Width = 79;
             // 
             // UCUser
             // 
@@ -286,6 +299,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.DataGridViewTextBoxColumn pattern;
         private System.Windows.Forms.DataGridViewTextBoxColumn path;

@@ -65,6 +65,25 @@ namespace Fredi
                 
             }
 
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Modifier")
+            {
+                UCHome getIdAgain = new UCHome();
+                getContent returnInfo = new getContent();
+                MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+                conn.Server = returnInfo.getServer();
+                conn.UserID = returnInfo.getId();
+                conn.Password = returnInfo.getPassword();
+                conn.Database = returnInfo.getDb();
+                var connString = conn.ToString();
+                MySqlConnection connection = new MySqlConnection(connString);
+                connection.Open();
+
+                int insertRow = Convert.ToInt32(dataGridView1.CurrentRow.Index);
+                string updateSlip = "update slips set date = '"+dataGridView1.Rows[insertRow].Cells["date"].Value.ToString()+ "' , pattern = '" + dataGridView1.Rows[insertRow].Cells["pattern"].Value.ToString() + "' , path = '" + dataGridView1.Rows[insertRow].Cells["path"].Value.ToString() + "' , kmsTraveled = '" + dataGridView1.Rows[insertRow].Cells["kmsTraveled"].Value.ToString() + "' , pathCost = '" + dataGridView1.Rows[insertRow].Cells["pathCost"].Value.ToString() + "' , tollCost = '" + dataGridView1.Rows[insertRow].Cells["tollCost"].Value.ToString() + "' , mealCost = '" + dataGridView1.Rows[insertRow].Cells["mealCost"].Value.ToString() + "' , accomodationCost = '" + dataGridView1.Rows[insertRow].Cells["accommodationCost"].Value.ToString() + "' , totalCost = '" + dataGridView1.Rows[insertRow].Cells["totalCost"].Value.ToString() + "' where id = '"+dataGridView1.Rows[insertRow].Cells["Id"].Value.ToString()+"'";
+                MySqlCommand updateSlipDB = new MySqlCommand(updateSlip, connection);
+                updateSlipDB.ExecuteNonQuery();
+            }
+
             if (dataGridView1.Columns[e.ColumnIndex].Name == "Supprimer")
             {
                 slipBindingSource1.RemoveCurrent();
@@ -97,6 +116,7 @@ namespace Fredi
                     comptSlip++;
                     slipBindingSource1.Add(new Slip
                     {
+                        Id = Convert.ToInt32(dt["id"]),
                         SlipDate = dt["date"].ToString(),
                         SlipPattern = dt["pattern"].ToString(),
                         SlipPath = dt["path"].ToString(),

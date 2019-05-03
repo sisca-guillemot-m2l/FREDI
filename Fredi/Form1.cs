@@ -17,7 +17,7 @@ namespace Fredi
     public partial class Form1 : Form
     {
         public string toto;
-
+        public static int comptGetdataslip = 0;
 
         public Form1()
         {
@@ -69,12 +69,20 @@ namespace Fredi
             UCHome getToken = new UCHome();
             if(button2.Text == "Gestion des bordereaux")
             {
-                ucUser1.getDataSlip(getToken.returnToken());
+                if(comptGetdataslip == 0)
+                {
+                    ucUser1.getDataSlip(getToken.returnToken());
+                    comptGetdataslip++;
+                }
                 ucUser1.BringToFront();
             }
             else if(button2.Text == "Adhérents")
             {
-                ucTreasure2.allTreasurePart();
+                if (comptGetdataslip == 0)
+                {
+                    ucTreasure2.allTreasurePart();
+                    comptGetdataslip++;
+                }
                 ucTreasure2.BringToFront();
             }
         }

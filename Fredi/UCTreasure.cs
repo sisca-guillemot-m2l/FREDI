@@ -136,8 +136,6 @@ namespace Fredi
 
                 if (idDt.Rows[0][0].ToString() != null)
                 {
-                    MessageBox.Show(idDt.Rows[0][0].ToString());
-
                     try
                     {
                         string getInfo = "SELECT * FROM slips WHERE idMember = '" + idDt.Rows[0][0] + "'";
@@ -151,6 +149,7 @@ namespace Fredi
                             
                                 slipBindingSource1.Add(new Slip
                                 {
+                                        Id = Convert.ToInt32(dt["Id"]),
                                         SlipDate = dt["date"].ToString(),
                                         SlipPattern = dt["pattern"].ToString(),
                                         SlipPath = dt["path"].ToString(),
@@ -202,31 +201,33 @@ namespace Fredi
             {
                 try
                 {
-                    string getIdMember = "select idLogin from adherents where numLicence = '" + textBox3.Text + "'";
-                    MySqlDataAdapter selectidMember = new MySqlDataAdapter(getIdMember, connection);
-                    DataTable dtGetIdMember = new DataTable();
-                    selectidMember.Fill(dtGetIdMember);
-                    string idMember = dtGetIdMember.Rows[0][0].ToString();
-                    string selectId = "select id from slips where idMember = '"+idMember+"' and date = '"+dataGridView1.Rows[insertRow].Cells[1].Value.ToString()+"' and totalCost = '"+dataGridView1.Rows[insertRow].Cells[9].Value.ToString()+"'";
-                    MySqlDataAdapter getId = new MySqlDataAdapter(selectId, connection);
-                    DataTable dtgetId = new DataTable();
-                    getId.Fill(dtgetId);
-                    string test = dtgetId.Rows[0][0].ToString();
-                    string checkValidity = "select Validated from slips where id = '" + test + "' ";
-                    MySqlDataAdapter checkValide = new MySqlDataAdapter(checkValidity, connection);
-                    DataTable resultCheck = new DataTable();
-                    checkValide.Fill(resultCheck);
-                    dataGridView1.Rows[insertRow].Cells[0].Value = "0";
-                    string updateValidated = "update slips set Validated = 'True' where id = '"+test+"'";
+                    dataGridView1.Rows[insertRow].Cells["Validate"].Value = "0";
+                    string updateValidated = "update slips set Validated = 'True' where id = '" + dataGridView1.Rows[insertRow].Cells["Id"].Value.ToString() + "'";
                     MySqlCommand putUpdateValid = new MySqlCommand(updateValidated, connection);
                     putUpdateValid.ExecuteNonQuery();
-                    
+
                 }
                 catch
                 {
-                    MessageBox.Show("Un soucis est survenu");
+                    MessageBox.Show("Un soucis est survenu lors de la validation");
                 }
-                
+
+            }
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Modifier")
+            {
+                try
+                {
+                MessageBox.Show(dataGridView1.Rows[insertRow].Cells["Id"].Value.ToString());
+                MessageBox.Show(insertRow.ToString());
+                MessageBox.Show(dataGridView1.Rows[insertRow].Cells["date"].Value.ToString());
+                string updateSlip = "update slips set date = '" + dataGridView1.Rows[insertRow].Cells["date"].Value.ToString() + "' , pattern = '" + dataGridView1.Rows[insertRow].Cells["pattern"].Value.ToString() + "' , path = '" + dataGridView1.Rows[insertRow].Cells["path"].Value.ToString() + "' , kmsTraveled = '" + dataGridView1.Rows[insertRow].Cells["kmsTraveled"].Value.ToString() + "' , pathCost = '" + dataGridView1.Rows[insertRow].Cells["pathCost"].Value.ToString() + "' , tollCost = '" + dataGridView1.Rows[insertRow].Cells["tollCost"].Value.ToString() + "' , mealCost = '" + dataGridView1.Rows[insertRow].Cells["mealCost"].Value.ToString() + "' , accomodationCost = '" + dataGridView1.Rows[insertRow].Cells["accommodationCost"].Value.ToString() + "' , totalCost = '" + dataGridView1.Rows[insertRow].Cells["totalCost"].Value.ToString() + "' where id = '" + dataGridView1.Rows[insertRow].Cells["Id"].Value.ToString() + "'";
+                    MySqlCommand updateSlipDB = new MySqlCommand(updateSlip, connection);
+                    updateSlipDB.ExecuteNonQuery();
+                }
+                catch
+                {
+                    MessageBox.Show("Modifications impossibles");
+                }
             }
             connection.Close();
         }
