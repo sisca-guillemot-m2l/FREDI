@@ -8,11 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace Fredi
 {
     public partial class UCTreasure : UserControl
     {
+        public static string pathFile;
+        public static string idUser;
         public UCTreasure()
         {
             InitializeComponent();
@@ -133,7 +136,7 @@ namespace Fredi
                 MySqlDataAdapter getID = new MySqlDataAdapter(select, connection);
                 DataTable idDt = new DataTable();
                 getID.Fill(idDt);
-
+                idUser = idDt.Rows[0][0].ToString();
                 if (idDt.Rows[0][0].ToString() != null)
                 {
                     try
@@ -230,6 +233,50 @@ namespace Fredi
                 }
             }
             connection.Close();
+        }
+
+        public static void databaseFileRead(string varID, string varPathToNewLocation)
+        {
+            getContent returnInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = returnInfo.getServer();
+            conn.UserID = returnInfo.getId();
+            conn.Password = returnInfo.getPassword();
+            conn.Database = returnInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection connection = new MySqlConnection(connString);
+            connection.Open();
+            using (var varConnection = connection)
+            using (var sqlQuery = new MySqlCommand("SELECT pdfSigned FROM login WHERE id = '" + varID + "'", varConnection))
+            {
+                sqlQuery.Parameters.AddWithValue("@varID", varID);
+                using (var sqlQueryResult = sqlQuery.ExecuteReader())
+                    if (sqlQueryResult != null)
+                    {
+                        sqlQueryResult.Read();
+                        var blob = new Byte[(sqlQueryResult.GetBytes(0, 0, null, 0, int.MaxValue))];
+                        sqlQueryResult.GetBytes(0, 0, blob, 0, blob.Length);
+                        using (var fs = new FileStream(varPathToNewLocation, FileMode.Create, FileAccess.Write))
+                            fs.Write(blob, 0, blob.Length);
+                    }
+            }
+        }
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Où souhaitez vous le télécharger ?");
+
+            using (FolderBrowserDialog ofd = new FolderBrowserDialog() { })
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    pathFile = ofd.SelectedPath;
+                    
+                }
+            MessageBox.Show(pathFile);
+            string pathpath = pathFile + @"\testtest.pdf";
+            MessageBox.Show(pathpath);
+            databaseFileRead( idUser , pathpath);
         }
     }
 }

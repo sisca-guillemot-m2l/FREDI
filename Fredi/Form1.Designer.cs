@@ -48,6 +48,7 @@
             this.ucHome2 = new Fredi.UCHome();
             this.ucTreasure2 = new Fredi.UCTreasure();
             this.ucUser1 = new Fredi.UCUser();
+            this.ucAdmin1 = new Fredi.UCAdmin();
             this.MenuSidel.SuspendLayout();
             this.MenuTop.SuspendLayout();
             this.SuspendLayout();
@@ -305,11 +306,20 @@
             this.ucUser1.Size = new System.Drawing.Size(1030, 701);
             this.ucUser1.TabIndex = 10;
             // 
+            // ucAdmin1
+            // 
+            this.ucAdmin1.Location = new System.Drawing.Point(154, 60);
+            this.ucAdmin1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ucAdmin1.Name = "ucAdmin1";
+            this.ucAdmin1.Size = new System.Drawing.Size(1030, 701);
+            this.ucAdmin1.TabIndex = 11;
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1182, 753);
+            this.Controls.Add(this.ucAdmin1);
             this.Controls.Add(this.ucUser1);
             this.Controls.Add(this.ucTreasure2);
             this.Controls.Add(this.ucHome2);
@@ -356,6 +366,7 @@
         private UCHome ucHome2;
         private UCTreasure ucTreasure2;
         private UCUser ucUser1;
+        private UCAdmin ucAdmin1;
     }
 }
 

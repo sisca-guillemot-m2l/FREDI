@@ -100,6 +100,12 @@
     <Compile Include="UCAccount.Designer.cs">
       <DependentUpon>UCAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCAdmin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCAdmin.Designer.cs">
+      <DependentUpon>UCAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCbor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     </Compile>
     <EmbeddedResource Include="UCAccount.resx">
       <DependentUpon>UCAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCAdmin.resx">
+      <DependentUpon>UCAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCbor.resx">
       <DependentUpon>UCbor.cs</DependentUpon>

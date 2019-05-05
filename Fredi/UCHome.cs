@@ -18,6 +18,8 @@ namespace Fredi
     {
         string tokenNb = null;
         public static int tokeen = 0;
+        public string nameFromTok;
+
         public UCHome()
         {
             InitializeComponent();
@@ -81,16 +83,20 @@ namespace Fredi
                     MySqlDataAdapter putNameForm = new MySqlDataAdapter(getNameForm, connection);
                     DataTable NameTok = new DataTable();
                     putNameForm.Fill(NameTok);
-                    string nameFromTok = NameTok.Rows[0][0].ToString();
+                    nameFromTok = NameTok.Rows[0][0].ToString();
                     Testes.label1_TextChanged("Bonjour " + nameFromTok);
+                }
+                catch
+                {
 
+                }
+                try
+                {
                     string getStatutForm = "select statut from login where id = '" + tokeen + "'";
                     MySqlDataAdapter putStatut = new MySqlDataAdapter(getStatutForm, connection);
                     DataTable Statut = new DataTable();
                     putStatut.Fill(Statut);
                     string statutFromTok = Statut.Rows[0][0].ToString();
-
-                    UCUser alp = new UCUser();
 
                     //UCUser tst = new UCUser();
                     //tst.getDataSlip(1);
@@ -107,9 +113,7 @@ namespace Fredi
                 MessageBox.Show("Mauvais mot de passe ou adresse mail");
             }
 
-            
-            
-            connection.Close();
+           connection.Close();
         }
         
         public int returnToken()

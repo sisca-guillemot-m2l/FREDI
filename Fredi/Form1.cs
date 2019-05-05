@@ -85,6 +85,10 @@ namespace Fredi
                 }
                 ucTreasure2.BringToFront();
             }
+            else if(button2.Text == "Administration")
+            {
+                ucAdmin1.BringToFront();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -176,6 +180,10 @@ namespace Fredi
                     {
                         fc.button1.Text = "Compte trésorier";
                         fc.button2.Text = "Adhérents";
+                    }
+                    else if (statut == "admin")
+                    {
+                        fc.button2.Text = "Administration";
                     }
                 }
             }

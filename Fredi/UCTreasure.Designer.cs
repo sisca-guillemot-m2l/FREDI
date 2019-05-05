@@ -46,10 +46,12 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.slipBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.slipBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Validate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Modifier = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Valider = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pattern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.path = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,8 +61,8 @@
             this.mealCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accommodationCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Modifier = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Valider = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.slipBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.slipBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource)).BeginInit();
@@ -88,7 +90,7 @@
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1288, 177);
+            this.listView1.Size = new System.Drawing.Size(1274, 177);
             this.listView1.Sorting = System.Windows.Forms.SortOrder.Descending;
             this.listView1.TabIndex = 5;
             this.listView1.TabStop = false;
@@ -166,11 +168,11 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
-            this.Validate,
             this.date,
             this.pattern,
             this.path,
@@ -180,6 +182,7 @@
             this.mealCost,
             this.accommodationCost,
             this.totalCost,
+            this.Validate,
             this.Modifier,
             this.Valider});
             this.dataGridView1.DataSource = this.slipBindingSource1;
@@ -189,14 +192,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1257, 262);
             this.dataGridView1.TabIndex = 9;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // slipBindingSource1
-            // 
-            this.slipBindingSource1.DataSource = typeof(Fredi.Slip);
-            // 
-            // slipBindingSource
-            // 
-            this.slipBindingSource.DataSource = typeof(Fredi.Slip);
             // 
             // Id
             // 
@@ -213,6 +208,39 @@
             this.Validate.HeaderText = "";
             this.Validate.Name = "Validate";
             this.Validate.Width = 25;
+            // 
+            // Modifier
+            // 
+            this.Modifier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Modifier.HeaderText = "Modifier";
+            this.Modifier.Name = "Modifier";
+            this.Modifier.Width = 64;
+            // 
+            // Valider
+            // 
+            this.Valider.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Valider.HeaderText = "Valider";
+            this.Valider.Name = "Valider";
+            this.Valider.Width = 58;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(55, 639);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(259, 73);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Télécharger borrdereau signé";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(374, 639);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(259, 73);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "Si modification, génération nouveau bordereau";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // date
             // 
@@ -292,19 +320,13 @@
             this.totalCost.Name = "totalCost";
             this.totalCost.Width = 75;
             // 
-            // Modifier
+            // slipBindingSource1
             // 
-            this.Modifier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Modifier.HeaderText = "Modifier";
-            this.Modifier.Name = "Modifier";
-            this.Modifier.Width = 64;
+            this.slipBindingSource1.DataSource = typeof(Fredi.Slip);
             // 
-            // Valider
+            // slipBindingSource
             // 
-            this.Valider.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Valider.HeaderText = "Valider";
-            this.Valider.Name = "Valider";
-            this.Valider.Width = 58;
+            this.slipBindingSource.DataSource = typeof(Fredi.Slip);
             // 
             // UCTreasure
             // 
@@ -312,6 +334,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
@@ -322,7 +346,7 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox1);
             this.Name = "UCTreasure";
-            this.Size = new System.Drawing.Size(1288, 861);
+            this.Size = new System.Drawing.Size(1267, 756);
             this.Load += new System.EventHandler(this.UCTreasure_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource1)).EndInit();
@@ -360,5 +384,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn totalCost;
         private System.Windows.Forms.DataGridViewButtonColumn Modifier;
         private System.Windows.Forms.DataGridViewButtonColumn Valider;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
