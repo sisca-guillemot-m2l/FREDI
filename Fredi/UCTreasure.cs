@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
+using word = Microsoft.Office.Interop.Word;
+using System.Reflection;
 
 namespace Fredi
 {
@@ -16,6 +18,9 @@ namespace Fredi
     {
         public static string pathFile;
         public static string idUser;
+        public static int comptSlip = 0;
+        public static string totalCostVar;
+
         public UCTreasure()
         {
             InitializeComponent();
@@ -149,7 +154,7 @@ namespace Fredi
                       
                         foreach (DataRow dt in getDt.Rows)
                         {
-                            
+                            comptSlip++;
                                 slipBindingSource1.Add(new Slip
                                 {
                                         Id = Convert.ToInt32(dt["Id"]),
@@ -187,6 +192,11 @@ namespace Fredi
             connection.Close();
         }
 
+        public string getIdMember()
+        {
+            return idUser;
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             getContent returnInfo = new getContent();
@@ -220,9 +230,6 @@ namespace Fredi
             {
                 try
                 {
-                MessageBox.Show(dataGridView1.Rows[insertRow].Cells["Id"].Value.ToString());
-                MessageBox.Show(insertRow.ToString());
-                MessageBox.Show(dataGridView1.Rows[insertRow].Cells["date"].Value.ToString());
                 string updateSlip = "update slips set date = '" + dataGridView1.Rows[insertRow].Cells["date"].Value.ToString() + "' , pattern = '" + dataGridView1.Rows[insertRow].Cells["pattern"].Value.ToString() + "' , path = '" + dataGridView1.Rows[insertRow].Cells["path"].Value.ToString() + "' , kmsTraveled = '" + dataGridView1.Rows[insertRow].Cells["kmsTraveled"].Value.ToString() + "' , pathCost = '" + dataGridView1.Rows[insertRow].Cells["pathCost"].Value.ToString() + "' , tollCost = '" + dataGridView1.Rows[insertRow].Cells["tollCost"].Value.ToString() + "' , mealCost = '" + dataGridView1.Rows[insertRow].Cells["mealCost"].Value.ToString() + "' , accomodationCost = '" + dataGridView1.Rows[insertRow].Cells["accommodationCost"].Value.ToString() + "' , totalCost = '" + dataGridView1.Rows[insertRow].Cells["totalCost"].Value.ToString() + "' where id = '" + dataGridView1.Rows[insertRow].Cells["Id"].Value.ToString() + "'";
                     MySqlCommand updateSlipDB = new MySqlCommand(updateSlip, connection);
                     updateSlipDB.ExecuteNonQuery();
@@ -261,7 +268,8 @@ namespace Fredi
                     }
             }
         }
-
+        
+       
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -277,6 +285,155 @@ namespace Fredi
             string pathpath = pathFile + @"\testtest.pdf";
             MessageBox.Show(pathpath);
             databaseFileRead( idUser , pathpath);
+        }
+
+        private void FindAndReplace(word.Application wordapp, object ToFindText, object replaceWithText)
+        {
+            object matchCase = true;
+            object matchWholeWord = true;
+            object matchWildCards = false;
+            object matchSoundLike = false;
+            object matchAllForms = false;
+            object forward = true;
+            object format = false;
+            object matchKashida = false;
+            object matchDiactitics = false;
+            object matchAlefHamza = false;
+            object matchControl = false;
+            object read_only = false;
+            object visible = true;
+            object replace = 2;
+            object wrap = 1;
+
+            wordapp.Selection.Find.Execute(ref ToFindText,
+                ref matchCase, ref matchWholeWord,
+                ref matchWildCards, ref matchSoundLike,
+                ref matchAllForms, ref forward,
+                ref wrap, ref format, ref replaceWithText,
+                ref replace, ref matchKashida,
+                ref matchDiactitics, ref matchAlefHamza,
+                ref matchControl);
+        }
+
+        public void CreateWordDocument(object filename, object SaveAs)
+        {
+            getContent returnInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = returnInfo.getServer();
+            conn.UserID = returnInfo.getId();
+            conn.Password = returnInfo.getPassword();
+            conn.Database = returnInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection coInsert = new MySqlConnection(connString);
+            coInsert.Open();
+            UCHome getTok = new UCHome();
+            string getInfo = "select * from adherents where idLogin = '" + idUser + "'";
+            MySqlDataAdapter exeGet = new MySqlDataAdapter(getInfo, coInsert);
+            DataTable dtInfo = new DataTable();
+            exeGet.Fill(dtInfo);
+
+            word.Application wordApp = new word.Application();
+            object missing = Missing.Value;
+            word.Document myWordDoc = null;
+
+            if (File.Exists((string)filename))
+            {
+                object readOnly = false;
+                object isVisible = false;
+                wordApp.Visible = false;
+
+                myWordDoc = wordApp.Documents.Open(ref filename, ref missing, ref readOnly,
+                                        ref missing, ref missing, ref missing,
+                                        ref missing, ref missing, ref missing,
+                                        ref missing, ref missing, ref missing,
+                                        ref missing, ref missing, ref missing, ref missing);
+                myWordDoc.Activate();
+
+                this.FindAndReplace(wordApp, "<prenom>", dtInfo.Rows[0]["firstName"].ToString());
+                this.FindAndReplace(wordApp, "<nom>", dtInfo.Rows[0]["name"].ToString());
+                this.FindAndReplace(wordApp, "<numLicence>", dtInfo.Rows[0]["numLicence"].ToString());
+                this.FindAndReplace(wordApp, "<total>", totalCostVar);
+            }
+
+            else
+            {
+                MessageBox.Show("File not found");
+            }
+            myWordDoc.SaveAs2(ref SaveAs, ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing);
+            myWordDoc.ExportAsFixedFormat(@"c:\Users\Fabien\Desktop\Allo.pdf", word.WdExportFormat.wdExportFormatPDF);
+            myWordDoc.Close();
+            wordApp.Quit();
+            MessageBox.Show("Created");
+            coInsert.Close();
+        }
+
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            getContent returnInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = returnInfo.getServer();
+            conn.UserID = returnInfo.getId();
+            conn.Password = returnInfo.getPassword();
+            conn.Database = returnInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection coInsert = new MySqlConnection(connString);
+            coInsert.Open();
+
+
+            object save13 = @"c:\Users\Fabien\Desktop\test.docx";
+            string template = System.IO.@Path.GetDirectoryName(Application.ExecutablePath).Trim() + @"\templateBasic.docx";
+            object missing = Missing.Value;
+            word.Application wordApp = new word.Application();
+            wordApp.Visible = true;
+
+            word.Document document = wordApp.Documents.OpenNoRepairDialog(template);
+            document.Activate();
+
+            word.Table table = document.Tables[1];
+            for (int a = comptSlip - 1; a >= 0; a--)
+            {
+                table.Cell(1, 1).Range.Text = dataGridView1.Rows[a].Cells[1].Value.ToString();
+                table.Cell(1, 2).Range.Text = dataGridView1.Rows[a].Cells[2].Value.ToString();
+                table.Cell(1, 3).Range.Text = dataGridView1.Rows[a].Cells[3].Value.ToString();
+                table.Cell(1, 4).Range.Text = dataGridView1.Rows[a].Cells[4].Value.ToString() + "€";
+                table.Cell(1, 5).Range.Text = dataGridView1.Rows[a].Cells[5].Value.ToString() + "€";
+                table.Cell(1, 6).Range.Text = dataGridView1.Rows[a].Cells[6].Value.ToString() + "€";
+                table.Cell(1, 7).Range.Text = dataGridView1.Rows[a].Cells[7].Value.ToString() + "€";
+                table.Cell(1, 8).Range.Text = dataGridView1.Rows[a].Cells[8].Value.ToString() + "€";
+                table.Cell(1, 9).Range.Text = dataGridView1.Rows[a].Cells[9].Value.ToString() + "€";
+                document.Tables[1].Rows.Add(document.Tables[1].Rows[1]);
+            }
+            table.Cell(1, 1).Range.Text = "Date";
+            table.Cell(1, 2).Range.Text = "Motif";
+            table.Cell(1, 3).Range.Text = "Trajet";
+            table.Cell(1, 4).Range.Text = "Kms parcourus";
+            table.Cell(1, 5).Range.Text = "Coût trajet";
+            table.Cell(1, 6).Range.Text = "Péages";
+            table.Cell(1, 7).Range.Text = "Repas";
+            table.Cell(1, 8).Range.Text = "Hébergement";
+            table.Cell(1, 9).Range.Text = "Total";
+
+            string getTotal = "select sum(totalCost) from slips where idMember = '" + idUser + "'";
+            MySqlDataAdapter sumTotal = new MySqlDataAdapter(getTotal, coInsert);
+            DataTable sumDt = new DataTable();
+            sumTotal.Fill(sumDt);
+            totalCostVar = sumDt.Rows[0][0].ToString();
+            document.SaveAs2(ref save13, ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing);
+
+            document.Close();
+            wordApp.Quit();
+            CreateWordDocument(@"c:\users\Fabien\Desktop\test.docx", @"c:\users\Fabien\Desktop\test25.docx");
+            FormPDFUser Fc = new FormPDFUser();
+            Fc.ShowDialog();
         }
     }
 }

@@ -241,6 +241,7 @@
             this.button3.TabIndex = 11;
             this.button3.Text = "Si modification, génération nouveau bordereau";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // date
             // 
@@ -346,7 +347,7 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox1);
             this.Name = "UCTreasure";
-            this.Size = new System.Drawing.Size(1267, 756);
+            this.Size = new System.Drawing.Size(1267, 714);
             this.Load += new System.EventHandler(this.UCTreasure_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource1)).EndInit();

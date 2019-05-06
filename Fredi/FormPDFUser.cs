@@ -29,22 +29,51 @@ namespace Fredi
             MySqlConnection connec = new MySqlConnection(connString);
             connec.Open();
             UCHome getTokTri = new UCHome();
+            UCTreasure getTokMember = new UCTreasure();
+            string requeteStatut = "select statut from login where id = '" + getTokTri.returnToken() + "'";
+            MySqlDataAdapter getStatut = new MySqlDataAdapter(requeteStatut, connec);
+            DataTable dbStatut = new DataTable();
+            getStatut.Fill(dbStatut);
+            string statutGot = dbStatut.Rows[0][0].ToString();
+            MessageBox.Show(statutGot);
 
-            byte[] file;
-            using (var stream = new FileStream(varFilePath, FileMode.Open, FileAccess.Read))
+            if (statutGot == "user")
             {
-                using (var reader = new BinaryReader(stream))
+                byte[] file;
+                using (var stream = new FileStream(varFilePath, FileMode.Open, FileAccess.Read))
                 {
-                    file = reader.ReadBytes((int)stream.Length);
+                    using (var reader = new BinaryReader(stream))
+                    {
+                        file = reader.ReadBytes((int)stream.Length);
+                    }
                 }
+                using (var varConnection = connec)
+                using (var sqlWrite = new MySqlCommand(@"update login set pdfNotSigned = @File where id = '" + getTokTri.returnToken() + "'", varConnection))
+                {
+                    sqlWrite.Parameters.Add("@File", MySqlDbType.VarBinary, file.Length).Value = file;
+                    sqlWrite.ExecuteNonQuery();
+                }
+                connec.Close();
             }
-            using (var varConnection = connec)
-            using (var sqlWrite = new MySqlCommand(@"update login set pdfNotSigned = @File where id = '"+getTokTri.returnToken()+"'", varConnection))
+            else if(statutGot == "treasure")
             {
-                sqlWrite.Parameters.Add("@File", MySqlDbType.VarBinary, file.Length).Value = file;
-                sqlWrite.ExecuteNonQuery();
+                byte[] file;
+                using (var stream = new FileStream(varFilePath, FileMode.Open, FileAccess.Read))
+                {
+                    using (var reader = new BinaryReader(stream))
+                    {
+                        file = reader.ReadBytes((int)stream.Length);
+                    }
+                }
+                using (var varConnection = connec)
+                using (var sqlWrite = new MySqlCommand(@"update login set pdfNotSigned = @File where id = '" + getTokMember.getIdMember() + "'", varConnection))
+                {
+                    sqlWrite.Parameters.Add("@File", MySqlDbType.VarBinary, file.Length).Value = file;
+                    sqlWrite.ExecuteNonQuery();
+                }
+                connec.Close();
             }
-            connec.Close();
+            
         }
 
         private void FormPDFUser_Load(object sender, EventArgs e)

@@ -168,7 +168,7 @@ namespace Fredi
                 ref matchControl);
         }
 
-        private void CreateWordDocument(object filename, object SaveAs)
+        public void CreateWordDocument(object filename, object SaveAs)
         {
             getContent returnInfo = new getContent();
             MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
@@ -249,15 +249,15 @@ namespace Fredi
             word.Table table = document.Tables[1];
             for (int a = comptSlip - 1; a >= 0; a--)
             {
-                table.Cell(1, 1).Range.Text = dataGridView1.Rows[a].Cells[0].Value.ToString();
-                table.Cell(1, 2).Range.Text = dataGridView1.Rows[a].Cells[1].Value.ToString();
-                table.Cell(1, 3).Range.Text = dataGridView1.Rows[a].Cells[2].Value.ToString();
-                table.Cell(1, 4).Range.Text = dataGridView1.Rows[a].Cells[3].Value.ToString() + "€";
-                table.Cell(1, 5).Range.Text = dataGridView1.Rows[a].Cells[4].Value.ToString() + "€";
-                table.Cell(1, 6).Range.Text = dataGridView1.Rows[a].Cells[5].Value.ToString() + "€";
-                table.Cell(1, 7).Range.Text = dataGridView1.Rows[a].Cells[6].Value.ToString() + "€";
-                table.Cell(1, 8).Range.Text = dataGridView1.Rows[a].Cells[7].Value.ToString() + "€";
-                table.Cell(1, 9).Range.Text = dataGridView1.Rows[a].Cells[8].Value.ToString() + "€";
+                table.Cell(1, 1).Range.Text = dataGridView1.Rows[a].Cells[1].Value.ToString();
+                table.Cell(1, 2).Range.Text = dataGridView1.Rows[a].Cells[2].Value.ToString();
+                table.Cell(1, 3).Range.Text = dataGridView1.Rows[a].Cells[3].Value.ToString();
+                table.Cell(1, 4).Range.Text = dataGridView1.Rows[a].Cells[4].Value.ToString() + "€";
+                table.Cell(1, 5).Range.Text = dataGridView1.Rows[a].Cells[5].Value.ToString() + "€";
+                table.Cell(1, 6).Range.Text = dataGridView1.Rows[a].Cells[6].Value.ToString() + "€";
+                table.Cell(1, 7).Range.Text = dataGridView1.Rows[a].Cells[7].Value.ToString() + "€";
+                table.Cell(1, 8).Range.Text = dataGridView1.Rows[a].Cells[8].Value.ToString() + "€";
+                table.Cell(1, 9).Range.Text = dataGridView1.Rows[a].Cells[9].Value.ToString() + "€";
                 document.Tables[1].Rows.Add(document.Tables[1].Rows[1]);
             }
             table.Cell(1, 1).Range.Text = "Date";
@@ -300,7 +300,7 @@ namespace Fredi
                 textBox1.Text = file;
             }
         }
-        public static void databaseFilePut(string varFilePath)
+        public void databaseFilePut(string varFilePath)
         {
             getContent returnInfo = new getContent();
             MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
