@@ -35,7 +35,6 @@ namespace Fredi
             DataTable dbStatut = new DataTable();
             getStatut.Fill(dbStatut);
             string statutGot = dbStatut.Rows[0][0].ToString();
-            MessageBox.Show(statutGot);
 
             if (statutGot == "user")
             {

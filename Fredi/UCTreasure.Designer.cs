@@ -47,11 +47,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Validate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Modifier = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Valider = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pattern = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.path = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,7 +56,13 @@
             this.mealCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accommodationCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Validate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Modifier = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Valider = new System.Windows.Forms.DataGridViewButtonColumn();
             this.slipBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.slipBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource1)).BeginInit();
@@ -70,7 +71,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(55, 266);
+            this.textBox1.Location = new System.Drawing.Point(52, 222);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(235, 22);
             this.textBox1.TabIndex = 0;
@@ -90,7 +91,7 @@
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1274, 177);
+            this.listView1.Size = new System.Drawing.Size(1271, 177);
             this.listView1.Sorting = System.Windows.Forms.SortOrder.Descending;
             this.listView1.TabIndex = 5;
             this.listView1.TabStop = false;
@@ -117,7 +118,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(138, 246);
+            this.label1.Location = new System.Drawing.Point(135, 202);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 17);
             this.label1.TabIndex = 3;
@@ -126,7 +127,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(465, 246);
+            this.label2.Location = new System.Drawing.Point(462, 202);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 17);
             this.label2.TabIndex = 5;
@@ -134,7 +135,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(374, 266);
+            this.textBox2.Location = new System.Drawing.Point(371, 222);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(235, 22);
             this.textBox2.TabIndex = 1;
@@ -143,7 +144,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(731, 246);
+            this.label3.Location = new System.Drawing.Point(728, 202);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(126, 17);
             this.label3.TabIndex = 7;
@@ -151,14 +152,14 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(693, 266);
+            this.textBox3.Location = new System.Drawing.Point(690, 222);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(235, 22);
             this.textBox3.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(996, 261);
+            this.button1.Location = new System.Drawing.Point(993, 217);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(205, 32);
             this.button1.TabIndex = 8;
@@ -186,7 +187,7 @@
             this.Modifier,
             this.Valider});
             this.dataGridView1.DataSource = this.slipBindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 308);
+            this.dataGridView1.Location = new System.Drawing.Point(14, 264);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1257, 262);
@@ -201,47 +202,6 @@
             this.Id.ReadOnly = true;
             this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Id.Visible = false;
-            // 
-            // Validate
-            // 
-            this.Validate.DataPropertyName = "Validate";
-            this.Validate.HeaderText = "";
-            this.Validate.Name = "Validate";
-            this.Validate.Width = 25;
-            // 
-            // Modifier
-            // 
-            this.Modifier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Modifier.HeaderText = "Modifier";
-            this.Modifier.Name = "Modifier";
-            this.Modifier.Width = 64;
-            // 
-            // Valider
-            // 
-            this.Valider.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Valider.HeaderText = "Valider";
-            this.Valider.Name = "Valider";
-            this.Valider.Width = 58;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(55, 639);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(259, 73);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Télécharger borrdereau signé";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(374, 639);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(259, 73);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Si modification, génération nouveau bordereau";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // date
             // 
@@ -321,9 +281,60 @@
             this.totalCost.Name = "totalCost";
             this.totalCost.Width = 75;
             // 
+            // Validate
+            // 
+            this.Validate.DataPropertyName = "Validate";
+            this.Validate.HeaderText = "";
+            this.Validate.Name = "Validate";
+            this.Validate.Width = 25;
+            // 
+            // Modifier
+            // 
+            this.Modifier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Modifier.HeaderText = "Modifier";
+            this.Modifier.Name = "Modifier";
+            this.Modifier.Width = 64;
+            // 
+            // Valider
+            // 
+            this.Valider.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Valider.HeaderText = "Valider";
+            this.Valider.Name = "Valider";
+            this.Valider.Width = 58;
+            // 
             // slipBindingSource1
             // 
             this.slipBindingSource1.DataSource = typeof(Fredi.Slip);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(54, 571);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(259, 73);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Télécharger borrdereau signé";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(461, 571);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(259, 73);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "Si modification, génération nouveau bordereau";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(868, 571);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(259, 73);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "Edition document Cerfa";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // slipBindingSource
             // 
@@ -335,6 +346,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
@@ -347,7 +359,7 @@
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.textBox1);
             this.Name = "UCTreasure";
-            this.Size = new System.Drawing.Size(1267, 714);
+            this.Size = new System.Drawing.Size(1141, 588);
             this.Load += new System.EventHandler(this.UCTreasure_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.slipBindingSource1)).EndInit();
@@ -387,5 +399,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn Valider;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

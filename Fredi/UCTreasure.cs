@@ -20,7 +20,11 @@ namespace Fredi
         public static string idUser;
         public static int comptSlip = 0;
         public static string totalCostVar;
-
+        public static string totalCostVarBis;
+        public int comptValidate = 0;
+        public int comptValidateBis = 0;
+        public static string mainPath = Application.ExecutablePath;
+        
         public UCTreasure()
         {
             InitializeComponent();
@@ -124,6 +128,7 @@ namespace Fredi
 
         private void button1_Click(object sender, EventArgs e)
         {
+            dataGridView1.Rows.Clear();
             getContent returnInfo = new getContent();
             MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
             conn.Server = returnInfo.getServer();
@@ -267,24 +272,50 @@ namespace Fredi
                             fs.Write(blob, 0, blob.Length);
                     }
             }
+            connection.Close();
         }
         
        
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Où souhaitez vous le télécharger ?");
+            getContent returnInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = returnInfo.getServer();
+            conn.UserID = returnInfo.getId();
+            conn.Password = returnInfo.getPassword();
+            conn.Database = returnInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection connection = new MySqlConnection(connString);
+            connection.Open();
 
-            using (FolderBrowserDialog ofd = new FolderBrowserDialog() { })
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    pathFile = ofd.SelectedPath;
-                    
-                }
-            MessageBox.Show(pathFile);
-            string pathpath = pathFile + @"\testtest.pdf";
-            MessageBox.Show(pathpath);
-            databaseFileRead( idUser , pathpath);
+            string selectValidated = "SELECT id from slips where Validated = 'true' and idMember = '"+idUser+"'";
+            MySqlDataAdapter comSelect = new MySqlDataAdapter(selectValidated, connection);
+            DataTable dtSelect = new DataTable();
+            comSelect.Fill(dtSelect);
+            foreach(DataRow dtse in dtSelect.Rows)
+            {
+                comptValidate++;
+            }
+            if (comptValidate == comptSlip)
+            {
+                MessageBox.Show("Où souhaitez vous le télécharger ?");
+
+                using (FolderBrowserDialog ofd = new FolderBrowserDialog() { })
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        pathFile = ofd.SelectedPath;
+
+                    }
+                string pathpath = pathFile + @"\testtest.pdf";
+                databaseFileRead(idUser, pathpath);
+            }
+
+            else
+            {
+                MessageBox.Show("Tous les frais doivent être validés pour obtention du pdf signé.");
+            }
+
         }
 
         private void FindAndReplace(word.Application wordapp, object ToFindText, object replaceWithText)
@@ -372,6 +403,69 @@ namespace Fredi
         }
 
 
+        public void CreateWordDocumentCerfa(object filename, object SaveAs)
+        {
+            getContent returnInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = returnInfo.getServer();
+            conn.UserID = returnInfo.getId();
+            conn.Password = returnInfo.getPassword();
+            conn.Database = returnInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection coInsert = new MySqlConnection(connString);
+            coInsert.Open();
+            UCHome getTok = new UCHome();
+            string getInfo = "select * from adherents where idLogin = '" + idUser + "'";
+            MySqlDataAdapter exeGet = new MySqlDataAdapter(getInfo, coInsert);
+            DataTable dtInfo = new DataTable();
+            exeGet.Fill(dtInfo);
+
+            string getTotalBis = "select sum(totalCost) from slips where idMember = '" + idUser + "'";
+            MySqlDataAdapter sumTotalBis = new MySqlDataAdapter(getTotalBis, coInsert);
+            DataTable sumDtBis = new DataTable();
+            sumTotalBis.Fill(sumDtBis);
+            totalCostVarBis = sumDtBis.Rows[0][0].ToString();
+            word.Application wordApp = new word.Application();
+            object missing = Missing.Value;
+            word.Document myWordDoc = null;
+            if (File.Exists((string)filename))
+            {
+                object readOnly = false;
+                object isVisible = false;
+                wordApp.Visible = true;
+
+                myWordDoc = wordApp.Documents.Open(ref filename, ref missing, ref readOnly,
+                                        ref missing, ref missing, ref missing,
+                                        ref missing, ref missing, ref missing,
+                                        ref missing, ref missing, ref missing,
+                                        ref missing, ref missing, ref missing, ref missing);
+                myWordDoc.Activate();
+
+                this.FindAndReplace(wordApp, "<clubName>", "Nom du Club");
+                this.FindAndReplace(wordApp, "<clubAdresse>", "Adresse du Club");
+                this.FindAndReplace(wordApp, "<objet>", "Objet");
+                this.FindAndReplace(wordApp, "<adherentName>", dtInfo.Rows[0]["name"].ToString());
+                this.FindAndReplace(wordApp, "<adherentAdresse>", dtInfo.Rows[0]["firstName"].ToString());
+                this.FindAndReplace(wordApp, "<prix>", totalCostVarBis + " €");
+                this.FindAndReplace(wordApp, "<date>", DateTime.Now.ToShortDateString());
+            }
+            
+            else
+            {
+                MessageBox.Show("File not found");
+            }
+            myWordDoc.SaveAs2(ref SaveAs, ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing,
+                            ref missing, ref missing, ref missing);
+            myWordDoc.ExportAsFixedFormat(@"c:\Users\Fabien\Desktop\TIT.pdf", word.WdExportFormat.wdExportFormatPDF);
+            myWordDoc.Close();
+            wordApp.Quit();
+            MessageBox.Show("Created");
+            coInsert.Close();
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             getContent returnInfo = new getContent();
@@ -434,6 +528,45 @@ namespace Fredi
             CreateWordDocument(@"c:\users\Fabien\Desktop\test.docx", @"c:\users\Fabien\Desktop\test25.docx");
             FormPDFUser Fc = new FormPDFUser();
             Fc.ShowDialog();
+            coInsert.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            getContent returnInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = returnInfo.getServer();
+            conn.UserID = returnInfo.getId();
+            conn.Password = returnInfo.getPassword();
+            conn.Database = returnInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection connection = new MySqlConnection(connString);
+            connection.Open();
+
+            string selectValidated = "SELECT id from slips where Validated = 'true' and idMember = '" + idUser + "'";
+            MySqlDataAdapter comSelect = new MySqlDataAdapter(selectValidated, connection);
+            DataTable dtSelect = new DataTable();
+            comSelect.Fill(dtSelect);
+            foreach (DataRow dtse in dtSelect.Rows)
+            {
+                comptValidateBis++;
+            }
+            if(comptValidateBis == comptSlip)
+            {
+                try
+                {
+                    if (idUser != null)
+                    {
+                        CreateWordDocumentCerfa(@"c:\users\Fabien\Desktop\templateCerfa.docx", @"c:\users\Fabien\Desktop\Cerfa.docx");
+                    }
+                }
+                catch
+                { }
+            }
+            else
+            {
+                MessageBox.Show("To");
+            }
         }
     }
 }
