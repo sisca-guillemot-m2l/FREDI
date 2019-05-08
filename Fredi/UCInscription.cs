@@ -46,7 +46,7 @@ namespace Fredi
                     try
                     {
 
-                        string inscription = "insert into login (email, password) values ('" + Itextmail.Text + "', MD5('" + Itextpwd.Text + "'))";
+                        string inscription = "insert into login (email, password, adress) values ('" + Itextmail.Text + "', MD5('" + Itextpwd.Text + "'), '"+ItextAdress.Text+"')";
                         MySqlCommand crea = new MySqlCommand(inscription, creation);
                         crea.ExecuteNonQuery();
                     

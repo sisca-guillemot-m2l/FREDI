@@ -97,9 +97,7 @@ namespace Fredi
                     DataTable Statut = new DataTable();
                     putStatut.Fill(Statut);
                     string statutFromTok = Statut.Rows[0][0].ToString();
-
-                    //UCUser tst = new UCUser();
-                    //tst.getDataSlip(1);
+                    
                     Form1 aal = new Form1();
                     aal.showbutton(nameFromTok, statutFromTok);
                 }

@@ -49,12 +49,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.Itextmail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.ItextAdress = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.Inscriptionpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -70,7 +74,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.panel1.BackColor = System.Drawing.Color.Firebrick;
             this.panel1.Location = new System.Drawing.Point(355, 99);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
@@ -79,8 +83,11 @@
             // 
             // Inscriptionpanel
             // 
-            this.Inscriptionpanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.Inscriptionpanel.BackColor = System.Drawing.Color.Firebrick;
             this.Inscriptionpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Inscriptionpanel.Controls.Add(this.pictureBox6);
+            this.Inscriptionpanel.Controls.Add(this.ItextAdress);
+            this.Inscriptionpanel.Controls.Add(this.label8);
             this.Inscriptionpanel.Controls.Add(this.pictureBox5);
             this.Inscriptionpanel.Controls.Add(this.Itextligue);
             this.Inscriptionpanel.Controls.Add(this.label7);
@@ -107,7 +114,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(16, 436);
+            this.pictureBox5.Location = new System.Drawing.Point(11, 382);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(34, 29);
@@ -118,7 +125,7 @@
             // Itextligue
             // 
             this.Itextligue.BackColor = System.Drawing.SystemColors.Control;
-            this.Itextligue.Location = new System.Drawing.Point(204, 433);
+            this.Itextligue.Location = new System.Drawing.Point(199, 379);
             this.Itextligue.Margin = new System.Windows.Forms.Padding(4);
             this.Itextligue.Name = "Itextligue";
             this.Itextligue.Size = new System.Drawing.Size(286, 32);
@@ -126,7 +133,7 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(49, 436);
+            this.label7.Location = new System.Drawing.Point(44, 382);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(188, 36);
@@ -136,7 +143,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(16, 379);
+            this.pictureBox4.Location = new System.Drawing.Point(11, 325);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(34, 31);
@@ -148,7 +155,7 @@
             // 
             this.Itextconfirm.BackColor = System.Drawing.SystemColors.Control;
             this.Itextconfirm.HideSelection = false;
-            this.Itextconfirm.Location = new System.Drawing.Point(204, 377);
+            this.Itextconfirm.Location = new System.Drawing.Point(199, 323);
             this.Itextconfirm.Margin = new System.Windows.Forms.Padding(4);
             this.Itextconfirm.Multiline = true;
             this.Itextconfirm.Name = "Itextconfirm";
@@ -158,7 +165,7 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(49, 379);
+            this.label6.Location = new System.Drawing.Point(44, 325);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(188, 36);
@@ -168,7 +175,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(16, 268);
+            this.pictureBox3.Location = new System.Drawing.Point(11, 214);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(34, 29);
@@ -179,7 +186,7 @@
             // Itextlicence
             // 
             this.Itextlicence.BackColor = System.Drawing.SystemColors.Control;
-            this.Itextlicence.Location = new System.Drawing.Point(204, 265);
+            this.Itextlicence.Location = new System.Drawing.Point(199, 211);
             this.Itextlicence.Margin = new System.Windows.Forms.Padding(4);
             this.Itextlicence.Name = "Itextlicence";
             this.Itextlicence.Size = new System.Drawing.Size(286, 32);
@@ -187,7 +194,7 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(49, 268);
+            this.label5.Location = new System.Drawing.Point(44, 214);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(188, 36);
@@ -221,7 +228,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(16, 211);
+            this.pictureBox2.Location = new System.Drawing.Point(11, 157);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(34, 29);
@@ -232,7 +239,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(16, 322);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 268);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(34, 31);
@@ -243,7 +250,7 @@
             // Itextpwd
             // 
             this.Itextpwd.BackColor = System.Drawing.SystemColors.Control;
-            this.Itextpwd.Location = new System.Drawing.Point(204, 321);
+            this.Itextpwd.Location = new System.Drawing.Point(199, 267);
             this.Itextpwd.Margin = new System.Windows.Forms.Padding(4);
             this.Itextpwd.Name = "Itextpwd";
             this.Itextpwd.PasswordChar = '•';
@@ -252,7 +259,7 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(49, 322);
+            this.label3.Location = new System.Drawing.Point(44, 268);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(188, 36);
@@ -262,7 +269,7 @@
             // Itextmail
             // 
             this.Itextmail.BackColor = System.Drawing.SystemColors.Control;
-            this.Itextmail.Location = new System.Drawing.Point(204, 209);
+            this.Itextmail.Location = new System.Drawing.Point(199, 155);
             this.Itextmail.Margin = new System.Windows.Forms.Padding(4);
             this.Itextmail.Name = "Itextmail";
             this.Itextmail.Size = new System.Drawing.Size(286, 32);
@@ -270,12 +277,41 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(49, 211);
+            this.label2.Location = new System.Drawing.Point(44, 157);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(188, 36);
             this.label2.TabIndex = 0;
             this.label2.Text = "Adresse Email";
+            // 
+            // ItextAdress
+            // 
+            this.ItextAdress.BackColor = System.Drawing.SystemColors.Control;
+            this.ItextAdress.Location = new System.Drawing.Point(199, 435);
+            this.ItextAdress.Margin = new System.Windows.Forms.Padding(4);
+            this.ItextAdress.Name = "ItextAdress";
+            this.ItextAdress.Size = new System.Drawing.Size(286, 32);
+            this.ItextAdress.TabIndex = 20;
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(44, 438);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(188, 36);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Adresse ";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(11, 438);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(34, 29);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 21;
+            this.pictureBox6.TabStop = false;
             // 
             // UCInscription
             // 
@@ -289,7 +325,7 @@
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UCInscription";
-            this.Size = new System.Drawing.Size(1288, 819);
+            this.Size = new System.Drawing.Size(1288, 798);
             this.Inscriptionpanel.ResumeLayout(false);
             this.Inscriptionpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -297,6 +333,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,5 +361,8 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         public System.Windows.Forms.TextBox Itextlicence;
         private System.Windows.Forms.Label label5;
+        public System.Windows.Forms.TextBox ItextAdress;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.PictureBox pictureBox6;
     }
 }

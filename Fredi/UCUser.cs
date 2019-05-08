@@ -193,6 +193,14 @@ namespace Fredi
             MySqlDataAdapter exeGet = new MySqlDataAdapter(getInfo, coInsert);
             DataTable dtInfo = new DataTable();
             exeGet.Fill(dtInfo);
+            string price = "select rate from pricing";
+            MySqlDataAdapter priceSql = new MySqlDataAdapter(price, coInsert);
+            DataTable dtPrice = new DataTable();
+            priceSql.Fill(dtPrice);
+            string getAdress = "select adress from login where id = '"+getTok.returnToken()+"'";
+            MySqlDataAdapter putAdress = new MySqlDataAdapter(getAdress, coInsert);
+            DataTable dtAdress = new DataTable();
+            putAdress.Fill(dtAdress);
 
             word.Application wordApp = new word.Application();
             object missing = Missing.Value;
@@ -202,7 +210,7 @@ namespace Fredi
             {
                 object readOnly = false;
                 object isVisible = false;
-                wordApp.Visible = false;
+                wordApp.Visible = true;
 
                 myWordDoc = wordApp.Documents.Open(ref filename, ref missing, ref readOnly,
                                         ref missing, ref missing, ref missing,
@@ -210,11 +218,13 @@ namespace Fredi
                                         ref missing, ref missing, ref missing,
                                         ref missing, ref missing, ref missing, ref missing);
                 myWordDoc.Activate();
-
+                
                 this.FindAndReplace(wordApp, "<prenom>", dtInfo.Rows[0]["firstName"].ToString());
                 this.FindAndReplace(wordApp, "<nom>", dtInfo.Rows[0]["name"].ToString());
                 this.FindAndReplace(wordApp, "<numLicence>", dtInfo.Rows[0]["numLicence"].ToString());
                 this.FindAndReplace(wordApp, "<total>", totalCostVar);
+                this.FindAndReplace(wordApp, "<adresse>", dtAdress.Rows[0][0].ToString());
+                this.FindAndReplace(wordApp, "<prix>", dtPrice.Rows[0][0].ToString());
             }
 
             else
@@ -244,7 +254,6 @@ namespace Fredi
             var connString = conn.ToString();
             MySqlConnection coInsert = new MySqlConnection(connString);
             coInsert.Open();
-            
             object save13 = mainPathUser + @"\bordereauFillDataGridUser.docx";
             string template = mainPathUser + @"\templateBasic.docx";
             object missing = Missing.Value;

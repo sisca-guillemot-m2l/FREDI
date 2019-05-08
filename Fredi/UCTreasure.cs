@@ -362,6 +362,10 @@ namespace Fredi
             MySqlDataAdapter exeGet = new MySqlDataAdapter(getInfo, coInsert);
             DataTable dtInfo = new DataTable();
             exeGet.Fill(dtInfo);
+            string price = "select rate from pricing";
+            MySqlDataAdapter priceSql = new MySqlDataAdapter(price, coInsert);
+            DataTable dtPrice = new DataTable();
+            priceSql.Fill(dtPrice);
 
             word.Application wordApp = new word.Application();
             object missing = Missing.Value;
@@ -384,6 +388,8 @@ namespace Fredi
                 this.FindAndReplace(wordApp, "<nom>", dtInfo.Rows[0]["name"].ToString());
                 this.FindAndReplace(wordApp, "<numLicence>", dtInfo.Rows[0]["numLicence"].ToString());
                 this.FindAndReplace(wordApp, "<total>", totalCostVar);
+                this.FindAndReplace(wordApp, "<adresse>", dtInfo.Rows[0]["adress"].ToString());
+                this.FindAndReplace(wordApp, "<prix>", dtPrice.Rows[0][0].ToString());
             }
 
             else
