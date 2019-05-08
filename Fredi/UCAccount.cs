@@ -61,6 +61,10 @@ namespace Fredi
             verifPwd.Fill(dtVerif); 
             if (dtConfirm.Rows[0][0].ToString() == dtVerif.Rows[0][0].ToString())
             {
+                string updateAdress = "update login set adress = '" + textBoxAdress.Text + "' where id = '" + getTokenId.returnToken() + "'";
+                MySqlCommand Adress = new MySqlCommand(updateAdress, connection);
+                Adress.ExecuteNonQuery();
+
                 string updateName = "update adherents set name = '" + textBoxName.Text + "' where idLogin = '" + getTokenId.returnToken() + "' ";
                 MySqlCommand updateNameCo = new MySqlCommand(updateName, connection);
                 updateNameCo.ExecuteNonQuery();
@@ -76,6 +80,7 @@ namespace Fredi
             }
             else
             {
+                MessageBox.Show("Veuillez confirmer le mot de passe");
             }
             connection.Close();
         }
@@ -117,6 +122,8 @@ namespace Fredi
                 NumLigue.Text = dtUser.Rows[0]["numLigue"].ToString();
 
                 NumLicence.Text = dtUser.Rows[0]["numLicence"].ToString();
+
+                textBoxAdress.Text = dtLogin.Rows[0]["adress"].ToString();
 
                 switch (dtLogin.Rows[0]["statut"].ToString())
                 {

@@ -49,7 +49,7 @@ namespace Fredi
 
         public string getIdM()
         {
-            using (StreamReader srIdM = new StreamReader(@"c:\Users\Fabien\Source\Repos\Fredi\idM.txt"))
+            using (StreamReader srIdM = new StreamReader(@"idM.txt"))
             {
                 String IdM = srIdM.ReadToEnd();
                 return IdM;
@@ -58,7 +58,7 @@ namespace Fredi
 
         public string getpwdM()
         {
-            using (StreamReader srPwdM = new StreamReader(@"c:\Users\Fabien\Source\Repos\Fredi\pwdM.txt"))
+            using (StreamReader srPwdM = new StreamReader(@"pwdM.txt"))
             {
                 String PwdM = srPwdM.ReadToEnd();
                 return PwdM;

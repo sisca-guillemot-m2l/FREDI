@@ -97,27 +97,34 @@ namespace Fredi
             DataTable dtRate = new DataTable();
             ratePricing.Fill(dtRate);
             string putRate = dtRate.Rows[0][0].ToString();
-            textBox1.Text = putRate + "€";
+            textBox1.Text = putRate;
             selectRate.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            getContent returnInfo = new getContent();
-            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
-            conn.Server = returnInfo.getServer();
-            conn.UserID = returnInfo.getId();
-            conn.Password = returnInfo.getPassword();
-            conn.Database = returnInfo.getDb();
-            var connString = conn.ToString();
-            MySqlConnection selectRate = new MySqlConnection(connString);
-            selectRate.Open();
+            try
+            {
+                getContent returnInfo = new getContent();
+                MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+                conn.Server = returnInfo.getServer();
+                conn.UserID = returnInfo.getId();
+                conn.Password = returnInfo.getPassword();
+                conn.Database = returnInfo.getDb();
+                var connString = conn.ToString();
+                MySqlConnection selectRate = new MySqlConnection(connString);
+                selectRate.Open();
 
-            string update = "update pricing set rate ='"+textBox1.Text+"'";
-            MySqlCommand updateRate = new MySqlCommand(update, selectRate);
-            updateRate.ExecuteNonQuery();
-            MessageBox.Show("work");
-            selectRate.Close();
+                string update = "update pricing set rate ='" + textBox1.Text + "'";
+                MySqlCommand updateRate = new MySqlCommand(update, selectRate);
+                updateRate.ExecuteNonQuery();
+                MessageBox.Show("work");
+                selectRate.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Le format entré doit être le suivant 0.00");
+            }
         }
     }
 }

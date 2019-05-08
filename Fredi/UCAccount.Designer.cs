@@ -52,6 +52,9 @@
             this.NumLigue = new System.Windows.Forms.TextBox();
             this.listBoxAccount = new System.Windows.Forms.ListBox();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxAdress = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -195,7 +198,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel6.Location = new System.Drawing.Point(816, 691);
+            this.panel6.Location = new System.Drawing.Point(531, 807);
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(134, 4);
@@ -205,7 +208,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label7.Location = new System.Drawing.Point(816, 620);
+            this.label7.Location = new System.Drawing.Point(531, 736);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(106, 25);
@@ -216,7 +219,7 @@
             // 
             this.textBoxMdpC.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.textBoxMdpC.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxMdpC.Location = new System.Drawing.Point(816, 666);
+            this.textBoxMdpC.Location = new System.Drawing.Point(531, 782);
             this.textBoxMdpC.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxMdpC.Name = "textBoxMdpC";
             this.textBoxMdpC.PasswordChar = '•';
@@ -297,7 +300,7 @@
             "Utilisateur",
             "Trésorier",
             "Administrateur"});
-            this.listBoxAccount.Location = new System.Drawing.Point(816, 468);
+            this.listBoxAccount.Location = new System.Drawing.Point(816, 620);
             this.listBoxAccount.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxAccount.Name = "listBoxAccount";
             this.listBoxAccount.Size = new System.Drawing.Size(149, 50);
@@ -316,11 +319,45 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel5.Location = new System.Drawing.Point(816, 541);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(134, 4);
+            this.panel5.TabIndex = 29;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label6.Location = new System.Drawing.Point(816, 470);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(169, 25);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Adresse postale";
+            // 
+            // textBoxAdress
+            // 
+            this.textBoxAdress.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.textBoxAdress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxAdress.Location = new System.Drawing.Point(816, 516);
+            this.textBoxAdress.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxAdress.Name = "textBoxAdress";
+            this.textBoxAdress.Size = new System.Drawing.Size(359, 25);
+            this.textBoxAdress.TabIndex = 27;
+            this.textBoxAdress.Text = "adresse";
+            // 
             // UCAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBoxAdress);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.listBoxAccount);
             this.Controls.Add(this.panel6);
@@ -381,5 +418,8 @@
         private System.Windows.Forms.TextBox NumLigue;
         private System.Windows.Forms.ListBox listBoxAccount;
         private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxAdress;
     }
 }

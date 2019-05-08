@@ -35,6 +35,7 @@
             this.textAdmin = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -52,7 +53,7 @@
             this.textBox1.Location = new System.Drawing.Point(291, 441);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(75, 26);
+            this.textBox1.Size = new System.Drawing.Size(50, 26);
             this.textBox1.TabIndex = 1;
             // 
             // button2
@@ -107,10 +108,21 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "• Gestion de la tarification kilométrique en vigueur";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(347, 442);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(20, 24);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "€";
+            // 
             // UCAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textAdmin);
@@ -135,5 +147,6 @@
         private System.Windows.Forms.Label textAdmin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

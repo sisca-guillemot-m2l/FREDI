@@ -37,6 +37,7 @@ namespace Fredi
             var connString = conn.ToString();
             MySqlConnection connection = new MySqlConnection(connString);
             connection.Open();
+            
             MySqlDataAdapter logon = new MySqlDataAdapter("select count(*) from login where email ='"+textmail.Text+"' and password = MD5('"+textpwd.Text+"')" , connection);
             DataTable dt = new DataTable();
             logon.Fill(dt);
@@ -55,7 +56,7 @@ namespace Fredi
                     string idMail = getMail.getIdM();
                     MailMessage Msg = new MailMessage();
                     Msg.From = new MailAddress(idMail);
-                    Msg.To.Add(new MailAddress("fabien.sisca@epsi.fr"));
+                    Msg.To.Add(new MailAddress(textmail.Text));
                     Msg.Body = "Bienvenue sur l'application de la maison des ligues. Nous allons vous transmettre vos coordonnées !";
                     SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
                     client.EnableSsl = true;

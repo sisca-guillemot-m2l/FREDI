@@ -300,15 +300,22 @@ namespace Fredi
             if (comptValidate == comptSlip)
             {
                 MessageBox.Show("Où souhaitez vous le télécharger ?");
+                try
+                {
+                    using (FolderBrowserDialog ofd = new FolderBrowserDialog() { })
+                        if (ofd.ShowDialog() == DialogResult.OK)
+                        {
+                            pathFile = ofd.SelectedPath;
 
-                using (FolderBrowserDialog ofd = new FolderBrowserDialog() { })
-                    if (ofd.ShowDialog() == DialogResult.OK)
-                    {
-                        pathFile = ofd.SelectedPath;
-
-                    }
-                string pathpath = pathFile + @"\pdfUser.pdf";
-                databaseFileRead(idUser, pathpath);
+                        }
+                    string pathpath = pathFile + @"\pdfUser.pdf";
+                    databaseFileRead(idUser, pathpath);
+                }
+                catch
+                {
+                    MessageBox.Show("Aucun bordereau n'a été déposé par l'utilisateur");
+                }
+                
             }
 
             else
@@ -435,6 +442,12 @@ namespace Fredi
             DataTable sumDtBis = new DataTable();
             sumTotalBis.Fill(sumDtBis);
             totalCostVarBis = sumDtBis.Rows[0][0].ToString();
+
+            string getInfoAdress = "select adress from login where id = '"+idUser+"'";
+            MySqlDataAdapter adress = new MySqlDataAdapter(getInfoAdress, coInsert);
+            DataTable dtAdress = new DataTable();
+            adress.Fill(dtAdress);
+
             word.Application wordApp = new word.Application();
             object missing = Missing.Value;
             word.Document myWordDoc = null;
@@ -455,7 +468,7 @@ namespace Fredi
                 this.FindAndReplace(wordApp, "<clubAdresse>", "Adresse du Club");
                 this.FindAndReplace(wordApp, "<objet>", "Objet");
                 this.FindAndReplace(wordApp, "<adherentName>", dtInfo.Rows[0]["name"].ToString());
-                this.FindAndReplace(wordApp, "<adherentAdresse>", dtInfo.Rows[0]["firstName"].ToString());
+                this.FindAndReplace(wordApp, "<adherentAdresse>", dtAdress.Rows[0][0].ToString());
                 this.FindAndReplace(wordApp, "<prix>", totalCostVarBis + " €");
                 this.FindAndReplace(wordApp, "<date>", DateTime.Now.ToShortDateString());
             }
@@ -572,6 +585,10 @@ namespace Fredi
                 }
                 catch
                 { }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez valider tous les champs");
             }
             connection.Close();
         }
