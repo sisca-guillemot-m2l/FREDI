@@ -101,14 +101,12 @@ namespace Fredi
             connection.Close();
             connection.Open();
 
-            string pelo = "SELECT * FROM login JOIN adherents ON  login.statut = 'user' WHERE  adherents.numLigue = '" + numGot + "' AND login.id = adherents.idLogin";
+            string rqtSelect = "SELECT * FROM login JOIN adherents ON  login.statut = 'user' WHERE  adherents.numLigue = '" + numGot + "' AND login.id = adherents.idLogin";
 
-            MySqlCommand sqlCommand = new MySqlCommand(pelo, connection);
+            MySqlCommand sqlCommand = new MySqlCommand(rqtSelect, connection);
             MySqlDataReader dr = sqlCommand.ExecuteReader();
             while (dr.Read())
             {
-                //listView1.Items.Add(dr["email"].ToString());
-                //listView1.Items.Add(dr["id"].ToString());
                 ListViewItem item = new ListViewItem(dr["firstName"].ToString());
                 item.SubItems.Add(dr["name"].ToString());
                 item.SubItems.Add(dr["numLicence"].ToString());
@@ -397,7 +395,7 @@ namespace Fredi
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing);
-            myWordDoc.ExportAsFixedFormat(mainPath + @"\Bordereau.pdf", word.WdExportFormat.wdExportFormatPDF);
+            myWordDoc.ExportAsFixedFormat(mainPath + @"\BordereauUser.pdf", word.WdExportFormat.wdExportFormatPDF);
             myWordDoc.Close();
             wordApp.Quit();
             MessageBox.Show("Created");
@@ -565,6 +563,7 @@ namespace Fredi
                 catch
                 { }
             }
+            connection.Close();
         }
     }
 }

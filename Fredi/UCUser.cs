@@ -20,6 +20,8 @@ namespace Fredi
         public static int comptSlip = 0;
         public static string totalCostVar;
         public string pathFile;
+        public static string mainPathUser = Application.ExecutablePath;
+
         public UCUser()
         {
             InitializeComponent();
@@ -27,6 +29,10 @@ namespace Fredi
 
         private void UCUser_Load(object sender, EventArgs e)
         {
+            mainPathUser = Directory.GetParent(mainPathUser).ToString();
+            mainPathUser = Directory.GetParent(mainPathUser).ToString();
+            mainPathUser = Directory.GetParent(mainPathUser).ToString();
+            mainPathUser = mainPathUser + @"\Resources";
         }
 
 
@@ -217,7 +223,7 @@ namespace Fredi
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing);
-            myWordDoc.ExportAsFixedFormat(@"c:\Users\Fabien\Desktop\Allo.pdf", word.WdExportFormat.wdExportFormatPDF);
+            myWordDoc.ExportAsFixedFormat(mainPathUser + @"\bordereauUser.pdf", word.WdExportFormat.wdExportFormatPDF);
             myWordDoc.Close();
             wordApp.Quit();
             MessageBox.Show("Created");
@@ -226,6 +232,9 @@ namespace Fredi
 
         private void button1_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(Application.ExecutablePath);
+            MessageBox.Show(mainPathUser + @"\templateBasic.docx");
+            MessageBox.Show("a");
             getContent returnInfo = new getContent();
             MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
             conn.Server = returnInfo.getServer();
@@ -236,16 +245,17 @@ namespace Fredi
             MySqlConnection coInsert = new MySqlConnection(connString);
             coInsert.Open();
 
-
-            object save13 = @"c:\Users\Fabien\Desktop\test.docx";
-            string template = System.IO.@Path.GetDirectoryName(Application.ExecutablePath).Trim() + @"\templateBasic.docx";
+            MessageBox.Show("a");
+            object save13 = mainPathUser + @"\bordereauFillDataGridUser.docx";
+            string template = mainPathUser + @"\templateBasic.docx";
             object missing = Missing.Value;
             word.Application wordApp = new word.Application();
             wordApp.Visible = true;
-
+            MessageBox.Show("a");
             word.Document document = wordApp.Documents.OpenNoRepairDialog(template);
+            MessageBox.Show("a");
             document.Activate();
-            
+            MessageBox.Show("a");
             word.Table table = document.Tables[1];
             for (int a = comptSlip - 1; a >= 0; a--)
             {
@@ -260,6 +270,7 @@ namespace Fredi
                 table.Cell(1, 9).Range.Text = dataGridView1.Rows[a].Cells[9].Value.ToString() + "€";
                 document.Tables[1].Rows.Add(document.Tables[1].Rows[1]);
             }
+            MessageBox.Show("a");
             table.Cell(1, 1).Range.Text = "Date";
             table.Cell(1, 2).Range.Text = "Motif";
             table.Cell(1, 3).Range.Text = "Trajet";
@@ -269,6 +280,7 @@ namespace Fredi
             table.Cell(1, 7).Range.Text = "Repas";
             table.Cell(1, 8).Range.Text = "Hébergement";
             table.Cell(1, 9).Range.Text = "Total";
+            MessageBox.Show("a");
             UCHome getTok = new UCHome();
             string getTotal = "select sum(totalCost) from slips where idMember = '" + getTok.returnToken()+"'";
             MySqlDataAdapter sumTotal = new MySqlDataAdapter(getTotal, coInsert);
@@ -280,10 +292,12 @@ namespace Fredi
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing);
-            
+            MessageBox.Show("a");
             document.Close();
             wordApp.Quit();
-            CreateWordDocument(@"c:\users\Fabien\Desktop\test.docx", @"c:\users\Fabien\Desktop\test2.docx");
+            MessageBox.Show("a");
+            CreateWordDocument(mainPathUser + @"\bordereauFillDataGridUser.docx", mainPathUser + @"\bordereauFileFillUser.docx");
+            MessageBox.Show("a");
             FormPDFUser Fc = new FormPDFUser();
             Fc.ShowDialog();
         }

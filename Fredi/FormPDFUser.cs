@@ -13,9 +13,14 @@ namespace Fredi
 {
     public partial class FormPDFUser : Form
     {
+        public static string pathpath = Application.ExecutablePath;
         public FormPDFUser()
         {
             InitializeComponent();
+            pathpath = Directory.GetParent(pathpath).ToString();
+            pathpath = Directory.GetParent(pathpath).ToString();
+            pathpath = Directory.GetParent(pathpath).ToString();
+            pathpath = pathpath + @"\Resources";
         }
         public static void databaseFilePut(string varFilePath)
         {
@@ -77,8 +82,8 @@ namespace Fredi
 
         private void FormPDFUser_Load(object sender, EventArgs e)
         {
-            axAcroPDF1.src = @"c:\users\Fabien\Desktop\Allo.pdf";
-            databaseFilePut(@"c:\users\Fabien\Desktop\Allo.pdf");
+            axAcroPDF1.src = pathpath + @"\bordereauUser.pdf";
+            databaseFilePut( pathpath + @"\bordereauUser.pdf");
         }
         
     }
