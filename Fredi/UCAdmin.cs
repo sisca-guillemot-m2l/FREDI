@@ -63,7 +63,6 @@ namespace Fredi
                 cmd.Parameters.AddWithValue("@name", dr["name"]);
                 cmd.Parameters.AddWithValue("@firstName", dr["firstName"]);
                 cmd.Parameters.AddWithValue("@numLigue", dr["numLigue"]);
-                MessageBox.Show(dr["firstName"].ToString());
                 cmd.ExecuteNonQuery();
             }
 

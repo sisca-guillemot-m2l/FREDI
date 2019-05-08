@@ -14,6 +14,7 @@ namespace Fredi
     public partial class FormPDFUser : Form
     {
         public static string pathpath = Application.ExecutablePath;
+        public static string statutGot;
         public FormPDFUser()
         {
             InitializeComponent();
@@ -39,7 +40,7 @@ namespace Fredi
             MySqlDataAdapter getStatut = new MySqlDataAdapter(requeteStatut, connec);
             DataTable dbStatut = new DataTable();
             getStatut.Fill(dbStatut);
-            string statutGot = dbStatut.Rows[0][0].ToString();
+            statutGot = dbStatut.Rows[0][0].ToString();
 
             if (statutGot == "user")
             {
@@ -82,8 +83,38 @@ namespace Fredi
 
         private void FormPDFUser_Load(object sender, EventArgs e)
         {
-            axAcroPDF1.src = pathpath + @"\bordereauUser.pdf";
-            databaseFilePut( pathpath + @"\bordereauUser.pdf");
+            getContent returnInfo = new getContent();
+            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+            conn.Server = returnInfo.getServer();
+            conn.UserID = returnInfo.getId();
+            conn.Password = returnInfo.getPassword();
+            conn.Database = returnInfo.getDb();
+            var connString = conn.ToString();
+            MySqlConnection connec = new MySqlConnection(connString);
+            connec.Open();
+            UCHome getTokTri = new UCHome();
+            UCTreasure getTokMember = new UCTreasure();
+            string requeteStatut = "select statut from login where id = '" + getTokTri.returnToken() + "'";
+            MySqlDataAdapter getStatut = new MySqlDataAdapter(requeteStatut, connec);
+            DataTable dbStatut = new DataTable();
+            getStatut.Fill(dbStatut);
+            statutGot = dbStatut.Rows[0][0].ToString();
+           
+            if(statutGot == "user")
+            {
+                UCHome tokos = new UCHome();
+                string tokenA = tokos.returnToken().ToString();
+                axAcroPDF1.src = pathpath + @"\bordereauUser"+tokenA+".pdf";
+                databaseFilePut(pathpath + @"\bordereauUser" + tokenA + ".pdf");
+            }
+            else if (statutGot == "treasure")
+            {
+                UCTreasure tokas = new UCTreasure();
+                string tokenB = tokas.getIdMember();
+                axAcroPDF1.src = pathpath + @"\bordereauUser" + tokenB + ".pdf";
+                databaseFilePut(pathpath + @"\bordereauUser" + tokenB + ".pdf");
+            }
+            
         }
         
     }

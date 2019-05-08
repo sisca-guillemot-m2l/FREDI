@@ -21,6 +21,7 @@ namespace Fredi
         public static string totalCostVar;
         public string pathFile;
         public static string mainPathUser = Application.ExecutablePath;
+        public static int idMemberCo = 0;
 
         public UCUser()
         {
@@ -33,6 +34,7 @@ namespace Fredi
             mainPathUser = Directory.GetParent(mainPathUser).ToString();
             mainPathUser = Directory.GetParent(mainPathUser).ToString();
             mainPathUser = mainPathUser + @"\Resources";
+            
         }
 
 
@@ -93,7 +95,6 @@ namespace Fredi
             if (dataGridView1.Columns[e.ColumnIndex].Name == "Supprimer")
             {
                 slipBindingSource1.RemoveCurrent();
-                MessageBox.Show(slipBindingSource1.Current.ToString());
             }
         }
         public void getDataSlip(int tokenALO)
@@ -176,6 +177,8 @@ namespace Fredi
 
         public void CreateWordDocument(object filename, object SaveAs)
         {
+            UCHome tok = new UCHome();
+            string tokenForPdf = tok.returnToken().ToString();
             getContent returnInfo = new getContent();
             MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
             conn.Server = returnInfo.getServer();
@@ -223,7 +226,7 @@ namespace Fredi
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing);
-            myWordDoc.ExportAsFixedFormat(mainPathUser + @"\bordereauUser.pdf", word.WdExportFormat.wdExportFormatPDF);
+            myWordDoc.ExportAsFixedFormat(mainPathUser + @"\bordereauUser"+ tokenForPdf + ".pdf", word.WdExportFormat.wdExportFormatPDF);
             myWordDoc.Close();
             wordApp.Quit();
             MessageBox.Show("Created");
@@ -232,9 +235,6 @@ namespace Fredi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Application.ExecutablePath);
-            MessageBox.Show(mainPathUser + @"\templateBasic.docx");
-            MessageBox.Show("a");
             getContent returnInfo = new getContent();
             MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
             conn.Server = returnInfo.getServer();
@@ -244,18 +244,14 @@ namespace Fredi
             var connString = conn.ToString();
             MySqlConnection coInsert = new MySqlConnection(connString);
             coInsert.Open();
-
-            MessageBox.Show("a");
+            
             object save13 = mainPathUser + @"\bordereauFillDataGridUser.docx";
             string template = mainPathUser + @"\templateBasic.docx";
             object missing = Missing.Value;
             word.Application wordApp = new word.Application();
             wordApp.Visible = true;
-            MessageBox.Show("a");
             word.Document document = wordApp.Documents.OpenNoRepairDialog(template);
-            MessageBox.Show("a");
             document.Activate();
-            MessageBox.Show("a");
             word.Table table = document.Tables[1];
             for (int a = comptSlip - 1; a >= 0; a--)
             {
@@ -270,7 +266,6 @@ namespace Fredi
                 table.Cell(1, 9).Range.Text = dataGridView1.Rows[a].Cells[9].Value.ToString() + "€";
                 document.Tables[1].Rows.Add(document.Tables[1].Rows[1]);
             }
-            MessageBox.Show("a");
             table.Cell(1, 1).Range.Text = "Date";
             table.Cell(1, 2).Range.Text = "Motif";
             table.Cell(1, 3).Range.Text = "Trajet";
@@ -280,7 +275,6 @@ namespace Fredi
             table.Cell(1, 7).Range.Text = "Repas";
             table.Cell(1, 8).Range.Text = "Hébergement";
             table.Cell(1, 9).Range.Text = "Total";
-            MessageBox.Show("a");
             UCHome getTok = new UCHome();
             string getTotal = "select sum(totalCost) from slips where idMember = '" + getTok.returnToken()+"'";
             MySqlDataAdapter sumTotal = new MySqlDataAdapter(getTotal, coInsert);
@@ -292,12 +286,9 @@ namespace Fredi
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing);
-            MessageBox.Show("a");
             document.Close();
             wordApp.Quit();
-            MessageBox.Show("a");
             CreateWordDocument(mainPathUser + @"\bordereauFillDataGridUser.docx", mainPathUser + @"\bordereauFileFillUser.docx");
-            MessageBox.Show("a");
             FormPDFUser Fc = new FormPDFUser();
             Fc.ShowDialog();
         }

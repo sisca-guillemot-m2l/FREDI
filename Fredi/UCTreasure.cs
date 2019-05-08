@@ -395,7 +395,7 @@ namespace Fredi
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing);
-            myWordDoc.ExportAsFixedFormat(mainPath + @"\BordereauUser.pdf", word.WdExportFormat.wdExportFormatPDF);
+            myWordDoc.ExportAsFixedFormat(mainPath + @"\BordereauUser"+idUser+".pdf", word.WdExportFormat.wdExportFormatPDF);
             myWordDoc.Close();
             wordApp.Quit();
             MessageBox.Show("Created");
@@ -459,7 +459,7 @@ namespace Fredi
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing);
-            myWordDoc.ExportAsFixedFormat(mainPath + @"\Cerfa.pdf", word.WdExportFormat.wdExportFormatPDF);
+            myWordDoc.ExportAsFixedFormat(mainPath + @"\Cerfa"+idUser+".pdf", word.WdExportFormat.wdExportFormatPDF);
             myWordDoc.Close();
             wordApp.Quit();
             MessageBox.Show("Created");

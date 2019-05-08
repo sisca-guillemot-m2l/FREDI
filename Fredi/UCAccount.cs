@@ -59,7 +59,6 @@ namespace Fredi
             MySqlDataAdapter verifPwd = new MySqlDataAdapter(selectPwd, connection);
             DataTable dtVerif = new DataTable();
             verifPwd.Fill(dtVerif); 
-            MessageBox.Show(dtVerif.Rows[0][0].ToString());
             if (dtConfirm.Rows[0][0].ToString() == dtVerif.Rows[0][0].ToString())
             {
                 string updateName = "update adherents set name = '" + textBoxName.Text + "' where idLogin = '" + getTokenId.returnToken() + "' ";
@@ -77,7 +76,6 @@ namespace Fredi
             }
             else
             {
-                MessageBox.Show("SALUT");
             }
             connection.Close();
         }
@@ -86,7 +84,6 @@ namespace Fredi
         {
             UCAccount ac = new UCAccount();
             ac.textBoxName.Text = nameUser;
-            MessageBox.Show(ac.textBoxName.Text);
 
         }
 
