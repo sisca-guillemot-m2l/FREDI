@@ -32,7 +32,9 @@ namespace Fredi
 
         private void UCTreasure_Load(object sender, EventArgs e)
         {
-
+            mainPath = Directory.GetParent(mainPath).ToString();
+            mainPath = Directory.GetParent(mainPath).ToString();
+            mainPath = mainPath + @"\Resources";
         }
 
         public void allTreasurePart()
@@ -307,7 +309,7 @@ namespace Fredi
                         pathFile = ofd.SelectedPath;
 
                     }
-                string pathpath = pathFile + @"\testtest.pdf";
+                string pathpath = pathFile + @"\pdfUser.pdf";
                 databaseFileRead(idUser, pathpath);
             }
 
@@ -395,7 +397,7 @@ namespace Fredi
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing);
-            myWordDoc.ExportAsFixedFormat(@"c:\Users\Fabien\Desktop\Allo.pdf", word.WdExportFormat.wdExportFormatPDF);
+            myWordDoc.ExportAsFixedFormat(mainPath + @"\Bordereau.pdf", word.WdExportFormat.wdExportFormatPDF);
             myWordDoc.Close();
             wordApp.Quit();
             MessageBox.Show("Created");
@@ -459,7 +461,7 @@ namespace Fredi
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing,
                             ref missing, ref missing, ref missing);
-            myWordDoc.ExportAsFixedFormat(@"c:\Users\Fabien\Desktop\TIT.pdf", word.WdExportFormat.wdExportFormatPDF);
+            myWordDoc.ExportAsFixedFormat(mainPath + @"\Cerfa.pdf", word.WdExportFormat.wdExportFormatPDF);
             myWordDoc.Close();
             wordApp.Quit();
             MessageBox.Show("Created");
@@ -479,8 +481,8 @@ namespace Fredi
             coInsert.Open();
 
 
-            object save13 = @"c:\Users\Fabien\Desktop\test.docx";
-            string template = System.IO.@Path.GetDirectoryName(Application.ExecutablePath).Trim() + @"\templateBasic.docx";
+            object save13 = mainPath + @"\datagridFill.docx";
+            string template = mainPath + @"\templateBasic.docx";
             object missing = Missing.Value;
             word.Application wordApp = new word.Application();
             wordApp.Visible = true;
@@ -525,7 +527,7 @@ namespace Fredi
 
             document.Close();
             wordApp.Quit();
-            CreateWordDocument(@"c:\users\Fabien\Desktop\test.docx", @"c:\users\Fabien\Desktop\test25.docx");
+            CreateWordDocument(mainPath + @"\datagridFill.docx", mainPath + @"\FileFill.docx");
             FormPDFUser Fc = new FormPDFUser();
             Fc.ShowDialog();
             coInsert.Close();
@@ -557,15 +559,11 @@ namespace Fredi
                 {
                     if (idUser != null)
                     {
-                        CreateWordDocumentCerfa(@"c:\users\Fabien\Desktop\templateCerfa.docx", @"c:\users\Fabien\Desktop\Cerfa.docx");
+                        CreateWordDocumentCerfa(mainPath + @"\templateCerfa.docx", mainPath + @"CerfaFill.docx");
                     }
                 }
                 catch
                 { }
-            }
-            else
-            {
-                MessageBox.Show("To");
             }
         }
     }
