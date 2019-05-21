@@ -279,50 +279,53 @@ namespace Fredi
 
         private void button2_Click(object sender, EventArgs e)
         {
-            getContent returnInfo = new getContent();
-            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
-            conn.Server = returnInfo.getServer();
-            conn.UserID = returnInfo.getId();
-            conn.Password = returnInfo.getPassword();
-            conn.Database = returnInfo.getDb();
-            var connString = conn.ToString();
-            MySqlConnection connection = new MySqlConnection(connString);
-            connection.Open();
+            try
+            {
+                getContent returnInfo = new getContent();
+                MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+                conn.Server = returnInfo.getServer();
+                conn.UserID = returnInfo.getId();
+                conn.Password = returnInfo.getPassword();
+                conn.Database = returnInfo.getDb();
+                var connString = conn.ToString();
+                MySqlConnection connection = new MySqlConnection(connString);
+                connection.Open();
 
-            string selectValidated = "SELECT id from slips where Validated = 'true' and idMember = '"+idUser+"'";
-            MySqlDataAdapter comSelect = new MySqlDataAdapter(selectValidated, connection);
-            DataTable dtSelect = new DataTable();
-            comSelect.Fill(dtSelect);
-            foreach(DataRow dtse in dtSelect.Rows)
-            {
-                comptValidate++;
-            }
-            if (comptValidate == comptSlip)
-            {
-                MessageBox.Show("Où souhaitez vous le télécharger ?");
-                try
+                string selectValidated = "SELECT id from slips where Validated = 'true' and idMember = '" + idUser + "'";
+                MySqlDataAdapter comSelect = new MySqlDataAdapter(selectValidated, connection);
+                DataTable dtSelect = new DataTable();
+                comSelect.Fill(dtSelect);
+                foreach (DataRow dtse in dtSelect.Rows)
                 {
-                    using (FolderBrowserDialog ofd = new FolderBrowserDialog() { })
-                        if (ofd.ShowDialog() == DialogResult.OK)
-                        {
-                            pathFile = ofd.SelectedPath;
-
-                        }
-                    string pathpath = pathFile + @"\pdfUser.pdf";
-                    databaseFileRead(idUser, pathpath);
+                    comptValidate++;
                 }
-                catch
+                if (comptValidate == comptSlip)
                 {
-                    MessageBox.Show("Aucun bordereau n'a été déposé par l'utilisateur");
+                    MessageBox.Show("Où souhaitez vous le télécharger ?");
+                    try
+                    {
+                        using (FolderBrowserDialog ofd = new FolderBrowserDialog() { })
+                            if (ofd.ShowDialog() == DialogResult.OK)
+                            {
+                                pathFile = ofd.SelectedPath;
+
+                            }
+                        string pathpath = pathFile + @"\pdfUser.pdf";
+                        databaseFileRead(idUser, pathpath);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Aucun bordereau n'a été déposé par l'utilisateur");
+                    }
+
                 }
-                
-            }
 
-            else
-            {
-                MessageBox.Show("Tous les frais doivent être validés pour obtention du pdf signé.");
+                else
+                {
+                    MessageBox.Show("Tous les frais doivent être validés pour obtention du pdf signé.");
+                }
             }
-
+            catch {}
         }
 
         private void FindAndReplace(word.Application wordapp, object ToFindText, object replaceWithText)
@@ -491,106 +494,114 @@ namespace Fredi
 
         private void button3_Click(object sender, EventArgs e)
         {
-            getContent returnInfo = new getContent();
-            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
-            conn.Server = returnInfo.getServer();
-            conn.UserID = returnInfo.getId();
-            conn.Password = returnInfo.getPassword();
-            conn.Database = returnInfo.getDb();
-            var connString = conn.ToString();
-            MySqlConnection coInsert = new MySqlConnection(connString);
-            coInsert.Open();
-
-
-            object save13 = mainPath + @"\datagridFill.docx";
-            string template = mainPath + @"\templateBasic.docx";
-            object missing = Missing.Value;
-            word.Application wordApp = new word.Application();
-            wordApp.Visible = true;
-
-            word.Document document = wordApp.Documents.OpenNoRepairDialog(template);
-            document.Activate();
-
-            word.Table table = document.Tables[1];
-            for (int a = comptSlip - 1; a >= 0; a--)
+            try
             {
-                table.Cell(1, 1).Range.Text = dataGridView1.Rows[a].Cells[1].Value.ToString();
-                table.Cell(1, 2).Range.Text = dataGridView1.Rows[a].Cells[2].Value.ToString();
-                table.Cell(1, 3).Range.Text = dataGridView1.Rows[a].Cells[3].Value.ToString();
-                table.Cell(1, 4).Range.Text = dataGridView1.Rows[a].Cells[4].Value.ToString() + "€";
-                table.Cell(1, 5).Range.Text = dataGridView1.Rows[a].Cells[5].Value.ToString() + "€";
-                table.Cell(1, 6).Range.Text = dataGridView1.Rows[a].Cells[6].Value.ToString() + "€";
-                table.Cell(1, 7).Range.Text = dataGridView1.Rows[a].Cells[7].Value.ToString() + "€";
-                table.Cell(1, 8).Range.Text = dataGridView1.Rows[a].Cells[8].Value.ToString() + "€";
-                table.Cell(1, 9).Range.Text = dataGridView1.Rows[a].Cells[9].Value.ToString() + "€";
-                document.Tables[1].Rows.Add(document.Tables[1].Rows[1]);
+                getContent returnInfo = new getContent();
+                MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+                conn.Server = returnInfo.getServer();
+                conn.UserID = returnInfo.getId();
+                conn.Password = returnInfo.getPassword();
+                conn.Database = returnInfo.getDb();
+                var connString = conn.ToString();
+                MySqlConnection coInsert = new MySqlConnection(connString);
+                coInsert.Open();
+
+
+                object save13 = mainPath + @"\datagridFill.docx";
+                string template = mainPath + @"\templateBasic.docx";
+                object missing = Missing.Value;
+                word.Application wordApp = new word.Application();
+                wordApp.Visible = true;
+
+                word.Document document = wordApp.Documents.OpenNoRepairDialog(template);
+                document.Activate();
+
+                word.Table table = document.Tables[1];
+                for (int a = comptSlip - 1; a >= 0; a--)
+                {
+                    table.Cell(1, 1).Range.Text = dataGridView1.Rows[a].Cells[1].Value.ToString();
+                    table.Cell(1, 2).Range.Text = dataGridView1.Rows[a].Cells[2].Value.ToString();
+                    table.Cell(1, 3).Range.Text = dataGridView1.Rows[a].Cells[3].Value.ToString();
+                    table.Cell(1, 4).Range.Text = dataGridView1.Rows[a].Cells[4].Value.ToString() + "€";
+                    table.Cell(1, 5).Range.Text = dataGridView1.Rows[a].Cells[5].Value.ToString() + "€";
+                    table.Cell(1, 6).Range.Text = dataGridView1.Rows[a].Cells[6].Value.ToString() + "€";
+                    table.Cell(1, 7).Range.Text = dataGridView1.Rows[a].Cells[7].Value.ToString() + "€";
+                    table.Cell(1, 8).Range.Text = dataGridView1.Rows[a].Cells[8].Value.ToString() + "€";
+                    table.Cell(1, 9).Range.Text = dataGridView1.Rows[a].Cells[9].Value.ToString() + "€";
+                    document.Tables[1].Rows.Add(document.Tables[1].Rows[1]);
+                }
+                table.Cell(1, 1).Range.Text = "Date";
+                table.Cell(1, 2).Range.Text = "Motif";
+                table.Cell(1, 3).Range.Text = "Trajet";
+                table.Cell(1, 4).Range.Text = "Kms parcourus";
+                table.Cell(1, 5).Range.Text = "Coût trajet";
+                table.Cell(1, 6).Range.Text = "Péages";
+                table.Cell(1, 7).Range.Text = "Repas";
+                table.Cell(1, 8).Range.Text = "Hébergement";
+                table.Cell(1, 9).Range.Text = "Total";
+
+                string getTotal = "select sum(totalCost) from slips where idMember = '" + idUser + "'";
+                MySqlDataAdapter sumTotal = new MySqlDataAdapter(getTotal, coInsert);
+                DataTable sumDt = new DataTable();
+                sumTotal.Fill(sumDt);
+                totalCostVar = sumDt.Rows[0][0].ToString();
+                document.SaveAs2(ref save13, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+
+                document.Close();
+                wordApp.Quit();
+                CreateWordDocument(mainPath + @"\datagridFill.docx", mainPath + @"\FileFill.docx");
+                FormPDFUser Fc = new FormPDFUser();
+                Fc.ShowDialog();
+                coInsert.Close();
             }
-            table.Cell(1, 1).Range.Text = "Date";
-            table.Cell(1, 2).Range.Text = "Motif";
-            table.Cell(1, 3).Range.Text = "Trajet";
-            table.Cell(1, 4).Range.Text = "Kms parcourus";
-            table.Cell(1, 5).Range.Text = "Coût trajet";
-            table.Cell(1, 6).Range.Text = "Péages";
-            table.Cell(1, 7).Range.Text = "Repas";
-            table.Cell(1, 8).Range.Text = "Hébergement";
-            table.Cell(1, 9).Range.Text = "Total";
-
-            string getTotal = "select sum(totalCost) from slips where idMember = '" + idUser + "'";
-            MySqlDataAdapter sumTotal = new MySqlDataAdapter(getTotal, coInsert);
-            DataTable sumDt = new DataTable();
-            sumTotal.Fill(sumDt);
-            totalCostVar = sumDt.Rows[0][0].ToString();
-            document.SaveAs2(ref save13, ref missing, ref missing, ref missing,
-                            ref missing, ref missing, ref missing,
-                            ref missing, ref missing, ref missing,
-                            ref missing, ref missing, ref missing,
-                            ref missing, ref missing, ref missing);
-
-            document.Close();
-            wordApp.Quit();
-            CreateWordDocument(mainPath + @"\datagridFill.docx", mainPath + @"\FileFill.docx");
-            FormPDFUser Fc = new FormPDFUser();
-            Fc.ShowDialog();
-            coInsert.Close();
+            catch { }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            getContent returnInfo = new getContent();
-            MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
-            conn.Server = returnInfo.getServer();
-            conn.UserID = returnInfo.getId();
-            conn.Password = returnInfo.getPassword();
-            conn.Database = returnInfo.getDb();
-            var connString = conn.ToString();
-            MySqlConnection connection = new MySqlConnection(connString);
-            connection.Open();
+            try
+            {
+                getContent returnInfo = new getContent();
+                MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+                conn.Server = returnInfo.getServer();
+                conn.UserID = returnInfo.getId();
+                conn.Password = returnInfo.getPassword();
+                conn.Database = returnInfo.getDb();
+                var connString = conn.ToString();
+                MySqlConnection connection = new MySqlConnection(connString);
+                connection.Open();
 
-            string selectValidated = "SELECT id from slips where Validated = 'true' and idMember = '" + idUser + "'";
-            MySqlDataAdapter comSelect = new MySqlDataAdapter(selectValidated, connection);
-            DataTable dtSelect = new DataTable();
-            comSelect.Fill(dtSelect);
-            foreach (DataRow dtse in dtSelect.Rows)
-            {
-                comptValidateBis++;
-            }
-            if(comptValidateBis == comptSlip)
-            {
-                try
+                string selectValidated = "SELECT id from slips where Validated = 'true' and idMember = '" + idUser + "'";
+                MySqlDataAdapter comSelect = new MySqlDataAdapter(selectValidated, connection);
+                DataTable dtSelect = new DataTable();
+                comSelect.Fill(dtSelect);
+                foreach (DataRow dtse in dtSelect.Rows)
                 {
-                    if (idUser != null)
-                    {
-                        CreateWordDocumentCerfa(mainPath + @"\templateCerfa.docx", mainPath + @"CerfaFill.docx");
-                    }
+                    comptValidateBis++;
                 }
-                catch
-                { }
+                if (comptValidateBis == comptSlip)
+                {
+                    try
+                    {
+                        if (idUser != null)
+                        {
+                            CreateWordDocumentCerfa(mainPath + @"\templateCerfa.docx", mainPath + @"CerfaFill.docx");
+                        }
+                    }
+                    catch
+                    { }
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez valider tous les champs");
+                }
+                connection.Close();
             }
-            else
-            {
-                MessageBox.Show("Veuillez valider tous les champs");
-            }
-            connection.Close();
+            catch { }
         }
     }
 }
