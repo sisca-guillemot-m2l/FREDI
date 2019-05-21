@@ -201,6 +201,10 @@ namespace Fredi
             MySqlDataAdapter putAdress = new MySqlDataAdapter(getAdress, coInsert);
             DataTable dtAdress = new DataTable();
             putAdress.Fill(dtAdress);
+            string infoclub = "select * from club where idClub = '"+dtInfo.Rows[0]["numLigue"].ToString()+"'";
+            MySqlDataAdapter clubInfo = new MySqlDataAdapter(infoclub, coInsert);
+            DataTable dtclubAdress = new DataTable();
+            clubInfo.Fill(dtclubAdress);
 
             word.Application wordApp = new word.Application();
             object missing = Missing.Value;
@@ -225,6 +229,12 @@ namespace Fredi
                 this.FindAndReplace(wordApp, "<total>", totalCostVar);
                 this.FindAndReplace(wordApp, "<adresse>", dtAdress.Rows[0][0].ToString());
                 this.FindAndReplace(wordApp, "<prix>", dtPrice.Rows[0][0].ToString());
+                try
+                {
+                    this.FindAndReplace(wordApp, "<clubAdress>", dtclubAdress.Rows[0]["clubAdress"].ToString());
+                }
+                catch { }
+                
             }
 
             else

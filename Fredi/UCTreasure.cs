@@ -24,7 +24,9 @@ namespace Fredi
         public int comptValidate = 0;
         public int comptValidateBis = 0;
         public static string mainPath = Application.ExecutablePath;
-        
+        public string numGot;
+
+
         public UCTreasure()
         {
             InitializeComponent();
@@ -55,7 +57,7 @@ namespace Fredi
             MySqlDataAdapter alop = new MySqlDataAdapter(getNumTreasure, connection);
             DataTable stocknum = new DataTable();
             alop.Fill(stocknum);
-            string numGot = stocknum.Rows[0][0].ToString();
+            numGot = stocknum.Rows[0][0].ToString();
             string sqlQuery = "select firstName from adherents where numLigue = '" + numGot + "' ";
             MySqlCommand sqlcom = new MySqlCommand(sqlQuery, connection);
             MySqlDataReader sdr = sqlcom.ExecuteReader();
@@ -451,6 +453,11 @@ namespace Fredi
             DataTable dtAdress = new DataTable();
             adress.Fill(dtAdress);
 
+            string infoclub = "select * from club where idClub = '" + numGot + "'";
+            MySqlDataAdapter clubInfo = new MySqlDataAdapter(infoclub, coInsert);
+            DataTable dtclubAdress = new DataTable();
+            clubInfo.Fill(dtclubAdress);
+
             word.Application wordApp = new word.Application();
             object missing = Missing.Value;
             word.Document myWordDoc = null;
@@ -467,13 +474,16 @@ namespace Fredi
                                         ref missing, ref missing, ref missing, ref missing);
                 myWordDoc.Activate();
 
-                this.FindAndReplace(wordApp, "<clubName>", "Nom du Club");
-                this.FindAndReplace(wordApp, "<clubAdresse>", "Adresse du Club");
-                this.FindAndReplace(wordApp, "<objet>", "Objet");
+                //this.FindAndReplace(wordApp, "<clubName>", "Nom du Club");
+                //this.FindAndReplace(wordApp, "<clubAdresse>", "Adresse du Club");
+                //this.FindAndReplace(wordApp, "<objet>", "Objet");
                 this.FindAndReplace(wordApp, "<adherentName>", dtInfo.Rows[0]["name"].ToString());
                 this.FindAndReplace(wordApp, "<adherentAdresse>", dtAdress.Rows[0][0].ToString());
                 this.FindAndReplace(wordApp, "<prix>", totalCostVarBis + " €");
                 this.FindAndReplace(wordApp, "<date>", DateTime.Now.ToShortDateString());
+                try{this.FindAndReplace(wordApp, "<clubAdress>", dtclubAdress.Rows[0]["clubAdress"].ToString());}catch { }
+                try{ this.FindAndReplace(wordApp, "<clubName>", dtclubAdress.Rows[0]["clubName"].ToString()); } catch { }
+                try { this.FindAndReplace(wordApp, "<objet>", dtclubAdress.Rows[0]["clubObject"].ToString()); } catch { }
             }
             
             else
