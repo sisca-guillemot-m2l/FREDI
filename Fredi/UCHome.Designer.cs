@@ -40,6 +40,7 @@
             this.textmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.Loginpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -60,6 +61,7 @@
             // 
             this.Loginpanel.BackColor = System.Drawing.Color.Firebrick;
             this.Loginpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Loginpanel.Controls.Add(this.label5);
             this.Loginpanel.Controls.Add(this.btnco);
             this.Loginpanel.Controls.Add(this.label4);
             this.Loginpanel.Controls.Add(this.pictureBox2);
@@ -76,6 +78,7 @@
             // 
             // btnco
             // 
+            this.btnco.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnco.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnco.Location = new System.Drawing.Point(180, 416);
             this.btnco.Margin = new System.Windows.Forms.Padding(4);
@@ -166,6 +169,18 @@
             this.panel2.Size = new System.Drawing.Size(912, 12);
             this.panel2.TabIndex = 3;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(176, 531);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(149, 19);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Mot de passe oublié";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
             // UCHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -178,7 +193,7 @@
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UCHome";
-            this.Size = new System.Drawing.Size(1267, 756);
+            this.Size = new System.Drawing.Size(1246, 735);
             this.Loginpanel.ResumeLayout(false);
             this.Loginpanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -200,5 +215,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnco;
         public System.Windows.Forms.TextBox textmail;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -57,7 +57,8 @@ namespace Fredi
                     MailMessage Msg = new MailMessage();
                     Msg.From = new MailAddress(idMail);
                     Msg.To.Add(new MailAddress(textmail.Text));
-                    Msg.Body = "Bienvenue sur l'application de la maison des ligues. Nous allons vous transmettre vos coordonnées !";
+                    Msg.Subject = "Coordonnées compte M2L";
+                    Msg.Body = "Bienvenue sur l'application de la maison des ligues. Vos coordonnées sont les suivantes : -Adresse mail : '"+textmail.Text+"'  -Mot de passe: '"+textpwd.Text+"'";
                     SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
                     client.EnableSsl = true;
                     client.Credentials = new NetworkCredential("projetgizmofrazou@gmail.com", pwdMail);
@@ -125,6 +126,63 @@ namespace Fredi
             return tokenNb;
         }
 
+        private void label5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                getContent returnInfo = new getContent();
+                MySqlConnectionStringBuilder conn = new MySqlConnectionStringBuilder();
+                conn.Server = returnInfo.getServer();
+                conn.UserID = returnInfo.getId();
+                conn.Password = returnInfo.getPassword();
+                conn.Database = returnInfo.getDb();
+                var connString = conn.ToString();
+                MySqlConnection connection = new MySqlConnection(connString);
+                connection.Open();
+                string pswStock = generatorPwd();
 
+                getContent getIDS = new getContent();
+                string pwdMail = getIDS.getpwdM();
+                getContent getMail = new getContent();
+                string idMail = getMail.getIdM();
+                MailMessage Msg = new MailMessage();
+                Msg.From = new MailAddress(idMail);
+                Msg.To.Add(new MailAddress(textmail.Text));
+                Msg.Subject = "Nouveau mot de passe";
+                Msg.Body = "Vous avez demandé un changement de mot de passe.\n Celui ci a été modifié et remplacé par le suivant : " + pswStock + "";
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.EnableSsl = true;
+                client.Credentials = new NetworkCredential("projetgizmofrazou@gmail.com", pwdMail);
+                client.Send(Msg);
+                MessageBox.Show("Mail envoyé !");
+
+                string pdwforgot = "update login set password = MD5('" + pswStock + "') where email = '" + textmail.Text + "'";
+                MySqlCommand changepwd = new MySqlCommand(pdwforgot, connection);
+                changepwd.ExecuteNonQuery();
+            }
+            catch
+            {
+                MessageBox.Show("Le message ne s'est pas envoyé, veuillez selectionner une adresse valide !");
+            }
+        }
+
+        private string generatorPwd()
+        {
+            int minLength = 8;
+            int maxLength = 12;
+
+            string charAvailable = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+            StringBuilder password = new StringBuilder();
+            Random rdm = new Random();
+
+            int passwordLength = rdm.Next(minLength, maxLength + 1);
+
+            while (passwordLength-- > 0)
+            {
+                password.Append(charAvailable[rdm.Next(charAvailable.Length)]);
+            }
+            return password.ToString();
+        }
     }
 }
